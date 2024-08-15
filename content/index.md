@@ -8,6 +8,193 @@ Try to navigate to [/about](/about). These 2 pages are rendered by the `pages/[.
 
 Look at the [Content documentation](https://content.nuxtjs.org/) to learn more.
 
-```js
-export default {};
+The `@tailwindcss/typography` plugin is our attempt to give you what you actually want, without any of the downsides of doing something stupid like disabling our base styles.
+
+```shell
+$ cd path/to/app/repository
+$ git tag -a ${tag} -m "参照するアプリとそのバージョン" head
+$ git push origin ${tag}
+```
+
+```yaml [.workflows/publish_release_note.yml]
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish_release:
+    timeout-minutes: 5
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Create Changelog
+        id: create_changelog
+        uses: mikepenz/release-changelog-builder-action@v3
+        with:
+          configuration: "./.github/config/workflows/release_note_configuration.json"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: ${{ steps.create_changelog.outputs.changelog }}
+```
+
+```html [index.html]
+<div>
+  <p>hogehoge</p>
+</div>
+```
+
+```scss [test.scss]
+.hogehoge {
+  font-size: 16px;
+  font-weight: bold;
+
+  .fugafuga {
+    background-color: blue;
+  }
+}
+```
+
+```js [file.js]
+export default {
+  name: "hogehoge",
+  methods: {
+    echoPiyo() {
+      return "hogehoge";
+    },
+  },
+};
+```
+
+```ts [file.ts]
+export const hogehoge: string = "hogehoge";
+
+export const sum = (a: number): number => {
+  return a + b;
+};
+```
+
+```vue [piyopiyo.vue]
+<template>
+  <p>script setup is great</p>
+</template>
+
+<script setup lang="ts">
+import { fugafuga } from "imports";
+
+export const fugafuga = ref("fugafuga");
+</script>
+
+<style scoped>
+.tokaionair {
+  display: flex;
+}
+</style>
+```
+
+```csv [hogehoge.csv]
+first,second
+1,2
+```
+
+```json [example.json]
+{
+  "hoge": "hogehge",
+  "fuga": "fugafuga"
+}
+```
+
+```xml [AndroidManifest.xml]
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jp.itans.isinModuleApps"
+>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:label="@string/app_title"
+        android:fullBackupContent="false">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/LaunchTheme"
+        >
+
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme"
+            />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="@string/scheme" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_api_key"/>
+    </application>
+    <queries>
+        <package android:name="com.google.android.apps.fitness" />
+
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="*/*" />
+        </intent>
+    </queries>
+</manifest>
+```
+
+```dart [StatelessWidget.dart]
+import 'module_health/module_health.dart';
+
+class Hogehoge extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Container();
+  }
+}
+```
+
+```ruby [parser.rb]
+class Parser < ActiveRecord {
+  def initialize(policy)
+    @policy = policy
+  end
+
+  def to_s
+    @policy.to_s
+  end
+}
+```
+
+```go [example.go]
+struct {
+  Hoge string `json:fuga`
+}
+
+
+func main() void {
+  fmt.printfs(Hoge)
+}
 ```
