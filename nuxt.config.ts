@@ -1,8 +1,30 @@
+import { globSync } from "glob";
+
+const getContentRoutes = (): string[] => {
+  const routeNames = globSync("src/content/**/*.md").map((f) => {
+    const replaced = f
+      .replaceAll("\\", "/")
+      .replaceAll("src/content", "")
+      .replace(".md", "");
+    return `/blogs${replaced}`;
+  });
+
+  return [...routeNames];
+};
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  modules: ["@nuxt/content", "@nuxt/ui"],
+  nitro: {
+    preset: "cloudflare-pages",
+
+    prerender: {
+      routes: getContentRoutes(),
+    },
+  },
+
+  modules: ["@nuxt/content", "@nuxt/ui", "@nuxt/image"],
 
   routeRules: {
     "/": { prerender: true },
