@@ -8,6 +8,8 @@ export default defineNuxtConfig({
     "/": { prerender: true },
   },
 
+  srcDir: "src",
+
   content: {
     highlight: {
       theme: {
@@ -30,6 +32,9 @@ export default defineNuxtConfig({
         "csv",
         "ruby",
         "go",
+        "diff",
+        "docker",
+        "dotenv",
       ],
     },
   },
