@@ -8,7 +8,11 @@ export default defineNuxtConfig({
     "/": { prerender: true },
   },
 
-  srcDir: "src",
+  srcDir: "src", // プロジェクト全体の設定ファイルと nuxt 関連のファイルを混ぜないようにするため
+
+  ui: {
+    global: true,
+  },
 
   content: {
     highlight: {

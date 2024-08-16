@@ -2,6 +2,7 @@
 title: "Title of the page"
 description: "meta description of the page"
 category: ["flutter", "tech"]
+date: "2024-08-16"
 ---
 
 これは [Flutter Advent Calendar 2022](https://qiita.com/advent-calendar/2022/flutter) の 13 日の記事になります

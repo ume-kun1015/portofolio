@@ -1,4 +1,25 @@
+---
+variant: "solid"
+breadcrumb:
+  [{ label: "Home", to: "/" }, { label: "Navigation" }, { label: "Breadcrumb" }]
+category: ["tech"]
+---
+
 # Nuxt Content
+
+::UAlert{title="Heads up!"}
+::
+
+::UAlert{:variant="variant" title="Your warning" color="primary"}
+::
+
+::UBreadcrumb{:links="breadcrumb"}
+::
+
+::UBadge{label="Badge"}
+::
+
+![my image](/img/IMG_3301.jpg)
 
 ```diff [diff]
 - const posts = await this.$content('/blog', { deep: true }).only(['title']).fetch()

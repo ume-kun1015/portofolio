@@ -11,7 +11,8 @@ console.log({ all });
 
 <template>
   <main class="bg-gray-900 prose prose-primary dark:prose-invert">
-    <ContentDoc />
+    <!-- ContentDoc を使う時は、 DO NOT MOVE -->
+    <!-- <ContentDoc /> -->
   </main>
 </template>
 

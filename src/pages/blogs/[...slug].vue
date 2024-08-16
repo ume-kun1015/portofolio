@@ -1,7 +1,17 @@
+<script setup lang="ts">
+const route = useRoute();
+console.log(route.path);
+const { data: page } = await useAsyncData(`docs-${route.path}`, () =>
+  queryContent(route.path.replace("/blogs/", "")).findOne()
+);
+</script>
+
 <template>
-  <main class="bg-gray-900 prose prose-primary dark:prose-invert">
-    hogehoge
-  </main>
+  <USkeleton class="h-4" />
+
+  <div v-if="page" class="bg-gray-900 prose prose-primary dark:prose-invert">
+    <ContentRenderer v-if="page.body" :value="page" />
+  </div>
 </template>
 
 <style scoped>
