@@ -1,3 +1,14 @@
+<script setup>
+const filtered = await queryContent()
+  .where({ category: { $contains: ["flutter", "tech"] } })
+  .find();
+
+console.log({ filtered });
+
+const all = await queryContent().count();
+console.log({ all });
+</script>
+
 <template>
   <main class="bg-gray-900 prose prose-primary dark:prose-invert">
     <ContentDoc />

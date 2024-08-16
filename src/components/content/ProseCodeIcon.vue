@@ -54,6 +54,9 @@ const config = {
   dart: "vscode-icons:file-type-dartlang",
   go: "vscode-icons:file-type-go",
   rb: "vscode-icons:file-type-ruby",
+  bash: "vscode-icons:file-type-shell",
+  dockerfile: "vscode-icons:file-type-docker",
+  diff: "vscode-icons:file-type-diff",
 };
 
 const { ui } = useUI(
