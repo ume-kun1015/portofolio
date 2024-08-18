@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import TableOfContent from "~/components/content/TableOfContent.vue";
+
 const route = useRoute();
 console.log(route.path);
 const { data: page } = await useAsyncData(`docs-${route.path}`, () =>
@@ -10,7 +12,10 @@ const { data: page } = await useAsyncData(`docs-${route.path}`, () =>
   <USkeleton class="h-4" />
 
   <div v-if="page" class="bg-gray-900 prose prose-primary dark:prose-invert">
-    <ContentRenderer v-if="page.body" :value="page" />
+    <template v-if="page.body">
+      <TableOfContent v-if="page.body.toc" :toc="page.body.toc" />
+      <ContentRenderer v-if="page.body" :value="page" />
+    </template>
   </div>
 </template>
 
