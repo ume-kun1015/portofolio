@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useUI, computed } from "#imports";
+
 const props = defineProps({
   icon: {
     type: String,

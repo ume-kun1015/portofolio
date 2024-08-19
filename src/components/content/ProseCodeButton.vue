@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useUI, useCopyToClipboard, ref } from "#imports";
+
 const props = defineProps({
   code: {
     type: String,
