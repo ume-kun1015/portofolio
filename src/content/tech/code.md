@@ -5,7 +5,7 @@ breadcrumb:
 category: ["tech"]
 ---
 
-# Nuxt Content
+## Nuxt Content
 
 ::UAlert{title="Heads up!"}
 ::
