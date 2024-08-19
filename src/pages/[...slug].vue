@@ -1,4 +1,6 @@
 <script setup>
+import { queryContent } from "#imports";
+
 const filtered = await queryContent()
   .where({ category: { $contains: ["flutter", "tech"] } })
   .find();

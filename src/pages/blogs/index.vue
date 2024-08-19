@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { QueryBuilderParams } from "@nuxt/content";
+import { useRoute, computed, ref, queryContent, useAsyncData } from "#imports";
 
 const route = useRoute();
 

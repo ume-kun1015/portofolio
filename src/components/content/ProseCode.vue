@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
+import { useUI } from "#imports";
 
 defineProps({
   code: {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import TableOfContent from "~/components/content/TableOfContent.vue";
+import TableOfContent from "~/components/TableOfContent.vue";
+import { queryContent, useRoute, useAsyncData } from "#imports";
 
 const route = useRoute();
 console.log(route.path);
