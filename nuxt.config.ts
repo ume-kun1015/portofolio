@@ -20,7 +20,20 @@ export default defineNuxtConfig({
     dirs: [],
   },
 
-  modules: ["@nuxt/content", "@nuxt/ui", "@nuxt/image"],
+  modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/image', '@nuxt/eslint'],
+
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 2,
+        arrowParens: true,
+        quotes: 'single',
+        semi: false,
+        braceStyle: '1tbs',
+        commaDangle: 'always-multiline',
+      },
+    },
+  },
 
   routeRules: {
     "/": { prerender: true },
