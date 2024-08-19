@@ -12,6 +12,14 @@ export default defineNuxtConfig({
     },
   },
 
+  imports: {
+    autoImport: false,
+  },
+
+  components: {
+    dirs: [],
+  },
+
   modules: ["@nuxt/content", "@nuxt/ui", "@nuxt/image"],
 
   routeRules: {
