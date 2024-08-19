@@ -1,14 +1,14 @@
-<script setup>
-import { queryContent } from "#imports";
+<script setup lang="ts">
+import { queryContent } from '#imports'
 
 const filtered = await queryContent()
-  .where({ category: { $contains: ["flutter", "tech"] } })
-  .find();
+  .where({ category: { $contains: ['flutter', 'tech'] } })
+  .find()
 
-console.log({ filtered });
+console.log({ filtered })
 
-const all = await queryContent().count();
-console.log({ all });
+const all = await queryContent().count()
+console.log({ all })
 </script>
 
 <template>

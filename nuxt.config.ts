@@ -1,11 +1,12 @@
-import { getContentRoutes } from "./utils/config/nitro/getContentRoutes";
+import { defineNuxtConfig } from 'nuxt/config'
+import { getContentRoutes } from './utils/config/nitro/getContentRoutes'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
   nitro: {
-    preset: "cloudflare-pages",
+    preset: 'cloudflare-pages',
 
     prerender: {
       routes: getContentRoutes(),
@@ -36,10 +37,10 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    "/": { prerender: true },
+    '/': { prerender: true },
   },
 
-  srcDir: "src", // プロジェクト全体の設定ファイルと nuxt 関連のファイルを混ぜないようにするため
+  srcDir: 'src', // プロジェクト全体の設定ファイルと nuxt 関連のファイルを混ぜないようにするため
 
   ui: {
     global: true,
@@ -48,31 +49,31 @@ export default defineNuxtConfig({
   content: {
     highlight: {
       theme: {
-        default: "material-theme",
+        default: 'material-theme',
       },
 
       langs: [
-        "json",
-        "js",
-        "ts",
-        "html",
-        "css",
-        "vue",
-        "shell",
-        "mdc",
-        "md",
-        "yaml",
-        "dart",
-        "xml",
-        "csv",
-        "ruby",
-        "go",
-        "diff",
-        "docker",
-        "dotenv",
+        'json',
+        'js',
+        'ts',
+        'html',
+        'css',
+        'vue',
+        'shell',
+        'mdc',
+        'md',
+        'yaml',
+        'dart',
+        'xml',
+        'csv',
+        'ruby',
+        'go',
+        'diff',
+        'docker',
+        'dotenv',
       ],
     },
   },
 
-  compatibilityDate: "2024-08-08",
-});
+  compatibilityDate: '2024-08-08',
+})
