@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
+
 import { getContentRoutes } from './utils/config/nitro/getContentRoutes'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
