@@ -32,6 +32,7 @@ export default defineNuxtConfig({
         semi: false,
         braceStyle: '1tbs',
         commaDangle: 'always-multiline',
+        quoteProps: 'as-needed',
       },
     },
   },
