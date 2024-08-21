@@ -9,6 +9,9 @@ export default withNuxt(
     rules: {
       'no-console': ['error'],
 
+      // vue
+      'vue/comma-dangle': ['error', 'always-multiline'], // rules that applies to template in vue file
+
       // @stylistic
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
 
