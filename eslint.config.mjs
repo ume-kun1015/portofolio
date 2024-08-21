@@ -7,6 +7,9 @@ export default withNuxt(
     ...eslintPluginImport.configs['import/recommended'],
 
     rules: {
+      'no-console': ['error'],
+
+      // @stylistic
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
 
       // import
