@@ -51,7 +51,7 @@ syncWithRoute()
 <template>
   <div class="bg-gray-900 prose prose-primary dark:prose-invert">
     <ContentList :query="query">
-      <template #default="{ list: contents, }">
+      <template #default="{ list: contents }">
         <div
           v-for="content in contents"
           :key="content._path"
@@ -76,8 +76,8 @@ syncWithRoute()
       v-model="page"
       :page-count="per"
       :total="allCount ?? 0"
-      :to="(page: number,) => ({
-        query: { page, },
+      :to="(page: number) => ({
+        query: { page },
       })"
     />
   </div>

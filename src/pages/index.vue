@@ -35,7 +35,7 @@ const links = [
     :links="links"
     class="border-b border-gray-200 dark:border-gray-800"
   >
-    <template #default="{ link, }">
+    <template #default="{ link }">
       <span class="group-hover:text-primary relative">{{ link.label }}</span>
     </template>
   </UHorizontalNavigation>

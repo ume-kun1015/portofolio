@@ -88,7 +88,7 @@ const icon = computed(
 <template>
   <UIcon
     v-if="hasIcon"
-    :name="icon.split(' ',).pop()"
+    :name="icon.split(' ').pop()"
     dynamic
   />
 </template>
