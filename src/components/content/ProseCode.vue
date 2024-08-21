@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PropType } from "vue";
-import { useUI } from "#imports";
+import { useUI } from '#imports'
+import type { PropType } from 'vue'
 
 defineProps({
   code: {
@@ -31,33 +31,46 @@ defineProps({
     type: String,
     default: undefined,
   },
-});
+})
 
 const config = {
-  wrapper: "[&>pre]:!rounded-t-none [&>pre]:!my-0 my-5",
+  wrapper: '[&>pre]:!rounded-t-none [&>pre]:!my-0 my-5',
   header:
-    "flex items-center gap-1.5 border border-gray-200 dark:border-gray-700 border-b-0 relative rounded-t-md px-4 py-3 not-prose",
+    'flex items-center gap-1.5 border border-gray-200 dark:border-gray-700 border-b-0 relative rounded-t-md px-4 py-3 not-prose',
   icon: {
-    base: "",
+    base: '',
   },
   button: {
-    base: "absolute top-2.5 right-2.5",
+    base: 'absolute top-2.5 right-2.5',
   },
-  filename: "text-gray-700 dark:text-gray-200 text-sm/6",
-};
+  filename: 'text-gray-700 dark:text-gray-200 text-sm/6',
+}
 
-const { ui } = useUI("content.prose.code", undefined, config, undefined, true);
+const { ui } = useUI('content.prose.code', undefined, config, undefined, true)
 </script>
 
 <template>
-  <div class="relative" :class="!!filename && ui.wrapper">
-    <div v-if="filename && !hideHeader" :class="ui.header">
-      <ProseCodeIcon :icon="icon" :filename="filename" :class="ui.icon.base" />
+  <div
+    class="relative"
+    :class="!!filename && ui.wrapper"
+  >
+    <div
+      v-if="filename && !hideHeader"
+      :class="ui.header"
+    >
+      <ProseCodeIcon
+        :icon="icon"
+        :filename="filename"
+        :class="ui.icon.base"
+      />
 
       <span :class="ui.filename">{{ filename }}</span>
     </div>
 
-    <ProseCodeButton :code="code" :class="ui.button.base" />
+    <ProseCodeButton
+      :code="code"
+      :class="ui.button.base"
+    />
     <slot />
   </div>
 </template>

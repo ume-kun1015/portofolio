@@ -1,22 +1,33 @@
 <script setup lang="ts">
-import TableOfContent from "~/components/TableOfContent.vue";
-import { queryContent, useRoute, useAsyncData } from "#imports";
+import { queryContent, useRoute, useAsyncData } from '#imports'
 
-const route = useRoute();
-console.log(route.path);
+import TableOfContent from '~/components/TableOfContent.vue'
+
+const route = useRoute()
 const { data: page } = await useAsyncData(`docs-${route.path}`, () =>
-  queryContent(route.path.replace("/blogs/", "")).findOne()
-);
+  queryContent(route.path.replace('/blogs/', '')).findOne(),
+)
 </script>
 
 <template>
-  <USkeleton class="h-4" />
+  <div>
+    <USkeleton class="h-4" />
 
-  <div v-if="page" class="bg-gray-900 prose prose-primary dark:prose-invert">
-    <template v-if="page.body">
-      <TableOfContent v-if="page.body.toc" :toc="page.body.toc" />
-      <ContentRenderer v-if="page.body" :value="page" />
-    </template>
+    <div
+      v-if="page"
+      class="bg-gray-900 prose prose-primary dark:prose-invert"
+    >
+      <template v-if="page.body">
+        <TableOfContent
+          v-if="page.body.toc"
+          :toc="page.body.toc"
+        />
+        <ContentRenderer
+          v-if="page.body"
+          :value="page"
+        />
+      </template>
+    </div>
   </div>
 </template>
 

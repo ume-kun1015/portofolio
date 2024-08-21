@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { QueryBuilderParams } from "@nuxt/content";
-import { useRoute, ref, computed, queryContent, useAsyncData } from "#imports";
+import { useRoute, ref, computed, queryContent, useAsyncData } from '#imports'
+import type { QueryBuilderParams } from '@nuxt/content'
 
-const route = useRoute();
+const route = useRoute()
 
-const page = ref(1);
-const per = 5;
+const page = ref(1)
+const per = 5
 
 const query = computed<QueryBuilderParams>(() => {
   return {
-    path: "/",
+    path: '/',
     skip: (page.value - 1) * per,
     limit: per,
     where: [
@@ -17,42 +17,45 @@ const query = computed<QueryBuilderParams>(() => {
         category: { $contains: route.params.category },
       },
     ],
-  };
-});
+  }
+})
 
 const syncWithRoute = (): void => {
-  const { page: pageQuery } = route.query;
+  const { page: pageQuery } = route.query
   if (Array.isArray(pageQuery)) {
-    page.value = 1;
+    page.value = 1
   } else {
-    page.value = pageQuery ? parseInt(pageQuery, 10) : 1;
+    page.value = pageQuery ? parseInt(pageQuery, 10) : 1
   }
-};
+}
 
 const fetchAllCountByCategories = async (): Promise<number> => {
   return queryContent()
     .where({
       category: { $contains: route.params.category },
     })
-    .count();
-};
+    .count()
+}
 
 const { data: allCount } = useAsyncData(
-  "blogs",
+  'blogs',
   async () => fetchAllCountByCategories(),
   {
     watch: [page],
-  }
-);
+  },
+)
 
-syncWithRoute();
+syncWithRoute()
 </script>
 
 <template>
   <div class="bg-gray-900 prose prose-primary dark:prose-invert">
     <ContentList :query="query">
       <template #default="{ list: contents }">
-        <div v-for="content in contents" :key="content._path">
+        <div
+          v-for="content in contents"
+          :key="content._path"
+        >
           {{ content.date }}
           <ULink
             :to="`/blogs${content._path}`"
