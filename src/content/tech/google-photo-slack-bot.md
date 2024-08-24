@@ -55,7 +55,7 @@ $ pip install rtmbot
 
 そのあと、rtmbot.confを作成し、下のように編集していきます。
 
-```conf [rtmbot.conf]
+```
 # Add the following to rtmbot.conf
  DEBUG: True # make this False in production
 
@@ -86,7 +86,7 @@ ID を作成し、そのsecret json ファイルをダウンロードします�
 いろいろと、ファイルが増えてきたなかで、ディレクトリ構造は下のようになります。
 `credentials.dat`の中身は今のところ、何も書かなくて大丈夫です。
 
-```tree
+```
 rtmbot
 ├── photo-gallery.json
 ├── credentials.dat
