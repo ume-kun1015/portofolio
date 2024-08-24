@@ -73,6 +73,8 @@ export default defineNuxtConfig({
         'diff',
         'docker',
         'dotenv',
+        'python',
+        'scss',
       ],
     },
   },
