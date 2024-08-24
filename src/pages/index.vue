@@ -58,7 +58,7 @@ const fetchAllCount = async (): Promise<number> => {
   return queryContent().count()
 }
 
-const { data: allCount } = useAsyncData('blogs', async () => fetchAllCount(), {
+const { data: allCount } = useAsyncData('posts', async () => fetchAllCount(), {
   watch: [page],
 })
 
@@ -84,7 +84,7 @@ syncWithRoute()
             :key="content._path"
           >
             <ULink
-              :to="`/blogs${content._path}`"
+              :to="`/posts${content._path}`"
               active-class="text-primary"
               inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             >

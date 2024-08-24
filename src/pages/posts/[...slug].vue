@@ -5,7 +5,7 @@ import TableOfContent from '~/components/TableOfContent.vue'
 
 const route = useRoute()
 const { data: page } = await useAsyncData(`docs-${route.path}`, () =>
-  queryContent(route.path.replace('/blogs/', '')).findOne(),
+  queryContent(route.path.replace('/posts/', '')).findOne(),
 )
 </script>
 

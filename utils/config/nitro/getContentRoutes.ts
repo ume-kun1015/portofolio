@@ -6,7 +6,7 @@ export const getContentRoutes = (): string[] => {
       .replaceAll('\\', '/')
       .replaceAll('src/content', '')
       .replace('.md', '')
-    return `/blogs${replaced}`
+    return `/posts${replaced}`
   })
 
   return [...routeNames]
