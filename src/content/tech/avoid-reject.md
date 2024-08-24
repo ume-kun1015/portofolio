@@ -35,7 +35,7 @@ date: "2022-12-10"
 
 具体的な実装については、まずは今までの処理を集めたパッケージと空の繋ぎ込みが入っていない Dart Package を作ります。詳しくは割愛しますが、Flutter のパッケージには `package` と `plugin` の両方があり、片方が Dart のみで書かれた一般的なパッケージとなり、もう一方が Dart で書かれたコードに加えて、Android/iOS などのネイティブ API にアクセスするライブラリとなります。今回は前者のほうを作るので、template に `package` を指定します。
 
-```shell
+```bash
 $ flutter create --template=package module_health
 $ flutter create --template=package module_health_empty
 ```
@@ -114,7 +114,7 @@ class HealthService {
 
 あとはそれをアプリの Git Submodule として登録して、 pubspec.yml で下のように書けば問題なしです。このとき、ios/Podfile.lock にも module_health_empty を取り込んでいるアプリでは swift の health パッケージが入らなくなります。
 
-```shell
+```bash
 // 健康管理が必要となるアプリ
 $ git submodule add git@github.com:${organizaiton_name}/module-health.git module-health
 
@@ -124,7 +124,7 @@ $ git submodule add git@github.com:${organization_name}/module-health-empty.git 
 
 必要でも必要ではないアプリでもこのように module_health をこのように登録する。
 
-```pubspec.yml
+```yaml [pubspec.yml]
   module_health:
     path: ../module-health
 ```
@@ -141,7 +141,7 @@ Git Submodule を使用している以上、GitHub Actions の Personal Access T
 
 このあたりの複数のプライベートレポジトリを取得するやり方については、[GitHub Actions で複数のサブモジュールの取得を SSH で行う](https://qiita.com/ntm718/items/ac11441395ced6b79f09) の記事が参考になりました。
 
-```yaml
+```yaml [.github/workflows/lint.yaml]
 name: lint
 
 on:
