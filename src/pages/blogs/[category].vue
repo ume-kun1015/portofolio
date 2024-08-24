@@ -12,6 +12,7 @@ const query = computed<QueryBuilderParams>(() => {
     path: '/',
     skip: (page.value - 1) * per,
     limit: per,
+    sort: [{ date: -1 }],
     where: [
       {
         category: { $contains: route.params.category },
