@@ -12,7 +12,7 @@ const query = computed<QueryBuilderParams>(() => {
     path: '/',
     skip: (page.value - 1) * per,
     limit: per,
-    sort: [{ date: -1 }],
+    sort: [{ publishedAt: -1 }],
     where: [
       {
         category: { $contains: route.params.category },
@@ -57,7 +57,7 @@ syncWithRoute()
           v-for="content in contents"
           :key="content._path"
         >
-          {{ content.date }}
+          {{ content.publishedAt }}
           <ULink
             :to="`/blogs${content._path}`"
             active-class="text-primary"

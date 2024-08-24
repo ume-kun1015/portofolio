@@ -2,7 +2,7 @@
 title: '【Rails/ActiveModelSerializers】each_serializerで呼び出し側から、Serializerクラスに値を渡したいとき'
 description: '呼び出し側から ActiveModelSerializer クラスに値を渡すのに調べたことをまとめて議事録。'
 category: ['tech', 'Ruby on Rails']
-date: '2017-11-04'
+publishedAt: '2017-11-04'
 ---
 
 ## 前書き

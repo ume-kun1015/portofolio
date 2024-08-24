@@ -2,7 +2,7 @@
 title: '自動生成されるリリースノートと同じものを作る GitHub Actions を構築しました'
 description: 'GitHub Actions で GitHub の UI が提供している自動生成のリリースノートと同じものを GitHub Actions を使って生成できるようにした話を書きます。'
 category: ['tech', 'GitHub Actions']
-date: "2022-12-12"
+publishedAt: "2022-12-12"
 ---
 
 この記事は [Github Actions Advent Calendar 2022](https://qiita.com/advent-calendar/2022/github-actions) の11日目の記事です。

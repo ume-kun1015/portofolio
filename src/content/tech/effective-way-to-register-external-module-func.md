@@ -2,7 +2,7 @@
 title: '[Vuejs] 外部モジュールで定義した関数をtemplateで効率よく使えるようにする'
 description: '外部モジュールで定義した関数を直接templateで使用することはできないので、computedに登録することで使えるようにできる。'
 category: ['tech', 'Vue.js', 'JavaScript']
-date: "2020-01-06"
+publishedAt: "2020-01-06"
 ---
 
 ## TL; DR
