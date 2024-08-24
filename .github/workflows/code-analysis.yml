@@ -57,5 +57,7 @@ jobs:
       - name: setup
         uses: ./.github/workflows/composite/setup
 
+      - run: pnpm run prepare
+
       - run: |
           pnpm run lint
