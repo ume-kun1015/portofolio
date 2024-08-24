@@ -31,6 +31,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - run: corepack enable
+
       - name: setup
         id: setup
         uses: ./.github/workflows/composite/setup
@@ -50,8 +52,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - run: corepack enable
+
       - name: setup
         uses: ./.github/workflows/composite/setup
+
+      - run: pnpm run prepare
 
       - run: |
           pnpm run lint

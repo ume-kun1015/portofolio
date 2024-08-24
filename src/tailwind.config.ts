@@ -41,7 +41,7 @@ export default <Partial<Config>>{
           DEFAULT: {
             css: {
               'h1, h2, h3, h4': {
-                'fontWeight': theme('fontWeight.bold'),
+                fontWeight: theme('fontWeight.bold'),
                 'scroll-margin-top': 'var(--scroll-mt)',
               },
               'h1 a, h2 a, h3 a, h4 a': {
@@ -49,7 +49,7 @@ export default <Partial<Config>>{
                 color: 'inherit',
                 fontWeight: 'inherit',
               },
-              'a': {
+              a: {
                 fontWeight: theme('fontWeight.medium'),
                 textDecoration: 'none',
                 borderBottom: '1px solid transparent',
@@ -68,7 +68,7 @@ export default <Partial<Config>>{
                 color: 'var(--tw-prose-links)',
                 borderColor: 'var(--tw-prose-links)',
               },
-              'pre': {
+              pre: {
                 borderRadius: '0.375rem',
                 border: '1px solid var(--tw-prose-pre-border)',
                 color: 'var(--tw-prose-pre-code) !important',
@@ -76,7 +76,7 @@ export default <Partial<Config>>{
                 whiteSpace: 'pre-wrap',
                 wordBreak: 'break-word',
               },
-              'code': {
+              code: {
                 backgroundColor: 'var(--tw-prose-pre-bg)',
                 padding: '0 0.375rem',
                 display: 'inline-block',
@@ -96,13 +96,13 @@ export default <Partial<Config>>{
                 content: '',
               },
               'input[type="checkbox"]': {
-                'color': 'rgb(var(--color-primary-500))',
-                'borderRadius': theme('borderRadius.DEFAULT'),
-                'borderColor': 'rgb(var(--color-gray-300))',
-                'height': theme('spacing.4'),
-                'width': theme('spacing.4'),
-                'marginTop': '-3.5px !important',
-                'marginBottom': '0 !important',
+                color: 'rgb(var(--color-primary-500))',
+                borderRadius: theme('borderRadius.DEFAULT'),
+                borderColor: 'rgb(var(--color-gray-300))',
+                height: theme('spacing.4'),
+                width: theme('spacing.4'),
+                marginTop: '-3.5px !important',
+                marginBottom: '0 !important',
                 '&:focus': {
                   '--tw-ring-offset-width': 0,
                 },
@@ -148,7 +148,7 @@ export default <Partial<Config>>{
               'ul > li > button': {
                 verticalAlign: 'baseline !important',
               },
-              'table': {
+              table: {
                 display: 'block',
                 overflowX: 'auto',
               },
