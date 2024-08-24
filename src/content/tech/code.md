@@ -1,8 +1,11 @@
 ---
+title: 'samples codes'
+description: 'sample codes written in codes'
 variant: "solid"
 breadcrumb:
   [{ label: "Home", to: "/" }, { label: "Navigation" }, { label: "Breadcrumb" }]
 category: ["tech"]
+publishedAt: '2024-08-16'
 ---
 
 ## Nuxt Content
@@ -26,7 +29,7 @@ category: ["tech"]
 + const { data: posts } = await useAsyncData('posts-list', () => queryContent('/blog').only(['title']).find())
 ```
 
-```shell [make_tag.bash]
+```bash [make_tag.bash]
 $ cd path/to/app/repository
 $ git tag -a ${tag} -m "参照するアプリとそのバージョン" head
 $ git push origin ${tag}
