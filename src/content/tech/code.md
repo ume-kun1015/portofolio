@@ -1,8 +1,11 @@
 ---
+title: 'samples codes'
+description: 'sample codes written in codes'
 variant: "solid"
 breadcrumb:
   [{ label: "Home", to: "/" }, { label: "Navigation" }, { label: "Breadcrumb" }]
 category: ["tech"]
+date: '2024-08-16'
 ---
 
 ## Nuxt Content
