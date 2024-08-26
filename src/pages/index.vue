@@ -65,13 +65,13 @@ const query = computed<QueryBuilderParams>(() => {
               inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             >
               <UCard>
-                <template #header>
-                  <Placeholder class="h-8" />
-                </template>
+                <p>
+                  {{ content.publishedAt }} -  {{ content.title }}
+                </p>
 
-                <template #footer>
-                  <Placeholder class="h-8" />
-                </template>
+                <p>
+                  {{ content.description }}
+                </p>
               </UCard>
             </ULink>
           </div>

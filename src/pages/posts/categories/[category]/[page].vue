@@ -53,13 +53,18 @@ const { data: allCount } = useAsyncData(
           v-for="content in contents"
           :key="content._path"
         >
-          {{ content.publishedAt }}
           <ULink
             :to="`/posts${content._path}`"
             active-class="text-primary"
             inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
           >
-            {{ content._path }}
+            <p>
+              {{ content.publishedAt }} - {{ content.title }}
+            </p>
+
+            <p>
+              {{ content.description }}
+            </p>
           </ULink>
         </div>
       </template>
