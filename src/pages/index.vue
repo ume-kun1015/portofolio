@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute, computed, ref, queryContent, useAsyncData } from '#imports'
+import { computed } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 const links = [
@@ -32,37 +32,13 @@ const links = [
   ],
 ]
 
-const route = useRoute()
-
-const page = ref(1)
-const per = 5
-
 const query = computed<QueryBuilderParams>(() => {
   return {
     path: '/',
-    skip: (page.value - 1) * per,
-    limit: per,
+    sort: [{ publishedAt: -1 }],
+    limit: 10,
   }
 })
-
-const syncWithRoute = (): void => {
-  const { page: pageQuery } = route.query
-  if (Array.isArray(pageQuery)) {
-    page.value = 1
-  } else {
-    page.value = pageQuery ? parseInt(pageQuery, 10) : 1
-  }
-}
-
-const fetchAllCount = async (): Promise<number> => {
-  return queryContent().count()
-}
-
-const { data: allCount } = useAsyncData('posts', async () => fetchAllCount(), {
-  watch: [page],
-})
-
-syncWithRoute()
 </script>
 
 <template>
@@ -105,15 +81,6 @@ syncWithRoute()
           <p>記事が見つかりませんでした</p>
         </template>
       </ContentList>
-
-      <UPagination
-        v-model="page"
-        :page-count="per"
-        :total="allCount ?? 0"
-        :to="(page: number) => ({
-          query: { page },
-        })"
-      />
     </div>
   </div>
 </template>
