@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { useRoute, ref, computed, queryContent, useAsyncData } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 const route = useRoute()
 
-const page = ref(1)
+const page = computed(() => {
+  if (Array.isArray(route.params.page)) {
+    return 1
+  } else {
+    return route.params.page ? parseInt(route.params.page, 10) : 1
+  }
+})
+
 const per = 5
 
 const query = computed<QueryBuilderParams>(() => {
@@ -21,15 +28,6 @@ const query = computed<QueryBuilderParams>(() => {
   }
 })
 
-const syncWithRoute = (): void => {
-  const { page: pageQuery } = route.query
-  if (Array.isArray(pageQuery)) {
-    page.value = 1
-  } else {
-    page.value = pageQuery ? parseInt(pageQuery, 10) : 1
-  }
-}
-
 const fetchAllCountByCategories = async (): Promise<number> => {
   return queryContent()
     .where({
@@ -45,8 +43,6 @@ const { data: allCount } = useAsyncData(
     watch: [page],
   },
 )
-
-syncWithRoute()
 </script>
 
 <template>
@@ -74,11 +70,11 @@ syncWithRoute()
     </ContentList>
 
     <UPagination
-      v-model="page"
+      :model-value="page"
       :page-count="per"
       :total="allCount ?? 0"
       :to="(page: number) => ({
-        query: { page },
+        path: `/posts/categories/${route.params.category}/${page}`,
       })"
     />
   </div>
