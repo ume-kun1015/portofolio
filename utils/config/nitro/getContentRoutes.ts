@@ -3,12 +3,26 @@ import { readdirSync } from 'fs'
 export const getContentRoutes = (): string[] => {
   let contentRoutes: string[] = []
 
+  const dirRef = readdirSync('./src/content', { withFileTypes: true, recursive: true })
+  const count = dirRef.filter((dirent) => dirent.isFile() && dirent.name.includes('.md')).length
+
+  let maxPageNum = Math.floor(count / 5)
+  // ページネーションのため、あまりが出たときはページ数を 1 追加する
+  if (count % 5 > 0) {
+    maxPageNum++
+  }
+
+  const postRoutes = Array.from({ length: maxPageNum }, (_, pageNum) => pageNum + 1)
+    .map((pageNum) => `/posts/${pageNum}`)
+
+  contentRoutes = [...postRoutes]
+
   readdirSync('./src/content', { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
     .forEach((dirent) => {
-      const dirRef = readdirSync(`./src/content/${dirent.name}`, { withFileTypes: true })
+      const subdirRef = readdirSync(`./src/content/${dirent.name}`, { withFileTypes: true })
 
-      const postRoutes = dirRef.map((f) => {
+      const postRoutes = subdirRef.map((f) => {
         const replaced = f.name
           .replaceAll('\\', '/')
           .replaceAll('src/content', '')
@@ -17,7 +31,7 @@ export const getContentRoutes = (): string[] => {
         return `/posts/${dirent.name}/${replaced}`
       })
 
-      const count = dirRef.filter((subDirent) => subDirent.isFile() && subDirent.name.includes('.md')).length
+      const count = subdirRef.filter((subDirent) => subDirent.isFile() && subDirent.name.includes('.md')).length
 
       let maxPageNum = Math.floor(count / 5)
       // ページネーションのため、あまりが出たときはページ数を 1 追加する
