@@ -1,14 +1,16 @@
 import { readdirSync } from 'fs'
 
+import { per } from '../../../constant/post'
+
 export const getContentRoutes = (): string[] => {
   let contentRoutes: string[] = []
 
   const dirRef = readdirSync('./src/content', { withFileTypes: true, recursive: true })
   const count = dirRef.filter((dirent) => dirent.isFile() && dirent.name.includes('.md')).length
 
-  let maxPageNum = Math.floor(count / 5)
+  let maxPageNum = Math.floor(count / per)
   // ページネーションのため、あまりが出たときはページ数を 1 追加する
-  if (count % 5 > 0) {
+  if (count % per > 0) {
     maxPageNum++
   }
 
@@ -33,9 +35,9 @@ export const getContentRoutes = (): string[] => {
 
       const count = subdirRef.filter((subDirent) => subDirent.isFile() && subDirent.name.includes('.md')).length
 
-      let maxPageNum = Math.floor(count / 5)
+      let maxPageNum = Math.floor(count / per)
       // ページネーションのため、あまりが出たときはページ数を 1 追加する
-      if (count % 5 > 0) {
+      if (count % per > 0) {
         maxPageNum++
       }
 

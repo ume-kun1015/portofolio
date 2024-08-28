@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 const route = useRoute()
@@ -12,13 +12,15 @@ const page = computed(() => {
   }
 })
 
-const per = 5
+const per = computed(() => {
+  return useRuntimeConfig().public.post.per
+})
 
 const query = computed<QueryBuilderParams>(() => {
   return {
     path: '/',
-    skip: (page.value - 1) * per,
-    limit: per,
+    skip: (page.value - 1) * per.value,
+    limit: per.value,
     sort: [{ publishedAt: -1 }],
   }
 })
