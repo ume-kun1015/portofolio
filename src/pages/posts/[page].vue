@@ -1,38 +1,41 @@
 <script setup lang="ts">
-import { useRoute, computed, ref, queryContent, useAsyncData } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 const route = useRoute()
 
-const page = ref(1)
-const per = 5
+const page = computed(() => {
+  if (Array.isArray(route.params.page)) {
+    return 1
+  } else {
+    return route.params.page ? parseInt(route.params.page, 10) : 1
+  }
+})
+
+const per = computed(() => {
+  return useRuntimeConfig().public.post.per
+})
 
 const query = computed<QueryBuilderParams>(() => {
   return {
     path: '/',
-    skip: (page.value - 1) * per,
-    limit: per,
+    skip: (page.value - 1) * per.value,
+    limit: per.value,
+    sort: [{ publishedAt: -1 }],
   }
 })
-
-const syncWithRoute = (): void => {
-  const { page: pageQuery } = route.query
-  if (Array.isArray(pageQuery)) {
-    page.value = 1
-  } else {
-    page.value = pageQuery ? parseInt(pageQuery, 10) : 1
-  }
-}
 
 const fetchAllCount = async (): Promise<number> => {
   return queryContent().count()
 }
 
-const { data: allCount } = useAsyncData('blogs', async () => fetchAllCount(), {
-  watch: [page],
-})
-
-syncWithRoute()
+const { data: allCount } = useAsyncData(
+  'posts',
+  async () => fetchAllCount(),
+  {
+    watch: [page],
+  },
+)
 </script>
 
 <template>
@@ -44,19 +47,17 @@ syncWithRoute()
           :key="content._path"
         >
           <ULink
-            :to="`/blogs${content._path}`"
+            :to="`/posts${content._path}`"
             active-class="text-primary"
             inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
           >
-            <UCard>
-              <template #header>
-                <Placeholder class="h-8" />
-              </template>
+            <p>
+              {{ content.publishedAt }} - {{ content.title }}
+            </p>
 
-              <template #footer>
-                <Placeholder class="h-8" />
-              </template>
-            </UCard>
+            <p>
+              {{ content.description }}
+            </p>
           </ULink>
         </div>
       </template>
@@ -67,11 +68,11 @@ syncWithRoute()
     </ContentList>
 
     <UPagination
-      v-model="page"
+      :model-value="page"
       :page-count="per"
       :total="allCount ?? 0"
       :to="(page: number) => ({
-        query: { page },
+        path: `/posts/${page}`,
       })"
     />
   </div>

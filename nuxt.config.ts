@@ -1,5 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
+import { per } from './constant/post'
 import { getContentRoutes } from './utils/config/nitro/getContentRoutes'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -43,6 +44,14 @@ export default defineNuxtConfig({
   },
 
   srcDir: 'src', // プロジェクト全体の設定ファイルと nuxt 関連のファイルを混ぜないようにするため
+
+  runtimeConfig: {
+    public: {
+      post: {
+        per,
+      },
+    },
+  },
 
   ui: {
     global: true,
