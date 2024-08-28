@@ -10,6 +10,9 @@ publishedAt: '2024-08-16'
 
 ## Nuxt Content
 
+> [!TIP]
+> Discover also [nuxt.new](https://nuxt.new): Open a Nuxt starter on CodeSandbox, StackBlitz or locally to get up and running in a few seconds.
+
 ::UAlert{title="Heads up!"}
 ::
 
