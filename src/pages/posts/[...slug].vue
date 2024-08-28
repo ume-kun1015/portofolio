@@ -4,29 +4,33 @@ import { queryContent, useRoute, useAsyncData } from '#imports'
 import TableOfContent from '~/components/TableOfContent.vue'
 
 const route = useRoute()
-const { data: page } = await useAsyncData(`docs-${route.path}`, () =>
+const { data: page, status } = await useAsyncData(`docs-${route.path}`, () =>
   queryContent(route.path.replace('/posts/', '')).findOne(),
 )
 </script>
 
 <template>
   <div>
-    <USkeleton class="h-4" />
+    <USkeleton
+      v-if="['idle', 'pending'].includes(status)"
+      class="h-4"
+    />
 
     <div
-      v-if="page"
-      class="bg-gray-900 prose prose-primary dark:prose-invert"
+      v-if="page?.body"
+      class="bg-gray-900 prose prose-primary dark:prose-invert p-4 flex"
     >
-      <template v-if="page.body">
+      <ContentRenderer
+        v-if="page.body"
+        :value="page"
+      />
+
+      <div>
         <TableOfContent
-          v-if="page.body.toc"
-          :toc="page.body.toc"
+          v-if="page.body.toc?.links"
+          :links="page.body.toc.links"
         />
-        <ContentRenderer
-          v-if="page.body"
-          :value="page"
-        />
-      </template>
+      </div>
     </div>
   </div>
 </template>
