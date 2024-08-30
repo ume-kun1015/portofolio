@@ -1,5 +1,5 @@
 <template>
-  <ul class="space-y-1 sticky top-8">
+  <ul class="sticky top-8">
     <li
       v-for="link in links"
       :key="link.text"
@@ -13,7 +13,7 @@
         {{ link.text }}
       </NuxtLink>
 
-      <TableOfContent
+      <TableOfPost
         v-if="link.children"
         :links="link.children"
       />

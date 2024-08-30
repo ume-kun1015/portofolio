@@ -1,10 +1,22 @@
 <script setup lang="ts">
+import { useMatchMediaListener, onMounted, ref } from '#imports'
+
 import ColorModeToggle from '~/components/header/ColorModeToggle.vue'
+
+const isMobile = ref(false)
+
+onMounted(() => {
+  const toggleIsMobile = (mql: MediaQueryList | MediaQueryListEvent): void => {
+    isMobile.value = !mql.matches
+  }
+  const { setMatchMediaHandler } = useMatchMediaListener()
+  setMatchMediaHandler(toggleIsMobile)
+})
 </script>
 
 <template>
-  <header class="bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50 h-12">
-    <UContainer class="flex items-center justify-between gap-3 h-[--header-height]">
+  <header class="bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50 h-8 p-2">
+    <UContainer class="flex items-center justify-between gap-3 h-[--header-height] px-2">
       <div class="lg:flex-1 flex items-center gap-1.5">
         <NuxtLink
           to="/"
@@ -20,8 +32,11 @@ import ColorModeToggle from '~/components/header/ColorModeToggle.vue'
           to="/about"
           color="gray"
           variant="ghost"
+          class="p-0.5"
+          size="2xs"
+          :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          About
+          {{ isMobile ? '' : 'About' }}
         </UButton>
 
         <UButton
@@ -29,8 +44,11 @@ import ColorModeToggle from '~/components/header/ColorModeToggle.vue'
           to="/music"
           color="gray"
           variant="ghost"
+          class="p-0.5"
+          size="2xs"
+          :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          Music
+          {{ isMobile ? '' : 'Music' }}
         </UButton>
 
         <UButton
@@ -38,8 +56,11 @@ import ColorModeToggle from '~/components/header/ColorModeToggle.vue'
           to="/bartender"
           color="gray"
           variant="ghost"
+          class="p-0.5"
+          size="2xs"
+          :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          Bartender
+          {{ isMobile ? '' : 'Bartender' }}
         </UButton>
 
         <UButton
@@ -47,8 +68,11 @@ import ColorModeToggle from '~/components/header/ColorModeToggle.vue'
           to="/posts/1"
           color="gray"
           variant="ghost"
+          class="p-0.5"
+          size="2xs"
+          :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          Posts
+          {{ isMobile ? '' : 'Posts' }}
         </UButton>
 
         <ColorModeToggle />

@@ -7,6 +7,17 @@ import { getContentRoutes } from './utils/config/nitro/getContentRoutes'
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  app: {
+    head: {
+      meta: [
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1.0, user-scalable=no',
+        },
+      ],
+    },
+  },
+
   nitro: {
     preset: 'cloudflare-pages',
 
@@ -43,12 +54,6 @@ export default defineNuxtConfig({
     '/': { prerender: true },
   },
 
-  // router: {
-  //   options: {
-  //     scrollBehaviorType: 'smooth',
-  //   },
-  // },
-
   srcDir: 'src', // プロジェクト全体の設定ファイルと nuxt 関連のファイルを混ぜないようにするため
 
   runtimeConfig: {
@@ -64,6 +69,17 @@ export default defineNuxtConfig({
   },
 
   content: {
+    markdown: {
+      rehypePlugins: [
+        [
+          'rehype-external-links', {
+            target: '_blank',
+            rel: 'nofollow noopener noreferrer',
+          },
+        ],
+      ],
+    },
+
     highlight: {
       theme: {
         default: 'material-theme',

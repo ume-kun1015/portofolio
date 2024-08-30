@@ -2,6 +2,8 @@
 import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
+import PostList from '~/components/post/PostList.vue'
+
 const route = useRoute()
 
 const page = computed(() => {
@@ -24,7 +26,7 @@ const query = computed<QueryBuilderParams>(() => {
     sort: [{ publishedAt: -1 }],
     where: [
       {
-        category: { $contains: route.params.category },
+        categories: { $contains: route.params.category },
       },
     ],
   }
@@ -33,7 +35,7 @@ const query = computed<QueryBuilderParams>(() => {
 const fetchAllCountByCategories = async (): Promise<number> => {
   return queryContent()
     .where({
-      category: { $contains: route.params.category },
+      categories: { $contains: route.params.category },
     })
     .count()
 }
@@ -49,32 +51,7 @@ const { data: allCount } = useAsyncData(
 
 <template>
   <div class="bg-gray-900 prose prose-primary dark:prose-invert">
-    <ContentList :query="query">
-      <template #default="{ list: contents }">
-        <div
-          v-for="content in contents"
-          :key="content._path"
-        >
-          <ULink
-            :to="`/posts${content._path}`"
-            active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-          >
-            <p>
-              {{ content.publishedAt }} - {{ content.title }}
-            </p>
-
-            <p>
-              {{ content.description }}
-            </p>
-          </ULink>
-        </div>
-      </template>
-
-      <template #not-found>
-        <p>記事が見つかりませんでした</p>
-      </template>
-    </ContentList>
+    <PostList :query="query" />
 
     <UPagination
       :model-value="page"

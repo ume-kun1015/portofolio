@@ -1,44 +1,94 @@
 <script setup lang="ts">
-import { queryContent, useRoute, useAsyncData } from '#imports'
+import { queryContent, useRoute, useAsyncData, navigateTo, computed, definePageMeta } from '#imports'
+import { withoutTrailingSlash } from 'ufo'
 
-import TableOfContent from '~/components/TableOfContent.vue'
+import PostCategory from '~/components/post/PostCategory.vue'
+import PostSurround from '~/components/post/PostSurround.vue'
+import TableOfPost from '~/components/post/TableOfPost.vue'
+
+definePageMeta({
+  layout: 'post',
+})
+
+const routePath = computed(() => {
+  return `/${withoutTrailingSlash(route.path.replace('/posts/', ''))}`
+})
 
 const route = useRoute()
-const { data: page, status } = await useAsyncData(`docs-${route.path}`, () =>
-  queryContent(route.path.replace('/posts/', '')).findOne(),
+const { data: page } = await useAsyncData(`docs-${route.path}`, () => {
+  return queryContent(routePath.value).findOne()
+})
+if (!page.value) {
+  await navigateTo('/')
+}
+
+const { data: surround } = await useAsyncData(
+  `docs-${route.path}-surround`,
+  () => {
+    return queryContent()
+      .where({ _extension: 'md', navigation: { $ne: false } })
+      .findSurround(routePath.value)
+  },
+  { default: () => [] },
 )
+
+const toPathString = (category: string): string => {
+  return category.replace(/\s/g, '').replace(/\./g, '').toLowerCase()
+}
 </script>
 
 <template>
-  <div>
-    <USkeleton
-      v-if="['idle', 'pending'].includes(status)"
-      class="h-4"
-    />
+  <div
+    v-if="page"
+    class="prose prose-primary dark:prose-invert py-6 px-4 max-w-6xl mx-auto"
+  >
+    <h1>{{ page.title }}</h1>
+
+    <ul class="list-none flex not-prose mb-3">
+      <li
+        v-for="category in page.categories"
+        :key="category"
+      >
+        <NuxtLink
+          :to="`/posts/categories/${toPathString(category)}/1`"
+          class="mr-1 border border-primary-500 px-1 py-1/2 rounded-xl block"
+        >
+          <PostCategory :category="category" />
+        </NuxtLink>
+      </li>
+    </ul>
+
+    <UDivider class="mb-2" />
 
     <div
-      v-if="page?.body"
-      class="bg-gray-900 prose prose-primary dark:prose-invert p-4 flex"
+      v-if="page.body"
+      class="block pc:flex gap-2"
     >
       <ContentRenderer
-        v-if="page.body"
         :value="page"
       />
 
-      <div>
-        <TableOfContent
+      <div class="hidden pc:block w-1/4">
+        <TableOfPost
           v-if="page.body.toc?.links"
           :links="page.body.toc.links"
+          class="py-0 pc:py-2"
         />
       </div>
     </div>
+
+    <UDivider
+      v-if="surround"
+      class="mt-4 mb-6"
+    />
+
+    <PostSurround :surround="surround" />
   </div>
 </template>
 
 <style scoped>
 .prose {
   @apply text-white;
-  max-width: unset;
 
   :where(code) {
     @apply text-gray-200;
@@ -46,14 +96,6 @@ const { data: page, status } = await useAsyncData(`docs-${route.path}`, () =>
 
   :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     @apply !bg-gray-800;
-  }
-
-  @media (min-width: 640px) {
-    :where(.prose > :last-child):not(
-        :where([class~="not-prose"], [class~="not-prose"] *)
-      ) {
-      min-width: 450px;
-    }
   }
 }
 </style>

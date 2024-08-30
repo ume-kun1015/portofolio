@@ -21,6 +21,8 @@ const isDark = computed({
       :model-value="isDark"
       on-icon="i-heroicons-moon-20-solid"
       off-icon="i-heroicons-sun-20-solid"
+      size="xs"
+      :ui="{ container: { active: { xs: 'translate-x-3 rtl:-translate-x-3' } } }"
       :aria-label="`Switch to ${isDark ? 'light' : 'dark'} mode`"
       :disabled="colorMode.forced"
       @update:model-value="isDark = !isDark"
