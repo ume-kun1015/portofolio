@@ -1,7 +1,6 @@
-import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
-export default <Partial<Config>>{
+export default {
   theme: {
     extend: {
       colors: {
@@ -35,8 +34,8 @@ export default <Partial<Config>>{
       fontFamily: {
         sans: ['Inter var', 'Inter', ...defaultTheme.fontFamily.sans],
       },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      typography: (theme: any) => {
+
+      typography: (theme) => {
         return {
           DEFAULT: {
             css: {
