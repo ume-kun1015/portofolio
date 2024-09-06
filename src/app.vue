@@ -3,7 +3,7 @@ import AppHeader from '~/components/header/AppHeader.vue'
 </script>
 
 <template>
-  <div class="bg-gray-900">
+  <div class="bg-white dark:bg-gray-900">
     <NuxtLayout>
       <AppHeader />
 

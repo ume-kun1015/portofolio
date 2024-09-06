@@ -3,6 +3,7 @@ import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig } from
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
+import PostPagination from '~/components/post/PostPagination.vue'
 
 const route = useRoute()
 
@@ -41,17 +42,22 @@ const { data: allCount } = useAsyncData(
 </script>
 
 <template>
-  <div class="bg-gray-900 prose prose-primary dark:prose-invert">
-    <PostList :query="query" />
+  <div class="p-2 max-w-6xl mx-auto min-h-screen">
+    <div class="py-2">
+      <PostList :query="query" />
+    </div>
 
-    <UPagination
-      :model-value="page"
-      :page-count="per"
-      :total="allCount ?? 0"
-      :to="(page: number) => ({
-        path: `/posts/${page}`,
-      })"
-    />
+    <div
+      v-if="(allCount ?? 0) > 0"
+      class="flex justify-center"
+    >
+      <PostPagination
+        :page="page"
+        :per="per"
+        :all-count="allCount ?? 0"
+        to-page-suffix="/posts"
+      />
+    </div>
   </div>
 </template>
 

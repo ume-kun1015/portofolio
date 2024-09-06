@@ -2,8 +2,8 @@
 import { computed } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
-import PostList from '~/components/post/PostList.vue'
 import AppAside from '~/components/aside/AppAside.vue'
+import PostList from '~/components/post/PostList.vue'
 
 const query = computed<QueryBuilderParams>(() => {
   return {
@@ -15,7 +15,7 @@ const query = computed<QueryBuilderParams>(() => {
 </script>
 
 <template>
-  <div class="bg-gray-900 px-2">
+  <div class="px-2 max-w-6xl mx-auto">
     <div class="prose-primary dark:prose-invert py-2 flex">
       <div>
         <PostList :query="query" />

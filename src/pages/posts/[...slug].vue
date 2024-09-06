@@ -2,7 +2,6 @@
 import { queryContent, useRoute, useAsyncData, navigateTo, computed, definePageMeta } from '#imports'
 import { withoutTrailingSlash } from 'ufo'
 
-import PostCategory from '~/components/post/PostCategory.vue'
 import PostSurround from '~/components/post/PostSurround.vue'
 import TableOfPost from '~/components/post/TableOfPost.vue'
 
@@ -49,12 +48,12 @@ const toPathString = (category: string): string => {
         v-for="category in page.categories"
         :key="category"
       >
-        <NuxtLink
+        <ULink
           :to="`/posts/categories/${toPathString(category)}/1`"
-          class="mr-1 border border-primary-500 px-1 py-1/2 rounded-xl block"
+          class="mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block"
         >
-          <PostCategory :category="category" />
-        </NuxtLink>
+          {{ category }}
+        </ULink>
       </li>
     </ul>
 
@@ -88,12 +87,6 @@ const toPathString = (category: string): string => {
 
 <style scoped>
 .prose {
-  @apply text-white;
-
-  :where(code) {
-    @apply text-gray-200;
-  }
-
   :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     @apply !bg-gray-800;
   }

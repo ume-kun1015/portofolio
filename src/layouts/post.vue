@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="prose-primary dark:prose-invert">
     <slot />
 
     <UNotifications />
