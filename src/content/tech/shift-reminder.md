@@ -1,7 +1,7 @@
 ---
 title: '【Google Calendar/Slack/Ruby】Ruby でシフトリマインドスクリプトを書いてみた。'
 description: 'リマインドのために、Google Calendarで管理されているシフトをスラックで連絡するスクリプトを書いてみました。'
-categories: ['tech', 'ruby']
+categories: ['Tech', 'ruby']
 publishedAt: "2017-11-06"
 ---
 

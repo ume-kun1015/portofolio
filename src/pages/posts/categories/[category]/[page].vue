@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, definePageMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
 import PostPagination from '~/components/post/PostPagination.vue'
+import { urlParamsCategoryMap, per } from '~~/constant/post'
+
+definePageMeta({
+  layout: 'post',
+})
 
 const route = useRoute()
 
@@ -15,19 +20,29 @@ const page = computed(() => {
   }
 })
 
-const per = computed(() => {
-  return useRuntimeConfig().public.post.per
+const cateogryParams = computed<string>(() => {
+  const category = route.params.category
+  if (Array.isArray(category)) {
+    return ''
+  }
+
+  const found = urlParamsCategoryMap[category]
+  if (found) {
+    return found
+  }
+
+  return `${category.charAt(0).toUpperCase()}${category.slice(1)}` // capitalize
 })
 
 const query = computed<QueryBuilderParams>(() => {
   return {
     path: '/',
-    skip: (page.value - 1) * per.value,
-    limit: per.value,
+    skip: (page.value - 1) * per,
+    limit: per,
     sort: [{ publishedAt: -1 }],
     where: [
       {
-        categories: { $contains: route.params.category },
+        categories: { $contains: cateogryParams.value },
       },
     ],
   }
@@ -36,7 +51,7 @@ const query = computed<QueryBuilderParams>(() => {
 const fetchAllCountByCategories = async (): Promise<number> => {
   return queryContent()
     .where({
-      categories: { $contains: route.params.category },
+      categories: { $contains: cateogryParams.value },
     })
     .count()
 }
@@ -48,6 +63,10 @@ const { data: allCount } = useAsyncData(
     watch: [page],
   },
 )
+
+const allPagesNum = computed(() => {
+  return Math.ceil((allCount.value ?? 0) / per)
+})
 </script>
 
 <template>
@@ -57,14 +76,14 @@ const { data: allCount } = useAsyncData(
     </div>
 
     <div
-      v-if="(allCount ?? 0) > 0"
+      v-if="allPagesNum > 1"
       class="flex justify-center"
     >
       <PostPagination
         :page="page"
         :per="per"
         :all-count="allCount ?? 0"
-        :to-page-suffix="`/posts/categories/${route.params.category}`"
+        :to-page-suffix="`/posts/categories/${cateogryParams}`"
       />
     </div>
   </div>
@@ -72,8 +91,6 @@ const { data: allCount } = useAsyncData(
 
 <style scoped>
 .prose {
-  max-width: unset;
-
   :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     @apply !bg-gray-800;
   }

@@ -3,6 +3,7 @@ import { definePageMeta } from '#imports'
 
 definePageMeta({
   middleware: 'redirect-to-home',
+  layout: 'post',
 })
 </script>
 

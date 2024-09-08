@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, definePageMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
 import PostPagination from '~/components/post/PostPagination.vue'
+import { per } from '~~/constant/post'
+
+definePageMeta({
+  layout: 'post',
+})
 
 const route = useRoute()
 
@@ -15,15 +20,11 @@ const page = computed(() => {
   }
 })
 
-const per = computed(() => {
-  return useRuntimeConfig().public.post.per
-})
-
 const query = computed<QueryBuilderParams>(() => {
   return {
     path: '/',
-    skip: (page.value - 1) * per.value,
-    limit: per.value,
+    skip: (page.value - 1) * per,
+    limit: per,
     sort: [{ publishedAt: -1 }],
   }
 })
@@ -39,6 +40,10 @@ const { data: allCount } = useAsyncData(
     watch: [page],
   },
 )
+
+const allPagesNum = computed(() => {
+  return Math.ceil((allCount.value ?? 0) / per)
+})
 </script>
 
 <template>
@@ -48,7 +53,7 @@ const { data: allCount } = useAsyncData(
     </div>
 
     <div
-      v-if="(allCount ?? 0) > 0"
+      v-if="allPagesNum > 1"
       class="flex justify-center"
     >
       <PostPagination

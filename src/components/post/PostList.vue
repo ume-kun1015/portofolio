@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import type { QueryBuilderParams } from '@nuxt/content'
 
+import { categoryUrlParamsMap } from '~~/constant/post'
+
 defineProps<{ query: QueryBuilderParams }>()
 
 const toPathString = (category: string): string => {
-  return category.replace(/\s/g, '').replace(/\./g, '').toLowerCase()
+  const found = categoryUrlParamsMap[category]
+  return found || category
 }
 </script>
 
@@ -24,14 +27,14 @@ const toPathString = (category: string): string => {
             :to="`/posts${content._path}`"
             class="block"
             active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 mb-2 inline-block"
+            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 inline-block"
           >
             <p>
               {{ content.title }}
             </p>
           </ULink>
 
-          <div class="flex justify-between mb-3 pc:mb-0">
+          <div class="flex justify-between mb-3 pc:mb-0 mt-2">
             <ul class="list-none flex not-prose">
               <li
                 v-for="category in content.categories"
