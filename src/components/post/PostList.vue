@@ -18,7 +18,7 @@ const toPathString = (category: string): string => {
       >
         <UCard
           class="p-0"
-          :ui="{ body: { padding: 'p-2' } }"
+          :ui="{ body: { padding: 'p-2' }, background: 'bg-white dark:bg-gray-800' }"
         >
           <ULink
             :to="`/posts${content._path}`"
@@ -39,7 +39,7 @@ const toPathString = (category: string): string => {
               >
                 <ULink
                   :to="`/posts/categories/${toPathString(category)}/1`"
-                  class="mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block"
+                  class="mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block hover:text-primary-800 hover:border-primary-800 dark:hover:text-primary-300 dark:hover:border-primary-300"
                 >
                   {{ category }}
                 </ULink>

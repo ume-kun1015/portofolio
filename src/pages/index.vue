@@ -15,13 +15,15 @@ const query = computed<QueryBuilderParams>(() => {
 </script>
 
 <template>
-  <div class="px-2 max-w-6xl mx-auto">
-    <div class="prose-primary dark:prose-invert py-2 flex">
-      <div>
+  <div class="px-2 py-2 max-w-6xl mx-auto">
+    <div class="prose-primary dark:prose-invert flex gap-4">
+      <div class="w-3/4">
         <PostList :query="query" />
       </div>
 
-      <AppAside />
+      <div class="w-0 pc:w-1/4 hidden pc:block">
+        <AppAside />
+      </div>
     </div>
   </div>
 </template>

@@ -75,7 +75,9 @@ onMounted(() => {
           {{ isMobile ? '' : 'Posts' }}
         </UButton>
 
-        <ColorModeToggle />
+        <div class="w-6 h-3">
+          <ColorModeToggle />
+        </div>
       </div>
     </UContainer>
   </header>

@@ -8,7 +8,7 @@
 
     <span
       v-else
-      class="hidden sm:block"
+      class="w-1/2"
     >
       &nbsp;
     </span>

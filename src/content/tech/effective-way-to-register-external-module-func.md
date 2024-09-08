@@ -6,22 +6,21 @@ publishedAt: "2020-01-06"
 ---
 
 ## TL; DR
- - 外部モジュールで定義した関数を直接templateで使用することはできないので、computedに登録することで使えるようにできる。
+外部モジュールで定義した関数を直接templateで使用することはできないので、computedに登録することで使えるようにできる。
 
 ## WHY
- - vuejs(nuxtjs)でメディアコンテンツ入稿ツール(以下: ダッシュボードツール)を開発しています。
- - ページやコンポーネントのjsのコードが肥大化しないように、使用する関数を外部モジュールに定義しました。それをインポートしようとし、直接template内で使用したところ、下のエラーが発生し困っていました。
 
-```
-Property or method "helperFunc" is not defined on the instance but referenced during render.
-Make sure to declare reactive data properties in the data option.
-```
+vuejs(nuxtjs)でメディアコンテンツ入稿ツール(以下: ダッシュボードツール)を開発しています。
+ページやコンポーネントのjsのコードが肥大化しないように、使用する関数を外部モジュールに定義しました。それをインポートしようとし、直接template内で使用したところ、下のエラーが発生し困っていました。
 
- - 解決したのですが、ググったところ簡単に解決策が出てこなったので、せっかくなら記事にまとめようと思いました。
+> Property or method "helperFunc" is not defined on the instance but referenced during render.
+  Make sure to declare reactive data properties in the data option.
+
+解決したのですが、ググったところ簡単に解決策が出てこなったので、せっかくなら記事にまとめようと思いました。
 
 ## 技術スタック
-   - Nuxtjs(vuejs) 2.x
-   - Vuetify 2.x
+  - Nuxtjs(vuejs) 2.x
+  - Vuetify 2.x
 
 ## 具体的なケース
 上のWHYに書いた、実際にエラーが出るコードがこちらです。

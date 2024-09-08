@@ -33,7 +33,7 @@ const canGoLastOrNext = computed(() => props.page < Math.ceil(props.allCount / p
         class="rtl:[&_span:first-child]:rotate-180"
         size="2xs"
         :disabled="!canGoFirstOrPrev"
-        :ui="{ icon: { size: { '2xs': 'w-2 h-2' } } }"
+        :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         @click="onClick"
       />
     </template>
@@ -45,7 +45,7 @@ const canGoLastOrNext = computed(() => props.page < Math.ceil(props.allCount / p
         class="rtl:[&_span:last-child]:rotate-180"
         :disabled="!canGoLastOrNext"
         size="2xs"
-        :ui="{ icon: { size: { '2xs': 'w-2 h-2' } } }"
+        :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         @click="onClick"
       />
     </template>
