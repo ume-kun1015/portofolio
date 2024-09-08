@@ -7,7 +7,7 @@ defineProps<{ query: QueryBuilderParams }>()
 
 const toPathString = (category: string): string => {
   const found = categoryUrlParamsMap[category]
-  return found || category
+  return found || category.toLowerCase()
 }
 </script>
 
