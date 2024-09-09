@@ -16,8 +16,8 @@ const query = computed<QueryBuilderParams>(() => {
 
 <template>
   <div class="px-2 py-2 max-w-6xl mx-auto">
-    <div class="prose-primary dark:prose-invert flex gap-4">
-      <div class="w-3/4">
+    <div class="prose-primary dark:prose-invert block pc:flex gap-0 pc:gap-4">
+      <div class="w-full pc:w-3/4">
         <PostList :query="query" />
       </div>
 

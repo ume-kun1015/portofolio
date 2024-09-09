@@ -34,22 +34,23 @@ const toPathString = (category: string): string => {
             </p>
           </ULink>
 
-          <div class="flex justify-between mb-3 pc:mb-0 mt-2">
-            <ul class="list-none flex not-prose">
+          <div class="flex justify-between mb-3 pc:mb-0 mt-2 gap-0 pc:gap-4">
+            <ul class="list-none flex flex-wrap not-prose w-3/4">
               <li
                 v-for="category in content.categories"
                 :key="category"
+                class="mb-1"
               >
                 <ULink
                   :to="`/posts/categories/${toPathString(category)}/1`"
-                  class="mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block hover:text-primary-800 hover:border-primary-800 dark:hover:text-primary-300 dark:hover:border-primary-300"
+                  class="text-12 mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block hover:text-primary-800 hover:border-primary-800 dark:hover:text-primary-300 dark:hover:border-primary-300"
                 >
                   {{ category }}
                 </ULink>
               </li>
             </ul>
 
-            <p class="text-gray-400">
+            <p class="w-1/4 text-gray-400">
               {{ content.publishedAt }}
             </p>
           </div>
