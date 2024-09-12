@@ -1,0 +1,31 @@
+name: Create a release pull request
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-release-pr:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.5
+
+      - name: Creates a release pull request
+        env:
+          GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_PR_RELEASE_BRANCH_PRODUCTION: release
+          GIT_PR_RELEASE_BRANCH_STAGING: main
+          GIT_PR_RELEASE_TEMPLATE: .github/template/github-release-pr-template
+        run: |
+          gem install -N git-pr-release -v "1.4.0"
+          git-pr-release --no-fetch
