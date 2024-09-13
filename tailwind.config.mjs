@@ -2,6 +2,10 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
   theme: {
+    screens: {
+      pc: { min: '520px' },
+    },
+
     extend: {
       colors: {
         slate: {
