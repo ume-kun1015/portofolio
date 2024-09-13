@@ -6,6 +6,18 @@ export default {
       pc: { min: '520px' },
     },
 
+    fontSize: {
+      0: ['0px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      12: ['12px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      13: ['13px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      15: ['15px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      16: ['16px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      20: ['20px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      24: ['24px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      28: ['28px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      32: ['32px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+    },
+
     extend: {
       colors: {
         slate: {
