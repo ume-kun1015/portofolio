@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     sitemap.write({
       url: join('/posts', doc._path),
       changefreq: 'weekly',
-      lastmod: doc.publishedAt,
+      lastmod: doc.updatedAt,
       priority: doc.priority || 0.5,
     })
   }
