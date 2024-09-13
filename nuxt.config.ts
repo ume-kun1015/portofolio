@@ -69,6 +69,17 @@ export default defineNuxtConfig({
   },
 
   content: {
+    markdown: {
+      rehypePlugins: [
+        [
+          'rehype-external-links', {
+            target: '_blank',
+            rel: 'nofollow noopener noreferrer',
+          },
+        ],
+      ],
+    },
+
     highlight: {
       theme: {
         default: 'material-theme',
