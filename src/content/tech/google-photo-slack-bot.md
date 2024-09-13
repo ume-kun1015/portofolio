@@ -1,7 +1,7 @@
 ---
 title: '【Google Photo & Slack 写真Bot】GooglePhoto にある写真を取得し、Slack に送信する Bot を作った話'
 description: 'Google Photo からランダムに写真を取得し、 Slack に送信する Bot を作ったので、作り方をまとめました'
-category: ['tech', 'Python']
+categories: ['tech', 'Python']
 publishedAt: "2017-10-14"
 ---
 

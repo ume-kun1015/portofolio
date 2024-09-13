@@ -1,7 +1,7 @@
 ---
 title: 'State Notifier のユニットテストのプロダクトに導入した話'
 description: '多くの機能を含んでいる社内 Git Submodule を使ったアプリで、使用していない機能について言及され iOS 審査でリジェクトされたことを回避した話を書きます。'
-category: ['flutter', 'tech', 'riverpod']
+categories: ['flutter', 'tech', 'riverpod']
 publishedAt: "2022-12-12"
 ---
 

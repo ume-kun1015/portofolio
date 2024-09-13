@@ -24,7 +24,7 @@ const query = computed<QueryBuilderParams>(() => {
     sort: [{ publishedAt: -1 }],
     where: [
       {
-        category: { $contains: route.params.category },
+        categories: { $contains: route.params.category },
       },
     ],
   }
@@ -33,7 +33,7 @@ const query = computed<QueryBuilderParams>(() => {
 const fetchAllCountByCategories = async (): Promise<number> => {
   return queryContent()
     .where({
-      category: { $contains: route.params.category },
+      categories: { $contains: route.params.category },
     })
     .count()
 }
