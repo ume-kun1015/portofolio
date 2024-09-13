@@ -12,6 +12,7 @@ jobs:
     timeout-minutes: 10
 
     permissions:
+      # この permission を書くと同時に、リポジトリの設定で create pull request を ON にしないと、 pull request が作れない。
       pull-requests: write
 
     steps:
