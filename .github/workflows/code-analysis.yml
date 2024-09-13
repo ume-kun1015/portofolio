@@ -1,0 +1,63 @@
+name: 'code-analysis'
+
+on:
+  push:
+    paths:
+      - '**.mjs'
+      - '**.ts'
+      - '**.vue'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+
+defaults:
+  run:
+    working-directory: ./
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+
+    env:
+      HEYINC_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0
+
+      - run: corepack enable
+
+      - name: setup
+        id: setup
+        uses: ./.github/workflows/composite/setup
+
+      - name: Install dependencies
+        if: ${{ steps.setup.outputs.node-modules-cache-hit != 'true' }}
+        run: pnpm install
+
+  lint:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    needs: setup
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0
+
+      - run: corepack enable
+
+      - name: setup
+        uses: ./.github/workflows/composite/setup
+
+      - run: pnpm run prepare
+
+      - run: |
+          pnpm run lint

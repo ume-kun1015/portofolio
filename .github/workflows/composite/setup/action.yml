@@ -1,0 +1,25 @@
+name: 'setup'
+
+description: 'setup'
+
+outputs:
+  node-modules-cache-hit:
+    description: 'node modules cache hit result'
+    value: ${{ steps.node_modules_cache_id.outputs.cache-hit }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: setup node
+      uses: actions/setup-node@v4.0.3
+      with:
+        node-version-file: '.node-version'
+        cache: 'pnpm'
+        cache-dependency-path: './pnpm-lock.yaml'
+
+    - name: restore node modules cache
+      uses: actions/cache@v4.0.2
+      id: node_modules_cache_id
+      with:
+        path: './node_modules'
+        key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
