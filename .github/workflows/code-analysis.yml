@@ -22,9 +22,6 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
 
-    env:
-      HEYINC_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - name: checkout
         uses: actions/checkout@v4.1.7
