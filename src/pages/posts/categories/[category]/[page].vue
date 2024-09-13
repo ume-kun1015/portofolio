@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig, definePageMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
+
+definePageMeta({
+  layout: 'post',
+})
 
 const route = useRoute()
 
