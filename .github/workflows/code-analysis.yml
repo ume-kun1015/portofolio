@@ -8,6 +8,8 @@ on:
       - '**.vue'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      - './.github/workflows/code-analysis.yml'
+      - './.github/workflows/composite/setup/action.yml'
 
 defaults:
   run:
