@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { queryContent, useRoute, useAsyncData } from '#imports'
+import { queryContent, useRoute, useAsyncData, definePageMeta } from '#imports'
 
 import TableOfContent from '~/components/TableOfContent.vue'
+
+definePageMeta({
+  layout: 'post',
+})
 
 const route = useRoute()
 const { data: page } = await useAsyncData(`docs-${route.path}`, () =>

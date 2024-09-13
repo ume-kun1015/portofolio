@@ -4,8 +4,10 @@ import AppHeader from '~/components/header/AppHeader.vue'
 
 <template>
   <div>
-    <AppHeader />
+    <NuxtLayout>
+      <AppHeader />
 
-    <NuxtPage />
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
