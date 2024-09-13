@@ -1,7 +1,7 @@
 ---
 title: '[Vuejs(Nuxtjs)]  vee-validateでカスタムルールを作ってみた'
 description: 'vee-validate のカスタムルールの作り方'
-category: ['tech', 'Vue.js', 'Nuxt.js', 'vee-validate', 'JavaScript']
+categories: ['tech', 'Vue.js', 'Nuxt.js', 'vee-validate', 'JavaScript']
 publishedAt: '2020-01-02'
 ---
 

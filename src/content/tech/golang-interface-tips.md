@@ -1,7 +1,7 @@
 ---
 title: '【Golang】 Golangのinterfaceで知っておくとお得なTips'
 description: 'Golang の interface について学んだことをまとめました'
-category: ['tech', 'go']
+categories: ['tech', 'go']
 publishedAt: '2018-05-20'
 ---
 
