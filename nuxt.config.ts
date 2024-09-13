@@ -7,6 +7,17 @@ import { getContentRoutes } from './utils/config/nitro/getContentRoutes'
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  app: {
+    head: {
+      meta: [
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1.0, user-scalable=no',
+        },
+      ],
+    },
+  },
+
   nitro: {
     preset: 'cloudflare-pages',
 
