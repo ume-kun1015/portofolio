@@ -8,6 +8,8 @@ on:
       - '**.vue'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      - './.github/workflows/code-analysis.yml'
+      - './.github/workflows/composite/setup/action.yml'
 
 defaults:
   run:
@@ -21,9 +23,6 @@ jobs:
   setup:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
-
-    env:
-      HEYINC_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: checkout
