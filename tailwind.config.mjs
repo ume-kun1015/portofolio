@@ -79,7 +79,10 @@ export default {
             css: {
               'h1, h2, h3, h4': {
                 fontWeight: theme('fontWeight.bold'),
+                lineHeight: '1.5',
                 'scroll-margin-top': 'var(--scroll-mt)',
+                margin: '16px 0',
+                'word-break': 'break-word',
               },
               'h1 a, h2 a, h3 a, h4 a': {
                 borderBottom: 'none !important',
@@ -89,7 +92,6 @@ export default {
               a: {
                 fontWeight: theme('fontWeight.medium'),
                 textDecoration: 'none',
-                borderBottom: '1px solid transparent',
               },
               'a:hover': {
                 borderColor: 'var(--tw-prose-links)',
@@ -155,10 +157,10 @@ export default {
                 marginLeft: '-1.625em',
               },
               'ul ul': {
-                paddingLeft: theme('padding.6'),
+                paddingLeft: theme('padding.1'),
               },
               'ul ol': {
-                paddingLeft: theme('padding.6'),
+                paddingLeft: theme('padding.1'),
               },
               'ul > li.task-list-item': {
                 paddingLeft: '0 !important',
