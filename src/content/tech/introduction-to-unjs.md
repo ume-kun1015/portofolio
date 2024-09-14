@@ -1,6 +1,7 @@
 ---
 title: unjs 入門
 description: unjs を勉強したい
+categories: ['Tech']
 draft: true
 ---
 

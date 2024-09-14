@@ -1,5 +1,6 @@
 ---
 title: typescript compiler api 入門
+categories: ['Tech']
 ---
 
 ## これ何？
