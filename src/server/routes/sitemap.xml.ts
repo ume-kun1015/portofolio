@@ -13,6 +13,10 @@ export default defineEventHandler(async (event) => {
   })
 
   for (const doc of docs) {
+    if (doc.draft) {
+      continue
+    }
+
     sitemap.write({
       url: join('/posts', doc._path),
       changefreq: 'weekly',
