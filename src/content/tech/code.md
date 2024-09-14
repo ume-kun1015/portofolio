@@ -4,7 +4,7 @@ description: 'sample codes written in codes'
 variant: "solid"
 breadcrumb:
   [{ label: "Home", to: "/" }, { label: "Navigation" }, { label: "Breadcrumb" }]
-categories: ["tech"]
+categories: ["Tech"]
 publishedAt: '2024-08-16'
 ---
 

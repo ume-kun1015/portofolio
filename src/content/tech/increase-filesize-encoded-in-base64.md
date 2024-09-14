@@ -1,7 +1,7 @@
 ---
 title: '[Nuxtjs] base64エンコードする画像のファイルサイズの上限を変更する'
 description: 'nuxt.config.js のbuildプロパティで、base64エンコードできる画像のファイルサイズの上限を変更できる。'
-categories: ['tech', 'Nuxt.js']
+categories: ['Tech', 'Nuxt.js']
 publishedAt: "2020-01-12"
 ---
 

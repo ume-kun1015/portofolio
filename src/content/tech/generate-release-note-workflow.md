@@ -1,7 +1,7 @@
 ---
 title: '自動生成されるリリースノートと同じものを作る GitHub Actions を構築しました'
 description: 'GitHub Actions で GitHub の UI が提供している自動生成のリリースノートと同じものを GitHub Actions を使って生成できるようにした話を書きます。'
-categories: ['tech', 'GitHub Actions']
+categories: ['Tech', 'GitHub Actions']
 publishedAt: "2022-12-10"
 ---
 
