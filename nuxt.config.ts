@@ -104,6 +104,7 @@ export default defineNuxtConfig({
         'dotenv',
         'python',
         'scss',
+        'sql',
       ],
     },
   },

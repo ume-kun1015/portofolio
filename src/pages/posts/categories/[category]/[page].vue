@@ -43,6 +43,7 @@ const query = computed<QueryBuilderParams>(() => {
     where: [
       {
         categories: { $contains: cateogryParams.value },
+        draft: { $not: true },
       },
     ],
   }
@@ -52,6 +53,7 @@ const fetchAllCountByCategories = async (): Promise<number> => {
   return queryContent()
     .where({
       categories: { $contains: cateogryParams.value },
+      draft: { $not: true },
     })
     .count()
 }

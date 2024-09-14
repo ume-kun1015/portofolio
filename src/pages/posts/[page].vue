@@ -26,11 +26,18 @@ const query = computed<QueryBuilderParams>(() => {
     skip: (page.value - 1) * per,
     limit: per,
     sort: [{ publishedAt: -1 }],
+    where: [{
+      draft: { $not: true },
+    }],
   }
 })
 
 const fetchAllCount = async (): Promise<number> => {
-  return queryContent().count()
+  return queryContent().where(
+    {
+      draft: { $not: true },
+    },
+  ).count()
 }
 
 const { data: allCount } = useAsyncData(
