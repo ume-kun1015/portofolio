@@ -8,7 +8,7 @@ categories: ["Tech"]
 publishedAt: '2024-08-16'
 ---
 
-## Nuxt Content
+## Nuxt UI
 
 ::UAlert{title="Heads up!"}
 ::
