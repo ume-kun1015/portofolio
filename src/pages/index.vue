@@ -35,13 +35,5 @@ const query = computed<QueryBuilderParams>(() => {
   :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     @apply !bg-gray-800;
   }
-
-  @media (min-width: 640px) {
-    :where(.prose > :last-child):not(
-        :where([class~="not-prose"], [class~="not-prose"] *)
-      ) {
-      min-width: 450px;
-    }
-  }
 }
 </style>
