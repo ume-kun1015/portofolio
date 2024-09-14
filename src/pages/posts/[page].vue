@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig, definePageMeta } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, definePageMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
 import PostPagination from '~/components/post/PostPagination.vue'
+import { per } from '~~/constant/post'
 
 definePageMeta({
   layout: 'post',
@@ -17,10 +18,6 @@ const page = computed(() => {
   } else {
     return route.params.page ? parseInt(route.params.page, 10) : 1
   }
-})
-
-const per = computed(() => {
-  return useRuntimeConfig().public.post.per
 })
 
 const query = computed<QueryBuilderParams>(() => {

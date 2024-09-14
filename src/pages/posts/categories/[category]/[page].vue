@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig, definePageMeta } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, definePageMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
 import PostPagination from '~/components/post/PostPagination.vue'
-import { urlParamsCategoryMap } from '~~/constant/post'
+import { urlParamsCategoryMap, per } from '~~/constant/post'
 
 definePageMeta({
   layout: 'post',
@@ -37,8 +37,8 @@ const cateogryParams = computed<string>(() => {
 const query = computed<QueryBuilderParams>(() => {
   return {
     path: '/',
-    skip: (page.value - 1) * per.value,
-    limit: per.value,
+    skip: (page.value - 1) * per,
+    limit: per,
     sort: [{ publishedAt: -1 }],
     where: [
       {
