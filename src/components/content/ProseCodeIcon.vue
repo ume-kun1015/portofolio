@@ -90,5 +90,6 @@ const icon = computed(
     v-if="hasIcon"
     :name="icon.split(' ').pop()"
     dynamic
+    :size="20"
   />
 </template>
