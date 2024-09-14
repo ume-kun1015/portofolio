@@ -42,7 +42,7 @@ const query = computed<QueryBuilderParams>(() => {
     sort: [{ publishedAt: -1 }],
     where: [
       {
-        categories: { $contains: route.params.category },
+        categories: { $contains: cateogryParams.value },
         draft: { $not: true },
       },
     ],
