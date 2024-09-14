@@ -21,6 +21,15 @@ if (!page.value) {
   await navigateTo('/')
 }
 
+useSeoMeta({
+  title: page.value?.title,
+  ogTitle: page.value?.title,
+  ogType: 'article',
+  description: page.value?.description,
+  ogDescription: page.value?.description,
+  keywords: page.value?.categories.join(', '),
+})
+
 const { data: surround } = await useAsyncData(
   `docs-${routePath.value}-surround`,
   () => {
