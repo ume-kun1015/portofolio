@@ -36,9 +36,6 @@ const fetchAllCount = async (): Promise<number> => {
 const { data: allCount } = useAsyncData(
   'posts',
   async () => fetchAllCount(),
-  {
-    watch: [page],
-  },
 )
 
 const allPagesNum = computed(() => {

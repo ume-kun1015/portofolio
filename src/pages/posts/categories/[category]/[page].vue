@@ -57,11 +57,8 @@ const fetchAllCountByCategories = async (): Promise<number> => {
 }
 
 const { data: allCount } = useAsyncData(
-  'posts',
+  `posts-categories-${route.params.category}`,
   async () => fetchAllCountByCategories(),
-  {
-    watch: [page],
-  },
 )
 
 const allPagesNum = computed(() => {
