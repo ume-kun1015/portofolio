@@ -384,7 +384,7 @@ CRON_TZ=Asia/Tokyo
 <img width="398" alt="スクリーンショット 2017-11-06 22.33.39.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/902aaa92-c6ac-b9c7-dc89-acfa69219dd5.png">
 
 
-# まとめ
+## まとめ
  - 上にも書きましたが、gem内のコードを読むことで、得られることがものすごく多いなと気づきました。
  - これで、シフトを忘れる人が出てきませんように！
  - 全てのコードは下にあります！
