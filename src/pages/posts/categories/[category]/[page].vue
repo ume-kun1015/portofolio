@@ -2,6 +2,10 @@
 import { useRoute, computed, queryContent, useAsyncData, useRuntimeConfig, definePageMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
+import PostList from '~/components/post/PostList.vue'
+import PostPagination from '~/components/post/PostPagination.vue'
+import { urlParamsCategoryMap } from '~~/constant/post'
+
 definePageMeta({
   layout: 'post',
 })
@@ -16,8 +20,18 @@ const page = computed(() => {
   }
 })
 
-const per = computed(() => {
-  return useRuntimeConfig().public.post.per
+const cateogryParams = computed<string>(() => {
+  const category = route.params.category
+  if (Array.isArray(category)) {
+    return ''
+  }
+
+  const found = urlParamsCategoryMap[category]
+  if (found) {
+    return found
+  }
+
+  return `${category.charAt(0).toUpperCase()}${category.slice(1)}` // capitalize
 })
 
 const query = computed<QueryBuilderParams>(() => {
@@ -28,7 +42,7 @@ const query = computed<QueryBuilderParams>(() => {
     sort: [{ publishedAt: -1 }],
     where: [
       {
-        categories: { $contains: route.params.category },
+        categories: { $contains: cateogryParams.value },
       },
     ],
   }
@@ -37,7 +51,7 @@ const query = computed<QueryBuilderParams>(() => {
 const fetchAllCountByCategories = async (): Promise<number> => {
   return queryContent()
     .where({
-      categories: { $contains: route.params.category },
+      categories: { $contains: cateogryParams.value },
     })
     .count()
 }
@@ -49,45 +63,29 @@ const { data: allCount } = useAsyncData(
     watch: [page],
   },
 )
+
+const allPagesNum = computed(() => {
+  return Math.ceil((allCount.value ?? 0) / per)
+})
 </script>
 
 <template>
-  <div class="bg-gray-900 prose prose-primary dark:prose-invert">
-    <ContentList :query="query">
-      <template #default="{ list: contents }">
-        <div
-          v-for="content in contents"
-          :key="content._path"
-        >
-          <ULink
-            :to="`/posts${content._path}`"
-            active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-          >
-            <p>
-              {{ content.publishedAt }} - {{ content.title }}
-            </p>
+  <div class="p-2 max-w-6xl mx-auto h-screen">
+    <div class="py-2">
+      <PostList :query="query" />
+    </div>
 
-            <p>
-              {{ content.description }}
-            </p>
-          </ULink>
-        </div>
-      </template>
-
-      <template #not-found>
-        <p>記事が見つかりませんでした</p>
-      </template>
-    </ContentList>
-
-    <UPagination
-      :model-value="page"
-      :page-count="per"
-      :total="allCount ?? 0"
-      :to="(page: number) => ({
-        path: `/posts/categories/${route.params.category}/${page}`,
-      })"
-    />
+    <div
+      v-if="allPagesNum > 1"
+      class="flex justify-center"
+    >
+      <PostPagination
+        :page="page"
+        :per="per"
+        :all-count="allCount ?? 0"
+        :to-page-suffix="`/posts/categories/${route.params.category}`"
+      />
+    </div>
   </div>
 </template>
 
