@@ -22,12 +22,14 @@ publishedAt: '2024-08-16'
 ::UBadge{label="Badge"}
 ::
 
-![my image](/img/IMG_3301.jpg)
+## diff
 
 ```diff [diff]
 - const posts = await this.$content('/blog', { deep: true }).only(['title']).fetch()
 + const { data: posts } = await useAsyncData('posts-list', () => queryContent('/blog').only(['title']).find())
 ```
+
+## bash
 
 ```bash [make_tag.bash]
 $ cd path/to/app/repository
@@ -35,40 +37,24 @@ $ git tag -a ${tag} -m "参照するアプリとそのバージョン" head
 $ git push origin ${tag}
 ```
 
-```docker [rt-rails.Dockerfile]
+## dockerfile
+
+```docker [rails.Dockerfile]
 FROM ruby:3.2-slim-bookworm
-
-# Workaround for https://github.com/heyinc/rt-rails/issues/33214
-RUN echo 'Acquire::http::Pipeline-Depth 0;\nAcquire::http::No-Cache true;\nAcquire::BrokenProxy true;' >> /etc/apt/apt.conf.d/99fixbadproxy
-
-# Setup Ruby env
-ARG BUNDLER_VERSION=2.2.16
-RUN gem install bundler -v ${BUNDLER_VERSION}
-
-# Setup Nodejs env
-ARG NODE_MAJOR=18
-RUN mkdir -p /etc/apt/keyrings && \
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
-    apt-get update && \
-    apt-get install nodejs -y && \
-    npm install -g yarn
-
-# install dockerize.
-ENV DOCKERIZE_VERSION v0.6.1
-RUN curl -OL https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
-    tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
-    rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 WORKDIR /app
 
 CMD ["/bin/bash"]
 ```
 
+## dotenv
+
 ```dotenv [.env]
 DEV_OAUTH_CLIENT_ID='1'
 DEV_OAUTH_CLIENT_SECRET='dfas'
 ```
+
+## yaml
 
 ```yaml [.workflows/publish_release_note.yml]
 name: Publish Release
@@ -110,11 +96,15 @@ jobs:
           body: ${{ steps.create_changelog.outputs.changelog }}
 ```
 
+## html
+
 ```html [index.html]
 <div>
   <p>hogehoge</p>
 </div>
 ```
+
+## scss
 
 ```scss [test.scss]
 .hogehoge {
@@ -127,6 +117,8 @@ jobs:
 }
 ```
 
+## JavaScript
+
 ```js [file.js]
 export default {
   name: "hogehoge",
@@ -138,6 +130,8 @@ export default {
 };
 ```
 
+## TyepScript
+
 ```ts [file.ts]
 export const hogehoge: string = "hogehoge";
 
@@ -145,6 +139,8 @@ export const sum = (a: number): number => {
   return a + b;
 };
 ```
+
+## vue
 
 ```vue [piyopiyo.vue]
 <template>
@@ -164,10 +160,14 @@ export const fugafuga = ref("fugafuga");
 </style>
 ```
 
+## csv
+
 ```csv [hogehoge.csv]
 first,second
 1,2
 ```
+
+## json
 
 ```json [example.json]
 {
@@ -175,6 +175,8 @@ first,second
   "fuga": "fugafuga"
 }
 ```
+
+## xml
 
 ```xml [AndroidManifest.xml]
 <manifest
@@ -219,6 +221,8 @@ first,second
 </manifest>
 ```
 
+## dart
+
 ```dart [StatelessWidget.dart]
 import 'module_health/module_health.dart';
 
@@ -229,6 +233,8 @@ class Hogehoge extends StatelessWidget {
   }
 }
 ```
+
+## ruby
 
 ```ruby [parser.rb]
 class Parser < ActiveRecord {
@@ -241,6 +247,8 @@ class Parser < ActiveRecord {
   end
 }
 ```
+
+## go
 
 ```go [example.go]
 struct {
