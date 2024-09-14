@@ -2,6 +2,7 @@
 import { computed } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
+import HomeAside from '~/components/home/HomeAside.vue'
 import PostList from '~/components/post/PostList.vue'
 
 const query = computed<QueryBuilderParams>(() => {
@@ -18,6 +19,10 @@ const query = computed<QueryBuilderParams>(() => {
     <div class="prose-primary dark:prose-invert block pc:flex gap-0 pc:gap-4">
       <div class="w-full pc:w-3/4">
         <PostList :query="query" />
+      </div>
+
+      <div class="w-0 pc:w-1/4 hidden pc:block">
+        <HomeAside />
       </div>
     </div>
   </div>
