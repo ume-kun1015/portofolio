@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { queryContent, useRoute, useAsyncData, definePageMeta } from '#imports'
 
-import TableOfContent from '~/components/TableOfContent.vue'
+import TableOfPost from '~/components/post/TableOfPost.vue'
 
 definePageMeta({
   layout: 'post',
@@ -22,7 +22,7 @@ const { data: page } = await useAsyncData(`docs-${route.path}`, () =>
       class="bg-gray-900 prose prose-primary dark:prose-invert"
     >
       <template v-if="page.body">
-        <TableOfContent
+        <TableOfPost
           v-if="page.body.toc"
           :toc="page.body.toc"
         />
