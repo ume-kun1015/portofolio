@@ -2,7 +2,7 @@ import { defineAppConfig } from '#imports'
 
 export default defineAppConfig({
   ui: {
-    primary: 'green',
+    primary: 'sky',
     gray: 'slate',
     button: {
       color: {
