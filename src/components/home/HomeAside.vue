@@ -4,7 +4,7 @@
       :ui="{ body: { padding: 'p-2', base: 'flex flex-col items-center' }, background: 'bg-white dark:bg-gray-800' }"
     >
       <UAvatar
-        src="/img/IMG_3301.jpg"
+        src="/me/avatar.jpg"
         class="outline-gray-200 dark:outline-primary outline outline-2 outline-offset-2 mb-2"
         alt="offich"
       />
