@@ -8,28 +8,60 @@ categories: ["Tech"]
 publishedAt: '2024-08-16'
 ---
 
-## Nuxt UI
 
-::UAlert{title="Heads up!"}
-::
+## 見出し
 
-::UAlert{:variant="variant" title="Your warning" color="primary"}
-::
+```
+# 見出し1
+## 見出し2
+### 見出し3
+#### 見出し4
+```
 
-::UBreadcrumb{:links="breadcrumb"}
-::
+## テキストリンク
 
-::UBadge{label="Badge"}
-::
+```
+[アンカーテキスト](/)
+```
 
-## diff
+[アンカーテキスト](/)
+
+## リスト
+
+```
+- Hello!
+- Hola!
+  - Bonjour!
+  * Hi!
+```
+
+- Hello!
+- Hola!
+  - Bonjour!
+  * Hi!
+
+
+## インラインスタイル
+
+```
+*イタリック*
+**太字**
+~~打ち消し線~~
+`code`
+```
+
+*イタリック* **太字** ~~打ち消し線~~ `code`
+
+## コードブロック
+
+### diff
 
 ```diff [diff]
 - const posts = await this.$content('/blog', { deep: true }).only(['title']).fetch()
 + const { data: posts } = await useAsyncData('posts-list', () => queryContent('/blog').only(['title']).find())
 ```
 
-## bash
+### bash
 
 ```bash [make_tag.bash]
 $ cd path/to/app/repository
@@ -37,7 +69,7 @@ $ git tag -a ${tag} -m "参照するアプリとそのバージョン" head
 $ git push origin ${tag}
 ```
 
-## dockerfile
+### dockerfile
 
 ```docker [rails.Dockerfile]
 FROM ruby:3.2-slim-bookworm
@@ -47,14 +79,14 @@ WORKDIR /app
 CMD ["/bin/bash"]
 ```
 
-## dotenv
+### dotenv
 
 ```dotenv [.env]
 DEV_OAUTH_CLIENT_ID='1'
 DEV_OAUTH_CLIENT_SECRET='dfas'
 ```
 
-## yaml
+### yaml
 
 ```yaml [.workflows/publish_release_note.yml]
 name: Publish Release
@@ -77,26 +109,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 1
-
-      - name: Create Changelog
-        id: create_changelog
-        uses: mikepenz/release-changelog-builder-action@v3
-        with:
-          configuration: "./.github/config/workflows/release_note_configuration.json"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          draft: false
-          prerelease: false
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: ${{ steps.create_changelog.outputs.changelog }}
+          fetch-depth: 4
 ```
 
-## html
+### html
 
 ```html [index.html]
 <div>
@@ -104,7 +120,7 @@ jobs:
 </div>
 ```
 
-## scss
+### scss
 
 ```scss [test.scss]
 .hogehoge {
@@ -117,7 +133,7 @@ jobs:
 }
 ```
 
-## JavaScript
+### JavaScript
 
 ```js [file.js]
 export default {
@@ -130,7 +146,7 @@ export default {
 };
 ```
 
-## TyepScript
+### TyepScript
 
 ```ts [file.ts]
 export const hogehoge: string = "hogehoge";
@@ -140,7 +156,7 @@ export const sum = (a: number): number => {
 };
 ```
 
-## vue
+### vue
 
 ```vue [piyopiyo.vue]
 <template>
@@ -160,14 +176,14 @@ export const fugafuga = ref("fugafuga");
 </style>
 ```
 
-## csv
+### csv
 
 ```csv [hogehoge.csv]
 first,second
 1,2
 ```
 
-## json
+### json
 
 ```json [example.json]
 {
@@ -176,7 +192,7 @@ first,second
 }
 ```
 
-## xml
+### xml
 
 ```xml [AndroidManifest.xml]
 <manifest
@@ -221,7 +237,7 @@ first,second
 </manifest>
 ```
 
-## dart
+### dart
 
 ```dart [StatelessWidget.dart]
 import 'module_health/module_health.dart';
@@ -234,7 +250,7 @@ class Hogehoge extends StatelessWidget {
 }
 ```
 
-## ruby
+### ruby
 
 ```ruby [parser.rb]
 class Parser < ActiveRecord {
@@ -248,7 +264,7 @@ class Parser < ActiveRecord {
 }
 ```
 
-## go
+### go
 
 ```go [example.go]
 struct {
