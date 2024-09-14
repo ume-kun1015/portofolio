@@ -1,7 +1,7 @@
 ---
 title: '2020 年に Nuxt.js で実装してきたアニメーションをまとめてみた'
 description: 'Nuxt.jsで実装してきたアニメーションをまとめました'
-category: ['tech', 'Nuxt.js']
+categories: ['Tech', 'Nuxt.js']
 publishedAt: "2020-12-07"
 ---
 

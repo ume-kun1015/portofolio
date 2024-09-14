@@ -1,7 +1,7 @@
 ---
 title: '【Google Calendar/Slack/Ruby】Ruby でシフトリマインドスクリプトを書いてみた。'
 description: 'リマインドのために、Google Calendarで管理されているシフトをスラックで連絡するスクリプトを書いてみました。'
-category: ['tech', 'ruby']
+categories: ['Tech', 'Ruby']
 publishedAt: "2017-11-06"
 ---
 
@@ -44,8 +44,6 @@ $ bundle install
 ## 2 Google Cloud Platformでの設定
 
 1. Google Calendar APIを有効し、無効になると表示されれば、OK
-
-<img width="1440" alt="スクリーンショット 2017-11-06 21.56.51.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/9579b0dc-ad59-af6b-52e4-860f5abf21af.png">
 
 2. 次に認証情報 -> 認証情報を作成 -> OAuthクライアントID -> その他 -> 認証情報があるjsonを`client_secret.json`という名前で、ダウンロードし、保存する。
 
@@ -384,7 +382,7 @@ CRON_TZ=Asia/Tokyo
 <img width="398" alt="スクリーンショット 2017-11-06 22.33.39.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/902aaa92-c6ac-b9c7-dc89-acfa69219dd5.png">
 
 
-# まとめ
+## まとめ
  - 上にも書きましたが、gem内のコードを読むことで、得られることがものすごく多いなと気づきました。
  - これで、シフトを忘れる人が出てきませんように！
  - 全てのコードは下にあります！

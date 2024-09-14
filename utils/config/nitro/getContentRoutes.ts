@@ -1,53 +1,75 @@
-import { readdirSync } from 'fs'
+import { readdirSync, readFileSync } from 'fs'
 
-import { per } from '../../../constant/post'
+import { parseFrontMatter } from 'remark-mdc'
+
+import { per, categoryUrlParamsMap } from '../../../constant/post'
+
+const getFrontMatter = (markdownPath: string): { categories: string[], draft: boolean } => {
+  const { data: frontmatter } = parseFrontMatter(readFileSync(markdownPath, 'utf8'))
+  const { categories, draft } = frontmatter
+  return { categories, draft }
+}
 
 export const getContentRoutes = (): string[] => {
-  let contentRoutes: string[] = []
+  const markdownFiles = readdirSync('./src/content', { withFileTypes: true, recursive: true })
+    .filter((dirent) => dirent.isFile() && dirent.name.includes('.md'))
 
-  const dirRef = readdirSync('./src/content', { withFileTypes: true, recursive: true })
-  const count = dirRef.filter((dirent) => dirent.isFile() && dirent.name.includes('.md')).length
+  const postRoutes: string[] = []
 
-  let maxPageNum = Math.floor(count / per)
+  let allPageCount = 0
+  const markdownNumByCategoryMap: Record<string, number> = {}
+  for (const markdownFile of markdownFiles) {
+    allPageCount++
+
+    const path = `${markdownFile.path}/${markdownFile.name}`
+      .replaceAll('\\', '/')
+      .replaceAll('src/content', '')
+      .replace('.md', '')
+
+    postRoutes.push(`/posts${path}`)
+
+    const frontmatter = getFrontMatter(`${markdownFile.path}/${markdownFile.name}`)
+    if (frontmatter.draft) continue
+
+    for (const category of frontmatter.categories) {
+      const urlParamCategory = categoryUrlParamsMap[category] || category
+
+      if (markdownNumByCategoryMap[urlParamCategory]) {
+        markdownNumByCategoryMap[urlParamCategory]++
+      } else {
+        markdownNumByCategoryMap[urlParamCategory] = 1
+      }
+    }
+  }
+
+  let maxPageNum = Math.floor(allPageCount / per)
   // ページネーションのため、あまりが出たときはページ数を 1 追加する
-  if (count % per > 0) {
+  if (allPageCount % per > 0) {
     maxPageNum++
   }
 
-  const postRoutes = Array.from({ length: maxPageNum }, (_, pageNum) => pageNum + 1)
-    .map((pageNum) => `/posts/${pageNum}`)
+  postRoutes.push(...Array.from({ length: maxPageNum }, (_, pageNum) => pageNum + 1)
+    .map((pageNum) => `/posts/${pageNum}`))
 
-  contentRoutes = [...postRoutes]
+  const contentRoutes: string[] = []
 
-  readdirSync('./src/content', { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .forEach((dirent) => {
-      const subdirRef = readdirSync(`./src/content/${dirent.name}`, { withFileTypes: true })
+  for (const category of Object.keys(markdownNumByCategoryMap)) {
+    const urlParamCategory = categoryUrlParamsMap[category] || category
 
-      const postRoutes = subdirRef.map((f) => {
-        const replaced = f.name
-          .replaceAll('\\', '/')
-          .replaceAll('src/content', '')
-          .replace('.md', '')
+    if (!markdownNumByCategoryMap[urlParamCategory]) continue
 
-        return `/posts/${dirent.name}/${replaced}`
-      })
+    const markdownCount = markdownNumByCategoryMap[urlParamCategory]
+    let categoryPageCount = Math.floor(markdownCount / per)
+    // ページネーションのため、あまりが出たときはページ数を 1 追加する
+    if (markdownNumByCategoryMap[urlParamCategory] % per > 0) {
+      categoryPageCount++
+    }
 
-      const count = subdirRef.filter((subDirent) => subDirent.isFile() && subDirent.name.includes('.md')).length
+    const categoryPageRoutes = Array.from({ length: categoryPageCount }, (_, pageNum) => pageNum + 1)
+      .map((pageNum) => `/posts/categories/${urlParamCategory.toLowerCase()}/${pageNum}`)
 
-      let maxPageNum = Math.floor(count / per)
-      // ページネーションのため、あまりが出たときはページ数を 1 追加する
-      if (count % per > 0) {
-        maxPageNum++
-      }
+    contentRoutes.push(...categoryPageRoutes)
+  }
 
-      const categoryRoutes = Array.from({ length: maxPageNum }, (_, pageNum) => pageNum + 1)
-        .map((pageNum) => {
-          return `/posts/categories/${dirent.name}/${pageNum}`
-        })
-
-      contentRoutes = [...contentRoutes, ...postRoutes, ...categoryRoutes]
-    })
-
-  return contentRoutes
+  return ['/sitemap.xml', ...postRoutes, ...contentRoutes]
 }

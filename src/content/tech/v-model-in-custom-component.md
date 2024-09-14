@@ -1,7 +1,7 @@
 ---
 title: '[Vuejs] カスタムコンポーネントで v-model を使えるのを知って幸せになれた話'
 description: 'カスタムコンポーネントで v-model を使えるまでのやり方をまとめました'
-category: ['tech', 'Vue.js', 'JavaScript']
+categories: ['Tech', 'Vue.js', 'JavaScript']
 publishedAt: '2020-01-26'
 ---
 
@@ -106,8 +106,9 @@ export default {
 ## 実装するカスタムコンポーネント
 下のダイヤログになります。
 
-<img width="200" alt="スクリーンショット 2019-12-30 21.34.29.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/152032/0303c5af-138d-333b-675e-11ace1c7a052.png">
-<img width="200" alt="スクリーンショット 2019-12-30 21.34.29.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/152032/7ce3695d-78ab-7d9e-ce8f-37d446e68d25.png">
+| 1 | 2 |
+| -- | -- |
+| ![1](/content/v-model-in-custom-component/1.png)| ![2](/content/v-model-in-custom-component/2.png) |
 
 ## Before
 
@@ -292,6 +293,6 @@ export default {
  1. `model` プロパティに親から渡されるデータの名前を`prop`に、変更が加わるときのイベント名を `change-dialog` にします。
  2. しっかりと **`model` プロパティの `prop`に指定するデータ** が `props`の中で定義されていること。
 
-### まとめ
+## まとめ
  - カスタムコンポーネントで`v-model` が書ける話をまとめました。これを知ってからは、無駄な`computed`のgetterやsetterを書かなくても大丈夫ですし、親と子でしっかり双方向データバインディングができているので、すっきり書けたかなと思っています。よかったら、いいねしていただけると嬉しいです！
 

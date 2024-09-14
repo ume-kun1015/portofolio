@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useUI } from '#imports'
 import type { PropType } from 'vue'
 
 defineProps({
@@ -32,44 +31,25 @@ defineProps({
     default: undefined,
   },
 })
-
-const config = {
-  wrapper: '[&>pre]:!rounded-t-none [&>pre]:!my-0 my-5',
-  header:
-    'flex items-center gap-1.5 border border-gray-200 dark:border-gray-700 border-b-0 relative rounded-t-md px-4 py-3 not-prose',
-  icon: {
-    base: '',
-  },
-  button: {
-    base: 'absolute top-2.5 right-2.5',
-  },
-  filename: 'text-gray-700 dark:text-gray-200 text-sm/6',
-}
-
-const { ui } = useUI('content.prose.code', undefined, config, undefined, true)
 </script>
 
 <template>
-  <div
-    class="relative"
-    :class="!!filename && ui.wrapper"
-  >
+  <div class="relative text-gray-700 dark:text-gray-200 text-sm/6 [&>pre]:!rounded-t-none [&>pre]:!my-0 mt-3 mb-5">
     <div
       v-if="filename && !hideHeader"
-      :class="ui.header"
+      class="flex items-center gap-1 border border-gray-200 dark:border-gray-700 border-b-0 relative rounded-t-md px-3 pc:px-2 py-2 not-prose"
     >
       <ProseCodeIcon
         :icon="icon"
         :filename="filename"
-        :class="ui.icon.base"
       />
 
-      <span :class="ui.filename">{{ filename }}</span>
+      <span class="text-gray-700 dark:text-gray-200 text-sm/6 break-all">{{ filename }}</span>
     </div>
 
     <ProseCodeButton
       :code="code"
-      :class="ui.button.base"
+      class="absolute top-2 right-2"
     />
     <slot />
   </div>
