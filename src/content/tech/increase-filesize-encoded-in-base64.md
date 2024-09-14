@@ -1,7 +1,7 @@
 ---
 title: '[Nuxtjs] base64エンコードする画像のファイルサイズの上限を変更する'
 description: 'nuxt.config.js のbuildプロパティで、base64エンコードできる画像のファイルサイズの上限を変更できる。'
-categories: ['tech', 'Nuxt.js']
+categories: ['Tech', 'Nuxt.js']
 publishedAt: "2020-01-12"
 ---
 
@@ -61,7 +61,7 @@ https://ja.nuxtjs.org/api/configuration-build/#loaders
 
 ちなみに、base64エンコードされるとhtmlではこのようになります。
 
-<img width="716" alt="スクリーンショット 2020-01-12 17.27.18.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/152032/80d2ff6f-38b4-439f-ac25-259fbdd02fd6.png">
+![結果](/content/increase-filesize-encoded-in-base64/result.png)
 
 ## まとめ
  - これで今後画像のパスを無理やり変更しなくても、画像によってエンコードした結果が変わるので、ブラウザキャッシュでファイルの中身が変更されないという問題は回避されるのかなと思いました。内容が少しニッチな気持ちもしますが、同じ問題で困った人の役に立てればと思い、qiitaにまとめました。最後まで読んでいただき、ありがとうございました。

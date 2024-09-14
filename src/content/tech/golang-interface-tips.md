@@ -1,7 +1,7 @@
 ---
 title: '【Golang】 Golangのinterfaceで知っておくとお得なTips'
 description: 'Golang の interface について学んだことをまとめました'
-categories: ['tech', 'go']
+categories: ['Tech', 'Go']
 publishedAt: '2018-05-20'
 ---
 
@@ -158,7 +158,7 @@ func main() {
    - `ads` 変数に代入する前に構造体が必要な関数を持っているのかをエディタが教えてくれるため、コンパイルを実行する前の関数の追加漏れがなくなりました。
  - `interface{}`がないRubyだと、そのオブジェクトに必要な関数があるかどうかは実行しないとわからないため、インタフェースで先に約束が決められると、先読みしながらコードをかけるので便利だと感じました。
 
-### Before
+## Before
 
 ```go [interface3.go]
 package main
