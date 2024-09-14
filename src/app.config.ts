@@ -4,6 +4,19 @@ export default defineAppConfig({
   ui: {
     primary: 'sky',
     gray: 'slate',
+    icon: {
+      size: {
+        '2xs': 'w-2 h-2',
+      },
+    },
+    notifications: {
+      position: 'right-0',
+      width: 'w-[33%]',
+    },
+    notification: {
+      padding: 'p-2',
+      wrapper: 'w-[320px]',
+    },
     button: {
       color: {
         white: {
