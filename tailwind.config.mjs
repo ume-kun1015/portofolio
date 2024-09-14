@@ -2,6 +2,44 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
   theme: {
+    spacing: {
+      0: '0px',
+      0.5: '4px',
+      1: '8px',
+      1.5: '12px',
+      2: '16px',
+      2.5: '20px',
+      3: '24px',
+      4: '32px',
+      5: '40px',
+      6: '48px',
+      7: '56px',
+      8: '64px',
+      9: '72px',
+      10: '80px',
+      11: '88px',
+      12: '96px',
+      13: '104px',
+      14: '112px',
+      15: '120px',
+    },
+
+    screens: {
+      pc: { min: '520px' },
+    },
+
+    fontSize: {
+      0: ['0px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      12: ['12px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      13: ['13px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      15: ['15px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      16: ['16px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      20: ['20px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      24: ['24px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      28: ['28px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+      32: ['32px', { lineHeight: '1.6', letterSpacing: '0.02em' }],
+    },
+
     extend: {
       colors: {
         slate: {
@@ -41,7 +79,10 @@ export default {
             css: {
               'h1, h2, h3, h4': {
                 fontWeight: theme('fontWeight.bold'),
+                lineHeight: '1.5',
                 'scroll-margin-top': 'var(--scroll-mt)',
+                margin: '16px 0',
+                'word-break': 'break-word',
               },
               'h1 a, h2 a, h3 a, h4 a': {
                 borderBottom: 'none !important',
@@ -51,7 +92,6 @@ export default {
               a: {
                 fontWeight: theme('fontWeight.medium'),
                 textDecoration: 'none',
-                borderBottom: '1px solid transparent',
               },
               'a:hover': {
                 borderColor: 'var(--tw-prose-links)',
@@ -117,10 +157,10 @@ export default {
                 marginLeft: '-1.625em',
               },
               'ul ul': {
-                paddingLeft: theme('padding.6'),
+                paddingLeft: theme('padding.1'),
               },
               'ul ol': {
-                paddingLeft: theme('padding.6'),
+                paddingLeft: theme('padding.1'),
               },
               'ul > li.task-list-item': {
                 paddingLeft: '0 !important',
@@ -158,6 +198,7 @@ export default {
           },
           primary: {
             css: {
+              '--scroll-mt': '80px',
               '--tw-prose-body': 'rgb(var(--color-gray-700))',
               '--tw-prose-headings': 'rgb(var(--color-gray-900))',
               '--tw-prose-lead': 'rgb(var(--color-gray-600))',

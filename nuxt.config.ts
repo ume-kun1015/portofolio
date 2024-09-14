@@ -1,11 +1,28 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
-import { per } from './constant/post'
 import { getContentRoutes } from './utils/config/nitro/getContentRoutes'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'ja',
+      },
+      meta: [
+        {
+          name: 'charset',
+          content: 'utf-8',
+        },
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1.0, user-scalable=no',
+        },
+      ],
+    },
+  },
 
   nitro: {
     preset: 'cloudflare-pages',
@@ -45,19 +62,22 @@ export default defineNuxtConfig({
 
   srcDir: 'src', // プロジェクト全体の設定ファイルと nuxt 関連のファイルを混ぜないようにするため
 
-  runtimeConfig: {
-    public: {
-      post: {
-        per,
-      },
-    },
-  },
-
   ui: {
     global: true,
   },
 
   content: {
+    markdown: {
+      rehypePlugins: [
+        [
+          'rehype-external-links', {
+            target: '_blank',
+            rel: 'nofollow noopener noreferrer',
+          },
+        ],
+      ],
+    },
+
     highlight: {
       theme: {
         default: 'material-theme',

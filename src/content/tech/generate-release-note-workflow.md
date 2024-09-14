@@ -1,7 +1,7 @@
 ---
 title: '自動生成されるリリースノートと同じものを作る GitHub Actions を構築しました'
 description: 'GitHub Actions で GitHub の UI が提供している自動生成のリリースノートと同じものを GitHub Actions を使って生成できるようにした話を書きます。'
-category: ['tech', 'GitHub Actions']
+categories: ['Tech', 'GitHub Actions']
 publishedAt: "2022-12-10"
 ---
 
@@ -26,7 +26,7 @@ publishedAt: "2022-12-10"
 
 新しくリリースするときはいつもタグを切るため、それに合わせてリリースノートがあると便利だと考えて、タグ作成をトリガーにした GitHub Actions を作れないかを考えました。
 
-![](https://storage.googleapis.com/zenn-user-upload/88501a7dc6e2-20221210.png)
+![リリースノート作成workflow](/content/generate-release-note-workflow/workflow.png)
 
 ## 技術スタック
 
@@ -130,7 +130,7 @@ $ git tag -a v2.1.3 -m "tag description"
 
 | 1 | 2 |
 | --- | --- |
-| ![](https://storage.googleapis.com/zenn-user-upload/9f373b41803d-20221210.png)|![](https://storage.googleapis.com/zenn-user-upload/276e27705059-20221210.png)|
+| ![リリースノート1](/content/generate-release-note-workflow/result_1.png)|![リリースノート2](/content/generate-release-note-workflow/result_2.png)|
 
 ## 終わりに
 いかがだったでどうでしょうか？この GitHub Actions を導入したあとで、どのバージョンにどんな差分が発生したかを把握できるようになり、振り返りや運用からのお問合せの対応も前より効率行うことができました。
