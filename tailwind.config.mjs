@@ -198,7 +198,7 @@ export default {
           },
           primary: {
             css: {
-              '--scroll-mt': '28px',
+              '--scroll-mt': '80px',
               '--tw-prose-body': 'rgb(var(--color-gray-700))',
               '--tw-prose-headings': 'rgb(var(--color-gray-900))',
               '--tw-prose-lead': 'rgb(var(--color-gray-600))',

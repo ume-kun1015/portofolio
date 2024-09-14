@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { queryContent, useRoute, useAsyncData, navigateTo, computed, definePageMeta } from '#imports'
+import { queryContent, useRoute, useAsyncData, navigateTo, computed, definePageMeta, useSeoMeta } from '#imports'
 import { withoutTrailingSlash } from 'ufo'
 
 import PostSurround from '~/components/post/PostSurround.vue'
@@ -20,6 +20,15 @@ const { data: page } = await useAsyncData(`docs-${route.path}`, () => {
 if (!page.value) {
   await navigateTo('/')
 }
+
+useSeoMeta({
+  title: page.value?.title,
+  ogTitle: page.value?.title,
+  ogType: 'article',
+  description: page.value?.description,
+  ogDescription: page.value?.description,
+  keywords: page.value?.categories.join(', '),
+})
 
 const { data: surround } = await useAsyncData(
   `docs-${route.path}-surround`,
