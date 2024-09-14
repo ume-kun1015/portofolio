@@ -106,8 +106,9 @@ export default {
 ## 実装するカスタムコンポーネント
 下のダイヤログになります。
 
-<img width="200" alt="スクリーンショット 2019-12-30 21.34.29.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/152032/0303c5af-138d-333b-675e-11ace1c7a052.png">
-<img width="200" alt="スクリーンショット 2019-12-30 21.34.29.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/152032/7ce3695d-78ab-7d9e-ce8f-37d446e68d25.png">
+| 1 | 2 |
+| -- | -- |
+| ![1](/content/v-model-in-custom-component/1.png)| ![2](/content/v-model-in-custom-component/2.png) |
 
 ## Before
 

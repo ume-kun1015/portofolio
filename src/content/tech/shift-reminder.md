@@ -45,8 +45,6 @@ $ bundle install
 
 1. Google Calendar APIを有効し、無効になると表示されれば、OK
 
-<img width="1440" alt="スクリーンショット 2017-11-06 21.56.51.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/9579b0dc-ad59-af6b-52e4-860f5abf21af.png">
-
 2. 次に認証情報 -> 認証情報を作成 -> OAuthクライアントID -> その他 -> 認証情報があるjsonを`client_secret.json`という名前で、ダウンロードし、保存する。
 
 ## 3. 認証を行なっていく
