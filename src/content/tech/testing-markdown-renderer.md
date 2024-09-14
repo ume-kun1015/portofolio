@@ -1,6 +1,6 @@
 ---
-title: 'samples codes'
-description: 'sample codes written in codes'
+title: 'testing-markdown-renderer'
+description: 'マークダウンから実際にどうレンダリングされるかをまとめました'
 variant: "solid"
 breadcrumb:
   [{ label: "Home", to: "/" }, { label: "Navigation" }, { label: "Breadcrumb" }]
