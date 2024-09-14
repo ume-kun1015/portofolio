@@ -2,6 +2,8 @@
 import { computed } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
+import PostList from '~/components/post/PostList.vue'
+
 const query = computed<QueryBuilderParams>(() => {
   return {
     path: '/',
@@ -12,35 +14,12 @@ const query = computed<QueryBuilderParams>(() => {
 </script>
 
 <template>
-  <div class="bg-gray-900 prose prose-primary dark:prose-invert">
-    <ContentList :query="query">
-      <template #default="{ list: contents }">
-        <div
-          v-for="content in contents"
-          :key="content._path"
-        >
-          <ULink
-            :to="`/posts${content._path}`"
-            active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-          >
-            <UCard>
-              <p>
-                {{ content.publishedAt }} -  {{ content.title }}
-              </p>
-
-              <p>
-                {{ content.description }}
-              </p>
-            </UCard>
-          </ULink>
-        </div>
-      </template>
-
-      <template #not-found>
-        <p>記事が見つかりませんでした</p>
-      </template>
-    </ContentList>
+  <div class="px-2 py-2 max-w-6xl mx-auto">
+    <div class="prose-primary dark:prose-invert block pc:flex gap-0 pc:gap-4">
+      <div class="w-full pc:w-3/4">
+        <PostList :query="query" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,14 +34,6 @@ const query = computed<QueryBuilderParams>(() => {
 
   :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
     @apply !bg-gray-800;
-  }
-
-  @media (min-width: 640px) {
-    :where(.prose > :last-child):not(
-        :where([class~="not-prose"], [class~="not-prose"] *)
-      ) {
-      min-width: 450px;
-    }
   }
 }
 </style>
