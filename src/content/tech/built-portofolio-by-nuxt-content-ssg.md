@@ -1,8 +1,9 @@
 ---
+categories: ['Tech', 'Nuxt.js', 'Cloudflare', 'Tailwindcss']
 draft: true
 ---
 
-# これ何？
+## これ何？
 
 Nuxt 3 x Cloudflare Pages x nuxt/content でブログを作りました
 

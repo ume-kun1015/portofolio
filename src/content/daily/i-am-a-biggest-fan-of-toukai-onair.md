@@ -1,5 +1,6 @@
 ---
 draft: true
+categories: ['Daily']
 ---
 
 # これ何？

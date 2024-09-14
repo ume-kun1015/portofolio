@@ -1,6 +1,7 @@
 ---
 draft: true
 title: 宣言的なコードって何？
+categories: ['Tech']
 ---
 
 ## これ何？
