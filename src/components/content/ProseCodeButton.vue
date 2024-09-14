@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUI, useCopyToClipboard, ref } from '#imports'
+import { useCopyToClipboard, ref } from '#imports'
 
 const props = defineProps({
   code: {
@@ -8,44 +8,26 @@ const props = defineProps({
   },
 })
 
-const config = {
-  icon: {
-    copy: 'i-heroicons-clipboard-document',
-    copied: 'i-heroicons-clipboard-document-check',
-  },
-}
-
-const { ui } = useUI(
-  'content.prose.code.button',
-  undefined,
-  config,
-  undefined,
-  true,
-)
 const clipboard = useCopyToClipboard({ timeout: 2000 })
-const icon = ref(ui.value.icon.copy)
+const icon = ref('i-heroicons-clipboard-document')
 
-// Methods
+const copy = (): void => {
+  clipboard.copy(props.code, { title: 'コピーしました' })
 
-function copy() {
-  clipboard.copy(props.code, { title: 'Copied to clipboard!' })
-
-  icon.value = ui.value.icon.copied
+  icon.value = 'i-heroicons-clipboard-document-check'
 
   setTimeout(() => {
-    icon.value = ui.value.icon.copy
+    icon.value = 'i-heroicons-clipboard-document'
   }, 2000)
 }
 </script>
 
 <template>
-  <UButton
-    :icon="icon"
-    color="gray"
-    variant="link"
-    size="xs"
-    aria-label="Copy code to clipboard"
-    tabindex="-1"
+  <UIcon
+    :name="icon"
+    :size="24"
+    aria-label="コピーしました"
+    class="p-0.5"
     @click="copy"
   />
 </template>
