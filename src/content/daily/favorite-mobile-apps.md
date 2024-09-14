@@ -1,4 +1,5 @@
 ---
+title: よく使っているアプリ10選
 draft: true
 categories: ['Daily']
 ---

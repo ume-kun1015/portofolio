@@ -1,4 +1,5 @@
 ---
+title: '雪うさぎ'
 draft: true
 categories: ['Daily']
 ---
