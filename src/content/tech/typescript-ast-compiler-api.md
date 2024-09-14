@@ -1,6 +1,7 @@
 ---
 title: typescript compiler api 入門
 categories: ['Tech']
+draft: true
 ---
 
 ## これ何？
