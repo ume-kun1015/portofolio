@@ -9,6 +9,9 @@ const query = computed<QueryBuilderParams>(() => {
   return {
     path: '/',
     sort: [{ publishedAt: -1 }],
+    where: [{
+      draft: { $not: true },
+    }],
     limit: 10,
   }
 })
