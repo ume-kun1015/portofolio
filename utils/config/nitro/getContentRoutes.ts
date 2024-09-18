@@ -19,6 +19,9 @@ export const getContentRoutes = (): string[] => {
   let allPageCount = 0
   const markdownNumByCategoryMap: Record<string, number> = {}
   for (const markdownFile of markdownFiles) {
+    const frontmatter = getFrontMatter(`${markdownFile.path}/${markdownFile.name}`)
+    if (frontmatter.draft) continue
+
     allPageCount++
 
     const path = `${markdownFile.path}/${markdownFile.name}`
@@ -27,9 +30,6 @@ export const getContentRoutes = (): string[] => {
       .replace('.md', '')
 
     postRoutes.push(`/posts${path}`)
-
-    const frontmatter = getFrontMatter(`${markdownFile.path}/${markdownFile.name}`)
-    if (frontmatter.draft) continue
 
     for (const category of frontmatter.categories) {
       const urlParamCategory = categoryUrlParamsMap[category] || category
