@@ -51,7 +51,7 @@ const toPathString = (category: string): string => {
             </ul>
 
             <p class="w-1/4 text-gray-400 text-right">
-              {{ content.publishedAt }}
+              {{ content.updatedAt }}
             </p>
           </div>
         </UCard>

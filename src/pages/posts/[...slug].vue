@@ -52,19 +52,34 @@ const toPathString = (category: string): string => {
   >
     <h1>{{ page.title }}</h1>
 
-    <ul class="list-none flex not-prose mb-3">
-      <li
-        v-for="category in page.categories"
-        :key="category"
-      >
-        <ULink
-          :to="`/posts/categories/${toPathString(category)}/1`"
-          class="mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block"
+    <div class="mb-3">
+      <ul class="list-none flex not-prose mb-1">
+        <li
+          v-for="category in page.categories"
+          :key="category"
         >
-          {{ category }}
-        </ULink>
-      </li>
-    </ul>
+          <ULink
+            :to="`/posts/categories/${toPathString(category)}/1`"
+            class="mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block"
+          >
+            {{ category }}
+          </ULink>
+        </li>
+      </ul>
+
+      <div class="mb-2">
+        <span>作成日: {{ page.publishedAt }}</span>
+
+        <span> / </span>
+
+        <time
+          v-if="page.updatedAt"
+          :datetime="page.updatedAt"
+        >
+          更新日: {{ page.updatedAt }}
+        </time>
+      </div>
+    </div>
 
     <UDivider class="mb-2" />
 
