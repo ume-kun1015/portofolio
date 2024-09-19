@@ -1,0 +1,8 @@
+{
+  // Unordered list indentation
+  "MD007": {
+    "start_indented": true
+  },
+  // Line Length
+  "MD014": false
+}
