@@ -51,6 +51,7 @@ Nuxt 3 x Cloudflare Pages x nuxt/content でブログを作りました。
 Nuxt 3 x cloudflare pages x ssg の勉強がしたかった。
 
 検討した他のライブラリ
+
   - astro
   - next
 
@@ -64,6 +65,7 @@ nuxt/mdc というパーサーだけでもいいかと思ったが、マーク�
     - Nuxt Content の Tips などまとめていきたい
 
 まだまだ足りないと思う箇所があるので、少しずつアップデートしていければいいと思っている
+
   - 記事、食べログ、 X(旧 twitter) のウィジェットを表示するなど
 
 ## 工夫したこと

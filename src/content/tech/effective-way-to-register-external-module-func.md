@@ -7,13 +7,15 @@ updatedAt: "2020-01-06"
 ---
 
 ## TL; DR
+
   - 外部モジュールで定義した関数を直接templateで使用することはできないので、computedに登録することで使えるようにできる。
 
 ## WHY
+
   - vuejs(nuxtjs)でメディアコンテンツ入稿ツール(以下: ダッシュボードツール)を開発しています。
   - ページやコンポーネントのjsのコードが肥大化しないように、使用する関数を外部モジュールに定義しました。それをインポートしようとし、直接template内で使用したところ、下のエラーが発生し困っていました。
 
-```
+```text
 Property or method "helperFunc" is not defined on the instance but referenced during render.
 Make sure to declare reactive data properties in the data option.
 ```
@@ -207,4 +209,5 @@ export default {
 ```
 
 ## まとめ
+
   - いかかだったでしょうか？これで無理やりcomputedに登録しなくてもよくなり、記述量が減りました。これからも積極的に使っていこうと思います。最後までお読みくださりありがとうございました。

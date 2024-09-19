@@ -44,17 +44,11 @@ Nuxt.jsでの開発を行おうとすると、Vue.jsのコミュニティが活�
 2. ポップアップ
 3. アコーディオン
 
-### Vue.jsのtransitionを使わないで実装したもの
-
-1. モーダル
-2. ギャラリー
-
-## Vue.jsのtransitionを使って実装したもの
-
 Vue.jsでアニメーションを実装すると言えば、上であげた `<transition>` タグを使うことがまず思いつくかと思います。自分も多く使ってきたので、実装してきたアニメーションの中で`<transition>` タグを使ったケースをあげたいと思います。
 
 ### スライドメニュー
 
+<!-- markdownlint-disable MD033 -->
 <img width="750" alt="slide-menu.gif" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/152032/f272dc0c-32a3-63bf-3533-448af89b4590.gif" />
 
 まずはスライドメニューです。使い方としては、ヘッダーメニューをスライドで開閉を切り替えるようにし、横からスライドで表示するというのがあります。
