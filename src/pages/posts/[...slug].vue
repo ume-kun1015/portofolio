@@ -40,6 +40,10 @@ const { data: surround } = await useAsyncData(
   { default: () => [] },
 )
 
+const hasDatetime = computed(() => {
+  return page.value?.publishedAt || page.value?.updatedAt
+})
+
 const toPathString = (category: string): string => {
   return category.replace(/\s/g, '').replace(/\./g, '').toLowerCase()
 }
@@ -52,19 +56,39 @@ const toPathString = (category: string): string => {
   >
     <h1>{{ page.title }}</h1>
 
-    <ul class="list-none flex not-prose mb-3">
-      <li
-        v-for="category in page.categories"
-        :key="category"
+    <div class="mb-3">
+      <ul
+        class="list-none flex not-prose"
+        :class="hasDatetime ? 'mb-2 pc:mb-1' : 'mb-0'"
       >
-        <ULink
-          :to="`/posts/categories/${toPathString(category)}/1`"
-          class="mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block"
+        <li
+          v-for="category in page.categories"
+          :key="category"
         >
-          {{ category }}
-        </ULink>
-      </li>
-    </ul>
+          <ULink
+            :to="`/posts/categories/${toPathString(category)}/1`"
+            class="mr-1 text-primary border border-primary-500 px-1 py-1/2 rounded-xl block"
+          >
+            {{ category }}
+          </ULink>
+        </li>
+      </ul>
+
+      <div
+        v-if="hasDatetime"
+        class="mb-2"
+      >
+        <span>作成日: {{ page.publishedAt }}</span>
+
+        <template v-if="page.updatedAt">
+          <span> / </span>
+
+          <time :datetime="page.updatedAt">
+            更新日: {{ page.updatedAt }}
+          </time>
+        </template>
+      </div>
+    </div>
 
     <UDivider class="mb-2" />
 

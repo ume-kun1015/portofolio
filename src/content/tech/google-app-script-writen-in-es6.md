@@ -3,6 +3,7 @@ title: '【Google Apps Script】ES6を使ったGoogle Apps Scriptの開発'
 description: 'Google Apps Script で ES6 の JavaScript で開発するときの Tips です。'
 categories: ['Tech', 'Google App Scripts']
 publishedAt: "2017-05-03"
+updatedAt: '2017-05-03'
 ---
 
 ## 記事を書こうと思った理由

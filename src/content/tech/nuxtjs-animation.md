@@ -3,6 +3,7 @@ title: '2020 年に Nuxt.js で実装してきたアニメーションをまと�
 description: 'Nuxt.jsで実装してきたアニメーションをまとめました'
 categories: ['Tech', 'Nuxt.js']
 publishedAt: "2020-12-07"
+updatedAt: "2020-12-07"
 ---
 
 [hey / STORES advent calendar 2020](https://tech.hey.jp/entry/2020/12/01/172331) 7日目の記事です。
