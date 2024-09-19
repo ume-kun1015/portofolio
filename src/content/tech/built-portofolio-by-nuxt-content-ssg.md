@@ -51,26 +51,26 @@ Nuxt 3 x Cloudflare Pages x nuxt/content でブログを作りました。
 Nuxt 3 x cloudflare pages x ssg の勉強がしたかった。
 
 検討した他のライブラリ
- - astro
- - next
+  - astro
+  - next
 
 esa でマークダウンを書いて、詰まったところ、意思決定、ドキュメンテーションなどなどマークダウンでこうまとめて書くのがいいなと思った。
 
 nuxt/mdc というパーサーだけでもいいかと思ったが、マークダウンにコンポーネントやデータを付与できることからも nuxt/content を使用するのがいいかと思った。
 
- - cloudflare pages を選んだ理由
+  - cloudflare pages を選んだ理由
     - 社内でも実績があった。remix のアプリケーションを動かしている
- - nuxt/content を選んだ理由
-   - Nuxt Content の Tips などまとめていきたい
+  - nuxt/content を選んだ理由
+    - Nuxt Content の Tips などまとめていきたい
 
 まだまだ足りないと思う箇所があるので、少しずつアップデートしていければいいと思っている
- - 記事、食べログ、 X(旧 twitter) のウィジェットを表示するなど
+  - 記事、食べログ、 X(旧 twitter) のウィジェットを表示するなど
 
 ## 工夫したこと
 
- - コードブロック
- - table of content
- - surrounded
+  - コードブロック
+  - table of content
+  - surrounded
 
 ## 大変だったこと
 
@@ -94,5 +94,5 @@ nuxt/mdc というパーサーだけでもいいかと思ったが、マーク�
 
 ## 参考にした記事
 
-- https://zenn.dev/sn10/articles/6228e1a472c094
-- https://beyooon.jp/blog/nuxt-ssg-generate-routes-trouble/
+  - <https://zenn.dev/sn10/articles/6228e1a472c094>
+  - <https://beyooon.jp/blog/nuxt-ssg-generate-routes-trouble/>

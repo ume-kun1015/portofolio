@@ -9,6 +9,7 @@ updatedAt: "2022-12-10"
 この記事は [Github Actions Advent Calendar 2022](https://qiita.com/advent-calendar/2022/github-actions) の11日目の記事です。
 
 ## 概要？
+
 こんにちは！Flutter でモバイルアプリを開発している offy と申します。今回は運用を担当しているモバイルアプリのプロダクトで、バージョンのタグを新しく切ったときに、GitHub の UI が提供している自動生成のリリースノートと同じものをGitHub Actions を使って生成できるようにした話を書きます。
 
 ## モチベーション
@@ -34,17 +35,18 @@ updatedAt: "2022-12-10"
 早速該当する GitHub Actions がないかを調査しました。まずはプロトタイプとなるものを作りたいため、作るまでのコストが大きくなく最低限のことができるものを選びました。
 
 使いやすそうなものが下2つあり採用を検討しましたが、以下の理由でお見送りにしました。
-  -  [semantic-release-action](https://github.com/cycjimmy/semantic-release-action)
-      - README を見たところオーバースペックすぎるのとどうしても npm パッケージをリリースするために使われるイメージがあった。
+
+  - [semantic-release-action](https://github.com/cycjimmy/semantic-release-action)
+    - README を見たところオーバースペックすぎるのとどうしても npm パッケージをリリースするために使われるイメージがあった。
   - [release-drafter](https://github.com/apps/release-drafter)
-      - PR に label を自動で付与し、それらをリリースノートの中でそれらがわかりやすく分類されるものですが、label を付与するなどをすると普段の開発のコストがあがるのではないかということで、 見送りました。
+    - PR に label を自動で付与し、それらをリリースノートの中でそれらがわかりやすく分類されるものですが、label を付与するなどをすると普段の開発のコストがあがるのではないかということで、 見送りました。
 
 まずは作って運用に載せることが目的だったので、そこまで多様なユースケースに対応し多機能のものでなくてもよかったのですが、調査したところそこまで見つけることができず、自分で構築することにしました。使用した Actions とそれらをどう使ったかのコードが下になります。
 
 使用した GitHub Actions
- - [release-changelog-builder-action](https://github.com/mikepenz/release-changelog-builder-action)
+  - [release-changelog-builder-action](https://github.com/mikepenz/release-changelog-builder-action)
     - リリースノートに載せるPRたちをまとめてくれる Actions
- - [action-gh-release](https://github.com/softprops/action-gh-release)
+  - [action-gh-release](https://github.com/softprops/action-gh-release)
     - 渡された文章をもとにリリースノートを作成してくれる Actions
 
  [release-changelog-builder-action](https://github.com/mikepenz/release-changelog-builder-action) で必要になる設定が下の GitHub Actions の configuration になりますものです。README に詳しい記載がありますが、自分である程度 template を変更できたので、上の Generate Release Notes と同じ結果になるようなものを記載しています。
@@ -108,6 +110,7 @@ jobs:
 ```
 
 ## 実現が難しかったこと
+
 タグを切ると同時に、後で見返したときに一緒に付与したメッセージもリリースノートに入っているいいと考えましたが、実際にやってみるとなぜか付与したメッセージがリリースノートに記載されることがなく、どうしても最新のコミットメッセージが記載されていました。
 
 下の場合でタグを切って push しても、リリースノートに `tag description` との記載がありませんでした。
@@ -134,9 +137,9 @@ $ git tag -a v2.1.3 -m "tag description"
 | ![リリースノート1](/content/generate-release-note-workflow/result_1.png)|![リリースノート2](/content/generate-release-note-workflow/result_2.png)|
 
 ## 終わりに
+
 いかがだったでどうでしょうか？この GitHub Actions を導入したあとで、どのバージョンにどんな差分が発生したかを把握できるようになり、振り返りや運用からのお問合せの対応も前より効率行うことができました。
 
 本当は新機能やパッケージアップデート、テストコード追加、 lint やフォーマッターのルール変更によるPRをカテゴライズし、見やすさを上げていければいいですが、一旦チーム内ではこれをしばらく運用していこうとなりました。見やすくした工夫や改善などはこれから少しずつおこなっていき、次回それらをまとめらればと思います。
 
 長くなりましたが、ご精読ありがとうございました！
-

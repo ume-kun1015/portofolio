@@ -11,5 +11,4 @@ web components について調査している同僚がいて、自分も少し�
 
 ちなみに逆の言葉としては、手続系というものがある
 
-
-https://xtech.nikkei.com/atcl/nxt/column/18/02319/010500003/#:~:text=%E5%AE%A3%E8%A8%80%E7%9A%84%E3%81%A8%E3%81%84%E3%81%86%E3%81%AE%E3%81%AF,%E5%AE%A3%E8%A8%80%E7%9A%84%E3%81%AB%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82
+<https://xtech.nikkei.com/atcl/nxt/column/18/02319/010500003/#:~:text=%E5%AE%A3%E8%A8%80%E7%9A%84%E3%81%A8%E3%81%84%E3%81%86%E3%81%AE%E3%81%AF,%E5%AE%A3%E8%A8%80%E7%9A%84%E3%81%AB%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82>

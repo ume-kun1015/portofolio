@@ -35,11 +35,10 @@ updatedAt: '2024-08-16'
   * Hi!
 ```
 
-- Hello!
-- Hola!
-  - Bonjour!
-  * Hi!
-
+  - Hello!
+  - Hola!
+    - Bonjour!
+    - Hi!
 
 ## インラインスタイル
 

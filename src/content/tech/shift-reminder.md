@@ -7,9 +7,9 @@ updatedAt: "2017-11-06"
 ---
 
 ## 前書き
- - ある日、シフトを忘れていた人がいたため、リマインドのために、Google Calendarで管理されているシフトをスラックで連絡するスクリプトを書いてみました。
- - 好きな言語がRubyなので、RubyでGoogle CalendarのAPIとSlackのAPIを叩いてやってみました。
- - 結構学べることがあったので、思い切ってメモに残そうと思います。
+  - ある日、シフトを忘れていた人がいたため、リマインドのために、Google Calendarで管理されているシフトをスラックで連絡するスクリプトを書いてみました。
+  - 好きな言語がRubyなので、RubyでGoogle CalendarのAPIとSlackのAPIを叩いてやってみました。
+  - 結構学べることがあったので、思い切ってメモに残そうと思います。
 
 ## 1. 必要なgemのインストール
 
@@ -90,13 +90,11 @@ class GoogleAuthentication
 end
 ```
 
-## 4. アカウントに紐づいている全てのカレンダーを取得する。
+## 4. アカウントに紐づいている全てのカレンダーを取得する
 
 <img width="1440" alt="スクリーンショット 2017-11-06 22.18.42.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/fc1c44ee-8df2-32a7-9499-607488e7f77b.png">
 
-
 ここで、結構引っかかりました。上のgoogleのサンプルコードは、アカウントがデフォルトで持っているカレンダーのイベント(青色のイベント)しか引っ張ってこないです。「え、アカウント上で作ったカレンダーの情報って、どうやって引っ張ってくるんだ？」と思い、ソースコード(`Google::Apis::CalendarV3::Service` クラス) を実際に読んでみると、
-
 
 ```ruby [service.rb]
  def list_calendar_lists(max_results: nil, min_access_role: nil, page_token: nil, show_deleted: nil, show_hidden: nil, sync_token: nil, fields: nil, quota_user: nil, user_ip: nil, options: nil, &block)
@@ -128,7 +126,7 @@ class Calendar
 end
 ```
 
-## 5. イベントを全取得して、次の日のシフトをフィルターを通して、取得する。
+## 5. イベントを全取得して、次の日のシフトをフィルターを通して、取得する
 
 ```ruby [google_calendar.rb]
 require 'rubygems'
@@ -161,7 +159,7 @@ end
 
 ```
 
-## 6. 取得したイベントのクラスを定義する。
+## 6. 取得したイベントのクラスを定義する
 
 ```ruby [util/array_iterator.rb]
 require '../v2/mentor_registry'
@@ -382,12 +380,9 @@ CRON_TZ=Asia/Tokyo
 
 <img width="398" alt="スクリーンショット 2017-11-06 22.33.39.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/902aaa92-c6ac-b9c7-dc89-acfa69219dd5.png">
 
-
 ## まとめ
- - 上にも書きましたが、gem内のコードを読むことで、得られることがものすごく多いなと気づきました。
- - これで、シフトを忘れる人が出てきませんように！
- - 全てのコードは下にあります！
-   - https://github.com/r-ume/RubyAlgorithm/tree/master/notification_on_slack
- - 最後まで読んでいただき、ありがとうございました！
-
-
+  - 上にも書きましたが、gem内のコードを読むことで、得られることがものすごく多いなと気づきました。
+  - これで、シフトを忘れる人が出てきませんように！
+  - 全てのコードは下にあります！
+    - <https://github.com/r-ume/RubyAlgorithm/tree/master/notification_on_slack>
+  - 最後まで読んでいただき、ありがとうございました！
