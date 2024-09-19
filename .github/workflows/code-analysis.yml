@@ -40,7 +40,7 @@ jobs:
         if: ${{ steps.setup.outputs.node-modules-cache-hit != 'true' }}
         run: pnpm install
 
-  lint:
+  'lint:eslint':
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     needs: setup
@@ -58,5 +58,24 @@ jobs:
 
       - run: pnpm run prepare
 
-      - run: |
-          pnpm run lint
+      - run: pnpm run lint:eslint
+
+  'lint:markdown':
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    needs: setup
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0
+
+      - run: corepack enable
+
+      - name: setup
+        uses: ./.github/workflows/composite/setup
+
+      - run: pnpm run prepare
+
+      - run: pnpm run lint:markdown
