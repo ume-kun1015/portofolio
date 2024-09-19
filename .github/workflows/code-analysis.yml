@@ -6,6 +6,7 @@ on:
       - '**.mjs'
       - '**.ts'
       - '**.vue'
+      - '**.md'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - './.github/workflows/code-analysis.yml'
