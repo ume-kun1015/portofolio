@@ -40,6 +40,10 @@ const { data: surround } = await useAsyncData(
   { default: () => [] },
 )
 
+const hasDatetime = computed(() => {
+  return page.value?.publishedAt || page.value?.updatedAt
+})
+
 const toPathString = (category: string): string => {
   return category.replace(/\s/g, '').replace(/\./g, '').toLowerCase()
 }
@@ -53,7 +57,10 @@ const toPathString = (category: string): string => {
     <h1>{{ page.title }}</h1>
 
     <div class="mb-3">
-      <ul class="list-none flex not-prose mb-1">
+      <ul
+        class="list-none flex not-prose"
+        :class="hasDatetime ? 'mb-2 pc:mb-1' : 'mb-0'"
+      >
         <li
           v-for="category in page.categories"
           :key="category"
@@ -67,17 +74,19 @@ const toPathString = (category: string): string => {
         </li>
       </ul>
 
-      <div class="mb-2">
+      <div
+        v-if="hasDatetime"
+        class="mb-2"
+      >
         <span>作成日: {{ page.publishedAt }}</span>
 
-        <span> / </span>
+        <template v-if="page.updatedAt">
+          <span> / </span>
 
-        <time
-          v-if="page.updatedAt"
-          :datetime="page.updatedAt"
-        >
-          更新日: {{ page.updatedAt }}
-        </time>
+          <time :datetime="page.updatedAt">
+            更新日: {{ page.updatedAt }}
+          </time>
+        </template>
       </div>
     </div>
 
