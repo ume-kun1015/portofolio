@@ -50,7 +50,7 @@ const toPathString = (category: string): string => {
               </li>
             </ul>
 
-            <p class="w-1/4 text-gray-400">
+            <p class="w-1/4 text-gray-400 text-right">
               {{ content.publishedAt }}
             </p>
           </div>
