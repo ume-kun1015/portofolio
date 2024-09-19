@@ -3,6 +3,7 @@ title: '【Rails/ActiveModelSerializers】each_serializerで呼び出し側か�
 description: '呼び出し側から ActiveModelSerializer クラスに値を渡すのに調べたことをまとめて議事録。'
 categories: ['Tech', 'Ruby on Rails']
 publishedAt: '2017-11-04'
+updatedAt: '2017-11-04'
 ---
 
 ## 前書き

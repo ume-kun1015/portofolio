@@ -3,6 +3,7 @@ title: 'Elasticsearchについて知っておくとお得なTips'
 description: '学んだことをまとめると同時に、これからElasticsearchを使うことを検討されている人の何か役に立てればと思い、このような記事を書きました。'
 categories: ['Tech', 'ElasticSearch']
 publishedAt: "2020-09-29"
+updatedAt: "2020-09-29"
 ---
 
 ## 概要

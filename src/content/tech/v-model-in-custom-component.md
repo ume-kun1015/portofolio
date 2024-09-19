@@ -3,6 +3,7 @@ title: '[Vuejs] カスタムコンポーネントで v-model を使えるのを�
 description: 'カスタムコンポーネントで v-model を使えるまでのやり方をまとめました'
 categories: ['Tech', 'Vue.js', 'JavaScript']
 publishedAt: '2020-01-26'
+updatedAt: '2020-01-26'
 ---
 
 ## TL;DR
