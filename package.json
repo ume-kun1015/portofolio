@@ -9,12 +9,14 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare": "nuxt prepare",
-    "lint": "npm run lint:eslint && npm run lint:markdown",
+    "lint": "npm run lint:eslint && npm run lint:markdown && npm run lint:text",
     "lint:eslint": "eslint .",
     "lint:markdown": "markdownlint-cli2 src/content/**/*.md",
-    "lint:fix": "npm run lint:eslint:fix && npm run lint:markdown:fix",
+    "lint:text": "textlint src/content/**/*.md",
+    "lint:fix": "npm run lint:eslint:fix && npm run lint:markdown:fix && npm run lint:text:fix",
     "lint:eslint:fix": "eslint . --fix",
-    "lint:markdown:fix": "markdownlint-cli2 --fix src/content/**/*.md"
+    "lint:markdown:fix": "markdownlint-cli2 --fix src/content/**/*.md",
+    "lint:text:fix": "textlint --fix src/content/**/*.md"
   },
   "dependencies": {
     "@nuxt/content": "2.13.2",
