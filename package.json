@@ -29,6 +29,7 @@
     "eslint-plugin-import": "2.29.1",
     "glob": "11.0.0",
     "markdownlint-cli2": "0.14.0",
+    "textlint": "14.2.0",
     "wrangler": "3.72.0"
   }
 }
