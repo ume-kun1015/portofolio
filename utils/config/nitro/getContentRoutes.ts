@@ -1,4 +1,5 @@
 import { readdirSync, readFileSync } from 'fs'
+import { join } from 'path'
 
 import { parseFrontMatter } from 'remark-mdc'
 
@@ -19,6 +20,9 @@ export const getContentRoutes = (): string[] => {
   let allPageCount = 0
   const markdownNumByCategoryMap: Record<string, number> = {}
   for (const markdownFile of markdownFiles) {
+    const frontmatter = getFrontMatter(`${markdownFile.path}/${markdownFile.name}`)
+    if (frontmatter.draft) continue
+
     allPageCount++
 
     const path = `${markdownFile.path}/${markdownFile.name}`
@@ -26,10 +30,7 @@ export const getContentRoutes = (): string[] => {
       .replaceAll('src/content', '')
       .replace('.md', '')
 
-    postRoutes.push(`/posts${path}`)
-
-    const frontmatter = getFrontMatter(`${markdownFile.path}/${markdownFile.name}`)
-    if (frontmatter.draft) continue
+    postRoutes.push(join('/posts', path))
 
     for (const category of frontmatter.categories) {
       const urlParamCategory = categoryUrlParamsMap[category] || category
@@ -49,7 +50,7 @@ export const getContentRoutes = (): string[] => {
   }
 
   postRoutes.push(...Array.from({ length: maxPageNum }, (_, pageNum) => pageNum + 1)
-    .map((pageNum) => `/posts/${pageNum}`))
+    .map((pageNum) => join('/posts', pageNum.toString())))
 
   const contentRoutes: string[] = []
 
@@ -66,7 +67,7 @@ export const getContentRoutes = (): string[] => {
     }
 
     const categoryPageRoutes = Array.from({ length: categoryPageCount }, (_, pageNum) => pageNum + 1)
-      .map((pageNum) => `/posts/categories/${urlParamCategory.toLowerCase()}/${pageNum}`)
+      .map((pageNum) => join('/posts/categories', urlParamCategory.toLowerCase(), pageNum.toString()))
 
     contentRoutes.push(...categoryPageRoutes)
   }

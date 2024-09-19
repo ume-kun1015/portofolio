@@ -3,6 +3,7 @@ title: 'これから Go 言語を学ぶ Rubyist たちへ'
 description: 'Rubyist に向けた Go 言語の入門 Tips です'
 categories: ['Tech', 'Go']
 publishedAt: '2018-03-23'
+updatedAt: '2018-03-23'
 ---
 
 ## 背景

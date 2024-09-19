@@ -3,6 +3,7 @@ title: 'State Notifier のユニットテストのプロダクトに導入した
 description: '多くの機能を含んでいる社内 Git Submodule を使ったアプリで、使用していない機能について言及され iOS 審査でリジェクトされたことを回避した話を書きます。'
 categories: ['Flutter', 'Tech', 'Riverpod']
 publishedAt: "2022-12-12"
+updatedAt: "2022-12-12"
 ---
 
 これは [Flutter Advent Calendar 2022 12日目](https://qiita.com/advent-calendar/2022/flutter)の記事になります。

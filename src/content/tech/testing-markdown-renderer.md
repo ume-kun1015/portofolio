@@ -6,6 +6,7 @@ breadcrumb:
   [{ label: "Home", to: "/" }, { label: "Navigation" }, { label: "Breadcrumb" }]
 categories: ["Tech"]
 publishedAt: '2024-08-16'
+updatedAt: '2024-08-16'
 ---
 
 ## 見出し

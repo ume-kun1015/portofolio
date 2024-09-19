@@ -3,6 +3,7 @@ title: "Git Submodule のライブラリ化を使って iOS 審査のリジェ�
 description: "多くの機能を含んでいる社内 Git Submodule を使ったアプリで、使用していない機能について言及され iOS 審査でリジェクトされたことを回避した話を書きます。"
 categories: ["Flutter", "Tech"]
 publishedAt: "2022-12-10"
+updatedAt: "2022-12-10"
 ---
 
 これは [Flutter Advent Calendar 2022](https://qiita.com/advent-calendar/2022/flutter) の 13 日の記事になります
