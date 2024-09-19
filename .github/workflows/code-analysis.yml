@@ -40,7 +40,7 @@ jobs:
         if: ${{ steps.setup.outputs.node-modules-cache-hit != 'true' }}
         run: pnpm install
 
-  'lint:eslint':
+  lint-eslint:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     needs: setup
@@ -60,7 +60,7 @@ jobs:
 
       - run: pnpm run lint:eslint
 
-  'lint:markdown':
+  lint-markdown:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     needs: setup
