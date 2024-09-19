@@ -9,8 +9,12 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare": "nuxt prepare",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "npm run lint:eslint && npm run lint:markdown",
+    "lint:eslint": "eslint .",
+    "lint:markdown": "markdownlint-cli2 src/content/**/*.md",
+    "lint:fix": "npm run lint:eslint:fix && npm run lint:markdown:fix",
+    "lint:eslint:fix": "eslint . --fix",
+    "lint:markdown:fix": "markdownlint-cli2 --fix src/content/**/*.md"
   },
   "dependencies": {
     "@nuxt/content": "2.13.2",
@@ -24,6 +28,7 @@
     "eslint": "9.9.0",
     "eslint-plugin-import": "2.29.1",
     "glob": "11.0.0",
+    "markdownlint-cli2": "0.14.0",
     "wrangler": "3.72.0"
   }
 }

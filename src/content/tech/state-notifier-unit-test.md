@@ -30,11 +30,11 @@ updatedAt: "2022-12-12"
 
 ユニットテストを使用した技術スタックとしては、下になります。
 
- - [flutter_test](https://api.flutter.dev/flutter/flutter_test/flutter_test-library.html)
+  - [flutter_test](https://api.flutter.dev/flutter/flutter_test/flutter_test-library.html)
     - flutter のテスティングフレームワークです
- - [mockito](https://pub.dev/packages/mockito)
+  - [mockito](https://pub.dev/packages/mockito)
     - API やアプリ内DB への接続、ライブラリが提供しているメソッドをモックするために使用しています。
- - [build_runner](https://pub.dev/packages/build_runner)
+  - [build_runner](https://pub.dev/packages/build_runner)
     - 上の mockito のモックファイルを生成するために build_runner を動かす必要があります。モックファイルたちは下記のコマンドで生成できます。
 
 #### テスト対象ファイル
@@ -449,6 +449,7 @@ group('Aのとき', () {
 ## 詰まったこと
 
 ### モックできるメソッドはインスタンスメソッドのみ
+
 mockito の仕様上、static メソッドを mock することができないため、モックしたいメソッドがあるときはそのメソッドは static から instance メソッドにする必要があります。
 
 static メソッドでもモックできないかを調べたところ、 [How to mock static methods? #214](https://github.com/dart-lang/mockito/issues/214) の issue が見つかり、やはり static メソッドをモック化できないことがわかったため、テスト対象のファイルがモックしたい static メソッドを呼んでいる場合は、instance メソッドに変更しましょう。

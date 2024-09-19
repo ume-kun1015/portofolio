@@ -7,21 +7,26 @@ updatedAt: '2020-01-02'
 ---
 
 ## TL;DR
- - 自分が業務で使用している[vee-validate 3.x](https://logaretm.github.io/vee-validate)のカスタムルールをまとめました。
+
+  - 自分が業務で使用している[vee-validate 3.x](https://logaretm.github.io/vee-validate)のカスタムルールをまとめました。
 
 ## 概要
- - 自分はメディア運営会社のエンジニアとして働いているもので、メディアのコンテンツを入稿するツールをnuxtjsで開発や運用しています。入稿されるデータに不整合が起きないように、データ作成/更新前のバリデーションには気を使っています。バリデーションライブラリでは、vee-validateを使用しています。
- - 属性が多いモデルに関しては、様々な条件に柔軟に対応しないといけないのですが、**[デフォルトで提供されているvee-validateのルール](https://logaretm.github.io/vee-validate/guide/rules.html#rules)**だけだと対応できないな...と思い、色々と自分でカスタムで実装しました。が、そもそもそんなにカスタムルールの作り方が見つからなかったと思ったので、作り方などまとめました。
+
+  - 自分はメディア運営会社のエンジニアとして働いているもので、メディアのコンテンツを入稿するツールをnuxtjsで開発や運用しています。入稿されるデータに不整合が起きないように、データ作成/更新前のバリデーションには気を使っています。バリデーションライブラリでは、vee-validateを使用しています。
+  - 属性が多いモデルに関しては、様々な条件に柔軟に対応しないといけないのですが、**[デフォルトで提供されているvee-validateのルール](https://logaretm.github.io/vee-validate/guide/rules.html#rules)**だけだと対応できないな...と思い、色々と自分でカスタムで実装しました。が、そもそもそんなにカスタムルールの作り方が見つからなかったと思ったので、作り方などまとめました。
 
 ## 対象者
- - vee-validate は使ったことあり、これからカスタムルールをどう実装していく方。
+
+  - vee-validate は使ったことあり、これからカスタムルールをどう実装していく方。
 
 ## 技術スタック
- - nuxtjs 2.x
- - vuetify 2.x
- - vee-validate 3.x
+
+  - nuxtjs 2.x
+  - vuetify 2.x
+  - vee-validate 3.x
 
 ## カスタムルールの作り方
+
 ここでは、vee-validate3.x をどうやって Nuxt.js で使えるようにすればいいのかは詳細には書きません。
 
 まずは、`vee-validate` を `Nuxt.js` で使えるようにするためのプラグインを用意します。
@@ -48,7 +53,7 @@ for (const rule in CustomRules) {
 ```
 
 そしてカスタムルールを下のように定義します。下のページを参考しました。
-https://logaretm.github.io/vee-validate/advanced/rules-object-expression.html#cross-field-validation
+<https://logaretm.github.io/vee-validate/advanced/rules-object-expression.html#cross-field-validation>
 
 ```js [utils/validation-custom-rules.js]
 const custom_rule = {
@@ -112,6 +117,7 @@ export { max_digits, collection_max_length }
 ```
 
 ## 実際にどう使うか
+
 実際にコンポーネントでどうカスタムルールを使うかを記載します。
 
 ```vue [validation-usage.vue]
@@ -152,5 +158,5 @@ export default {
 ![結果](/content/vee-validate-custom-rule/result.png)
 
 ## まとめ
- - メディアのコンテンツを入稿するツールを作っていく以上、不適切なデータが入稿され、メディアのブランドや信用性が損なわれるのを防ぐ必要があると思っています。こうやって、カスタムでバリデーションルールを実装できるので、コンテンツを作るユーザーが安心して、良いコンテンツを入稿できるように、日々起こりうるデータの不整合をなくしていければと思います。最後まで読んでいただき、ありがとうございました。
 
+  - メディアのコンテンツを入稿するツールを作っていく以上、不適切なデータが入稿され、メディアのブランドや信用性が損なわれるのを防ぐ必要があると思っています。こうやって、カスタムでバリデーションルールを実装できるので、コンテンツを作るユーザーが安心して、良いコンテンツを入稿できるように、日々起こりうるデータの不整合をなくしていければと思います。最後まで読んでいただき、ありがとうございました。
