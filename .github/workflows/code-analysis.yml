@@ -9,8 +9,8 @@ on:
       - '**.md'
       - 'package.json'
       - 'pnpm-lock.yaml'
-      - './.github/workflows/code-analysis.yml'
-      - './.github/workflows/composite/setup/action.yml'
+      - '.github/workflows/code-analysis.yml'
+      - '.github/workflows/composite/setup/action.yml'
 
 defaults:
   run:
@@ -83,7 +83,7 @@ jobs:
 
   lint-text:
     runs-on: ubuntu-22.04
-    timeout-minuts: 10
+    timeout-minutes: 10
     needs: setup
 
     steps:
