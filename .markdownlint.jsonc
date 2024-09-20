@@ -6,5 +6,7 @@
   // Dollar signs used before commands without showing output
   "MD013": false,
   // Line Length
-  "MD014": false
+  "MD014": false,
+  // Multiple headings with the same content
+  "MD024": false
 }

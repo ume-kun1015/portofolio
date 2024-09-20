@@ -9,12 +9,14 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare": "nuxt prepare",
-    "lint": "npm run lint:eslint && npm run lint:markdown",
+    "lint": "npm run lint:eslint && npm run lint:markdown && npm run lint:text",
     "lint:eslint": "eslint .",
     "lint:markdown": "markdownlint-cli2 src/content/**/*.md",
-    "lint:fix": "npm run lint:eslint:fix && npm run lint:markdown:fix",
+    "lint:text": "textlint src/content/**",
+    "lint:fix": "npm run lint:eslint:fix && npm run lint:markdown:fix && npm run lint:text:fix",
     "lint:eslint:fix": "eslint . --fix",
-    "lint:markdown:fix": "markdownlint-cli2 --fix src/content/**/*.md"
+    "lint:markdown:fix": "markdownlint-cli2 --fix src/content/**/*.md",
+    "lint:text:fix": "textlint --fix src/content/**"
   },
   "dependencies": {
     "@nuxt/content": "2.13.2",
@@ -25,10 +27,16 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "0.5.0",
+    "@textlint-ja/textlint-rule-no-synonyms": "1.3.0",
     "eslint": "9.9.0",
     "eslint-plugin-import": "2.29.1",
     "glob": "11.0.0",
     "markdownlint-cli2": "0.14.0",
+    "sudachi-synonyms-dictionary": "14.0.0",
+    "textlint": "14.2.0",
+    "textlint-rule-preset-ja-spacing": "2.4.3",
+    "textlint-rule-preset-ja-technical-writing": "10.0.1",
+    "textlint-rule-spellcheck-tech-word": "5.0.0",
     "wrangler": "3.72.0"
   }
 }

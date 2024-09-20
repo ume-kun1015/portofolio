@@ -8,59 +8,59 @@ updatedAt: "2017-10-14"
 
 ## 前書き
 
-  - 大学2年生の秋から開発エンジニアになりたいと思い、プログラミングの独学を開始。
-  - 2017年8月サーバーエンジニアとして入社しました。Railsで開発しております。
-  - 初めて、Pythonでの開発をしました。
-  - プログラミング初心者のときから、Qiitaを読んでいて、わかりやすい記事を書きたいなっていつかずっと思ったので、わかりやすく書こうと思います。(その分、長くなりますが、ご理解いただければ幸いです。)
-  - ここでは、使っているAPIやモジュールについて、書こうと思います。
-  - 全てのコードは、　githubに載せていて、urlを貼ってあるので、コードをみたい方は下まで移動していただければ、幸いです。
+  - 大学 2 年生の秋から開発エンジニアになりたいと思い、プログラミングの独学を開始。
+  - 2017 年 8 月サーバーエンジニアとして入社しました。Rails で開発しております。
+  - 初めて、Python での開発をしました。
+  - プログラミング初心者のときから、Qiita を読んでいて、わかりやすい記事を書きたいなっていつかずっと思ったので、わかりやすく書こうと思います。(その分、長くなりますが、ご理解いただければ幸いです。)
+  - ここでは、使っている API やモジュールについて、書こうと思います。
+  - 全てのコードは、　GitHub に載せていて、url を貼ってあるので、コードをみたい方は下まで移動していただければ、幸いです。
 
 ## 記事を書こうと思った理由
 
-  - ある日、2017年の7月までPHP開発のインターン生として働いている会社のslackのrandomチャンネルにて
-    - CEO 「思ったけど、google photoの写真から1日1枚ランダムにひっぱってきて#randomに流してくれるbotとかあったらもりあがりそうだなー @CTO @CTO @CTO @CTO @CTO @CTO けど、採用で忙しいよね？
-    - CTO 「CSが作るしかないね笑」
-    - そのslackを見ていた自分 「あの...、自分が作ってもよろしいでしょうか？」
-    - CEO & CTO 「おおっ！任せた!」
+  - ある日、2017 年の 7 月まで PHP 開発のインターン生として働いている会社の slack の random チャンネルにて
+    - CEO「google photo の写真から 1 日 1 枚ランダムにひっぱってきて#random に流してくれる bot とかあったらもりあがりそうだなー @CTO @CTO @CTO @CTO @CTO @CTO けど、採用で忙しいよね？
+    - CTO「CS が作るしかないね笑」
+    - その slack を見ていた自分「あの...、自分が作ってもよろしいでしょうか？」
+    - CEO & CTO「おおっ。任せた。」
 
-こうして、写真Botを作ることになったが、難しい...と思ったのは、このとき、まだまだ先の話...。 詰まったことが多いので、記事にしてみることにしました。(Pythonで書く理由は、個人的に書いたことない言語だったので、勉強したいと思ったとの、CTO が Pythonが好きだからです）
+こうして、写真 Bot を作ることになったが、難しい...と思ったのは、このとき、まだまだ先の話...。 詰まったことが多いので、記事にしてみることにしました。(Python で書く理由は、個人的に書いたことない言語だったので、勉強したいと思ったとの、CTO が Python が好きだからです）
 
 ## ゴール
 
-下の写真のように、galleryというbotを呼び出し、`gallery`と入力したあと、写真がslackに流れるようにすればおkです！
+下の写真のように、gallery という bot を呼び出し、`gallery`と入力したあと、写真が slack に流れるようにすればお k です！
 
-一つ一つ処理を見ていきましょう。
+1 つ 1 つ処理を見ていきましょう。
 
 ## 手順
 
-1. Slackで、botユーザーを作成
-2. Pythonで実装されたBotライブラリをインストール
-3. gdataのmoduleをインストール
-4. Google Auth認証(Google Photoから写真を取得)
-5. RtmbotとSlack APIを使って、Slackに文章と写真を投稿。
+1. Slack で、bot ユーザーを作成
+2. Python で実装された Bot ライブラリをインストール
+3. gdata の module をインストール
+4. Google Auth 認証(Google Photo から写真を取得)
+5. Rtmbot と Slack API を使って、Slack に文章と写真を投稿。
 
 ### 開発環境
 
-  - Python 2.7 (pyenvで開発環境を整えましょう)
+  - Python 2.7 (pyenv で開発環境を整えましょう)
   - Amazon EC2
 
 #### 1. SlackでBotユーザーを作成
 
-まずは、Slack Appsのページで、Botユーザーを作成をします。
-赤い長方形で書いたものは、botのトークンなので、どこか別の場所にコピーしましょう。
+まずは、Slack Apps のページで、Bot ユーザーを作成をします。
+赤い長方形で書いたものは、bot のトークンなので、どこか別の場所にコピーしましょう。
 
 <!-- markdownlint-disable MD033 -->
 <img width="1363" alt="スクリーンショット 2019-06-22 12.44.19.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/152032/2b84bef0-94b5-ded8-217e-b65d5957c818.png">
 
 #### 2. Pythonで実装されたBotライブラリをインストール
 
-  オープンソースのBot管理ライブラリをpip経由で、インストール(<https://github.com/slackapi/python-rtmbot>)
+  オープンソースの Bot 管理ライブラリを pip 経由で、インストール(<https://github.com/slackapi/python-rtmbot>)
 
 ```bash
 $ pip install rtmbot
 ```
 
-そのあと、rtmbot.confを作成し、下のように編集していきます。
+そのあと、rtmbot.conf を作成し、下のように編集していきます。
 
 ```text
 # Add the following to rtmbot.conf
@@ -82,10 +82,10 @@ $ pip install gdata
 
 #### 4. Google OAuth認証(Google Photoから写真を取得)
 
-ここでは、Google OAuth2.0認証のやり方を説明します。
+ここでは、Google OAuth2.0 認証のやり方を説明します。
 
-Google Cloud PlatformDashboard->Use Google APIs->Credentialsの順番で、OAuth2.0　Client
-ID を作成し、そのsecret json ファイルをダウンロードします。タイプは、「その他」を選択してください。
+Google Cloud PlatformDashboard->Use Google APIs->Credentials の順番で、OAuth2.0　Client
+ID を作成し、その secret json ファイルをダウンロードします。タイプは、「その他」を選択してください。
 
 <!-- markdownlint-disable MD033 -->
 <img width="1440" alt="スクリーンショット 2017-08-11 20.19.37.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/a717d5bc-0774-b674-98d7-3ce6d57c3f11.png">
@@ -175,13 +175,13 @@ if __name__ == '__main__':
 $ python google_photo_to_slack.py
 ```
 
-下のように、ブラウザには、写真のページが表示され、コンソールには、ブラウザに表示されているauthentication codeを入力せよとのものが出てきます。
+下のように、ブラウザには、写真のページが表示され、コンソールには、ブラウザに表示されている authentication code を入力せよとのものが出てきます。
 
 ```bash
 Enter the authentication code:
 ```
 
-ブラウザに表示されるauthentication codeを入力すれば、ログイン完了です。
+ブラウザに表示される authentication code を入力すれば、ログイン完了です。
 
 もう一度、
 
@@ -189,11 +189,11 @@ Enter the authentication code:
 $ python google_photo_to_slack.py
 ```
 
-を実行すれば、google photoにある写真が全て、ダウンロードされていると思います。
+を実行すれば、google photo にある写真が全て、ダウンロードされていると思います。
 
 #### 5. RtmbotとSlack APIを使って、Slackに文章と写真を投稿
 
-上のGooglePhotoToSlackファイルを下のように編集しましょう。
+上の GooglePhotoToSlack ファイルを下のように編集しましょう。
 
 ```python [GooglePhotoToSlackBot.py]
 class GooglePhotoToSlackBot (Plugin):
@@ -314,18 +314,18 @@ class GooglePhotoToSlackBot (Plugin):
             )
 ```
 
-そして、rtmbotディクレトリで、rtmbotコマンドを入力し、rtmbotサーバーを立ち上げます。
-そのあと、スラックで、@galleryと入力しましょう。(どのチャンネルでも大丈夫です。)
+そして、rtmbot ディクレトリで、rtmbot コマンドを入力し、rtmbot サーバーを立ち上げます。
+そのあと、スラックで、@gallery と入力しましょう。(どのチャンネルでも大丈夫です。)
 
 ```bash
 $ rtmbot
 ```
 
-上のコードにある`本日の画像/映像をダウンロードしています！少しお待ち下さい！` と写真がスラックに流れれば、写真botの完了です!!
+上のコードにある`本日の画像/映像をダウンロードしています！少しお待ち下さい！` と写真がスラックに流れれば、写真 bot の完了です!!
 
 ### 全コード
 
-いろいろと機能(ダウンロードした写真を溜めないように、写真を削除するなど)を加えたものをgithubにあげたので、興味がある方はみていただけれると幸いです。
+いろいろと機能(ダウンロードした写真を溜めないように、写真を削除するなど)を加えたものを GitHub にあげたので、興味がある方はみていただけれると幸いです。
 <https://github.com/romukey/PythonAlgorithm/blob/master/google_gallery/plugins/google_photo_to_slack.py>
 
 ## 参考にしたもの
@@ -333,5 +333,5 @@ $ rtmbot
 Picasa Web API の Documentation
 <https://developers.google.com/picasa-web/docs/1.0/developers_guide_python>
 
-Google OAuthのLoginのやり方
+Google OAuth の Login のやり方
 <https://stackoverflow.com/questions/30474269/using-google-picasa-api-with-python>

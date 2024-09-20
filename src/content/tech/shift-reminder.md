@@ -8,9 +8,9 @@ updatedAt: "2017-11-06"
 
 ## 前書き
 
-  - ある日、シフトを忘れていた人がいたため、リマインドのために、Google Calendarで管理されているシフトをスラックで連絡するスクリプトを書いてみました。
-  - 好きな言語がRubyなので、RubyでGoogle CalendarのAPIとSlackのAPIを叩いてやってみました。
-  - 結構学べることがあったので、思い切ってメモに残そうと思います。
+  - ある日、シフトを忘れていた人がいたため、リマインドのために、Google Calendar で管理されているシフトをスラックで連絡するスクリプトを書いてみました。
+  - 好きな言語が Ruby なので、Ruby で Google Calendar の API と Slack の API を叩いてやってみました。
+  - 結構学べることがあったので、思い切ってメモに残す。
 
 ## 1. 必要なgemのインストール
 
@@ -45,13 +45,13 @@ $ bundle install
 
 ## 2 Google Cloud Platformでの設定
 
-1. Google Calendar APIを有効し、無効になると表示されれば、OK
+1. Google Calendar API を有効し、無効になると表示されれば、OK
 
-2. 次に認証情報 -> 認証情報を作成 -> OAuthクライアントID -> その他 -> 認証情報があるjsonを`client_secret.json`という名前で、ダウンロードし、保存する。
+2. 次に認証情報 -> 認証情報を作成 -> OAuth クライアント ID -> その他 -> 認証情報がある json を`client_secret.json`という名前で、ダウンロードし、保存する。
 
 ## 3. 認証を行なっていく
 
-下の `authorize` メソッドを動かし、Webページに表示されるハッシュ値をコンソールに貼り付ければ、今後APIを叩くことができます。下のコードは、googleの公式にquickstartのページにあるコードを参考にしました。
+下の `authorize` メソッドを動かし、Web ページに表示されるハッシュ値をコンソールに貼り付ければ、今後 API を叩くことができます。下のコードは、google の公式に quickstart のページにあるコードを参考にしました。
 
 ```ruby [google_authentication.rb]
 require 'fileutils'
@@ -96,7 +96,7 @@ end
 <!-- markdownlint-disable MD033 -->
 <img width="1440" alt="スクリーンショット 2017-11-06 22.18.42.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/fc1c44ee-8df2-32a7-9499-607488e7f77b.png">
 
-ここで、結構引っかかりました。上のgoogleのサンプルコードは、アカウントがデフォルトで持っているカレンダーのイベント(青色のイベント)しか引っ張ってこないです。「え、アカウント上で作ったカレンダーの情報って、どうやって引っ張ってくるんだ？」と思い、ソースコード(`Google::Apis::CalendarV3::Service` クラス) を実際に読んでみると、
+ここで、結構引っかかりました。上の google のサンプルコードは、アカウントがデフォルトで持っているカレンダーのイベント(青色のイベント)しか引っ張ってこないです。「え、アカウント上で作ったカレンダーの情報って、どうやって引っ張ってくるんだ」と思い、ソースコード(`Google::Apis::CalendarV3::Service` クラス) を実際に読んでみると、
 
 ```ruby [service.rb]
  def list_calendar_lists(max_results: nil, min_access_role: nil, page_token: nil, show_deleted: nil, show_hidden: nil, sync_token: nil, fields: nil, quota_user: nil, user_ip: nil, options: nil, &block)
@@ -107,8 +107,8 @@ end
 
 むむっ！　`get`と`me`って書いてあって、`calendarList` ってある！
 試しにやってみたら、思った通り、複数のカレンダーのシフト（イベント）が取得されました。
-gem内のコードを読むのは、大事だな〜と新卒の始めの時期に改めて思いました。
-ログインしているアカウントのデフォルトのカレンダーには、シフトがないので、 `reject` で、デフォルトのカレンダーのidを省きます。
+gem 内のコードを読むのは、大事だな〜と新卒の始めの時期に改めて思いました。
+ログインしているアカウントのデフォルトのカレンダーには、シフトがないので、 `reject` で、デフォルトのカレンダーの id を省きます。
 
 ```ruby [calendar.rb]
 require 'rubygems'
@@ -218,7 +218,7 @@ end
 
 ## 7. シフトに入っている人のデータを管理するクラスを定義
 
-一つのインスタンスしか生成されたくなかったので、シングルトンパターンで書きました。
+1 つのインスタンスしか生成されたくなかったので、シングルトンパターンで書きました。
 
 ```ruby [mentor_registry.rb]
 require 'yaml'
@@ -384,7 +384,7 @@ CRON_TZ=Asia/Tokyo
 
 ## まとめ
 
-  - 上にも書きましたが、gem内のコードを読むことで、得られることがものすごく多いなと気づきました。
+  - 上にも書きましたが、gem 内のコードを読むことで、得られることがものすごく多いなと気づきました。
   - これで、シフトを忘れる人が出てきませんように！
   - 全てのコードは下にあります！
     - <https://github.com/r-ume/RubyAlgorithm/tree/master/notification_on_slack>
