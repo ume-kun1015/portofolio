@@ -100,3 +100,23 @@ jobs:
       - run: pnpm run prepare
 
       - run: pnpm run lint:text
+
+  test:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    needs: setup
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          fetch-depth: 0
+
+      - run: corepack enable
+
+      - name: setup
+        uses: ./.github/workflows/composite/setup
+
+      - run: pnpm run prepare
+
+      - run: pnpm run test
