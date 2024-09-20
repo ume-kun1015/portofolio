@@ -29,16 +29,16 @@ updatedAt: '2024-08-16'
 ## リスト
 
 ```text
-- Hello!
-- Hola!
-  - Bonjour!
-  * Hi!
+- Hello
+- Hola
+  - Bonjour
+  * Hi
 ```
 
-  - Hello!
-  - Hola!
-    - Bonjour!
-    - Hi!
+  - Hello
+  - Hola
+    - Bonjour
+    - Hi
 
 ## インラインスタイル
 
@@ -249,7 +249,7 @@ class Hogehoge extends StatelessWidget {
 }
 ```
 
-### ruby
+### Ruby
 
 ```ruby [parser.rb]
 class Parser < ActiveRecord {

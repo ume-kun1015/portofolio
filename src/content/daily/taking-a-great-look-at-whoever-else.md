@@ -3,6 +3,6 @@ draft: true
 categories: ['Daily']
 ---
 
-# これ何？
+# これ何
 
-人を見るということ
+人を見るということ。
