@@ -9,8 +9,8 @@ on:
       - '**.md'
       - 'package.json'
       - 'pnpm-lock.yaml'
-      - './.github/workflows/code-analysis.yml'
-      - './.github/workflows/composite/setup/action.yml'
+      - '.github/workflows/code-analysis.yml'
+      - '.github/workflows/composite/setup/action.yml'
 
 defaults:
   run:
