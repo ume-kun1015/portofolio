@@ -83,7 +83,7 @@ jobs:
 
   lint-text:
     runs-on: ubuntu-22.04
-    timeout-minuts: 10
+    timeout-minutes: 10
     needs: setup
 
     steps:
