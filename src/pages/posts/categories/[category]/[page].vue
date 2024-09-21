@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData, definePageMeta, useHead } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, definePageMeta, useHead, useSeoMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
@@ -42,6 +42,10 @@ const headTitle = computed(() => {
 
 useHead({
   title: headTitle.value,
+})
+
+useSeoMeta({
+  description: `${headTitle.value}です。`,
 })
 
 const query = computed<QueryBuilderParams>(() => {

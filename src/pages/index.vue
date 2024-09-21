@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import { computed } from '#imports'
+import { computed, useSeoMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import HomeAside from '~/components/home/HomeAside.vue'
 import PostList from '~/components/post/PostList.vue'
+
+const seoMetaDescription = 'Web フロント・モバイルアプリエンジニア。Nuxt.js と Flutter が得意です。歌とお酒が好きです。'
+
+useSeoMeta({
+  description: seoMetaDescription,
+  ogDescription: seoMetaDescription,
+})
 
 const query = computed<QueryBuilderParams>(() => {
   return {

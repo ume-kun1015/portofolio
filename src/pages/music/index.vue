@@ -6,6 +6,7 @@ useHead({
 })
 
 useSeoMeta({
+  description: '音楽活動について',
   robots: 'noindex',
 })
 </script>

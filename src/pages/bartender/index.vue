@@ -6,6 +6,7 @@ useHead({
 })
 
 useSeoMeta({
+  description: 'お酒作りについて',
   robots: 'noindex',
 })
 </script>

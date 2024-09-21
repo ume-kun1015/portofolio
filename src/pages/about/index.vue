@@ -5,7 +5,11 @@ useHead({
   title: 'About',
 })
 
+const seoMetaDescription = '自身について'
+
 useSeoMeta({
+  description: seoMetaDescription,
+  ogDescription: seoMetaDescription,
   robots: 'noindex',
 })
 </script>
