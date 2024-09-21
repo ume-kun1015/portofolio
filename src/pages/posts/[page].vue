@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData, definePageMeta } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, definePageMeta, useHead, useSeoMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
@@ -18,6 +18,19 @@ const page = computed(() => {
   } else {
     return route.params.page ? parseInt(route.params.page, 10) : 1
   }
+})
+
+const headTitle = computed<string>(() => {
+  return `記事一覧 ${page.value}ページ目`
+})
+
+useHead({
+  title: headTitle.value,
+})
+
+useSeoMeta({
+  description: `記事一覧の${page.value}ページ目です。技術、音楽、お酒や日ごろのことをのんびり書きます。`,
+  ogDescription: `記事一覧の${page.value}ページ目です。技術、音楽、お酒や日ごろのことをのんびり書きます。`,
 })
 
 const query = computed<QueryBuilderParams>(() => {
