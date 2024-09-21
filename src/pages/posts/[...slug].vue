@@ -34,7 +34,7 @@ const { data: surround } = await useAsyncData(
   `docs-${routePath.value}-surround`,
   () => {
     return queryContent()
-      .where({ _extension: 'md', navigation: { $ne: false } })
+      .where({ _extension: 'md', navigation: { $ne: false }, draft: { $not: true } })
       .findSurround(routePath.value)
   },
   { default: () => [] },
