@@ -11,7 +11,7 @@ updatedAt: '2024-08-16'
 
 ## 見出し
 
-```
+```text
 # 見出し1
 ## 見出し2
 ### 見出し3
@@ -20,7 +20,7 @@ updatedAt: '2024-08-16'
 
 ## テキストリンク
 
-```
+```text
 [アンカーテキスト](/)
 ```
 
@@ -28,22 +28,21 @@ updatedAt: '2024-08-16'
 
 ## リスト
 
-```
-- Hello!
-- Hola!
-  - Bonjour!
-  * Hi!
+```text
+- Hello
+- Hola
+  - Bonjour
+  * Hi
 ```
 
-- Hello!
-- Hola!
-  - Bonjour!
-  * Hi!
-
+  - Hello
+  - Hola
+    - Bonjour
+    - Hi
 
 ## インラインスタイル
 
-```
+```text
 *イタリック*
 **太字**
 ~~打ち消し線~~
@@ -250,7 +249,7 @@ class Hogehoge extends StatelessWidget {
 }
 ```
 
-### ruby
+### Ruby
 
 ```ruby [parser.rb]
 class Parser < ActiveRecord {

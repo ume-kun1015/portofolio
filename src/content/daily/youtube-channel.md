@@ -3,6 +3,6 @@ draft: true
 categories: ['Daily']
 ---
 
-# これ何？
+# これ何
 
-YouTube チャンネル開設しました
+YouTube チャンネル開設しました。

@@ -1,0 +1,20 @@
+{
+  "filters": {},
+  "rules": {
+    "@textlint-ja/no-synonyms": true,
+    "preset-ja-spacing": {
+      "ja-space-between-half-and-full-width": {
+        "space": "always"
+      }
+    },
+    "preset-ja-technical-writing": {
+      "ja-no-mixed-period": {
+        "allowPeriodMarks": ["、"]
+      }
+    },
+    "spellcheck-tech-word": true,
+    "max-kanji-continuous-len": {
+      "max": 8
+    }
+  }
+}
