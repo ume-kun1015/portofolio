@@ -45,6 +45,7 @@ useHead({
 })
 
 useSeoMeta({
+  title: headTitle.value,
   description: `${headTitle.value}です。`,
 })
 
