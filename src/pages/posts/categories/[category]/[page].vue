@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute, computed, queryContent, useAsyncData, definePageMeta } from '#imports'
+import { useRoute, computed, queryContent, useAsyncData, definePageMeta, useHead, useSeoMeta } from '#imports'
 import type { QueryBuilderParams } from '@nuxt/content'
 
 import PostList from '~/components/post/PostList.vue'
@@ -32,6 +32,21 @@ const cateogryParams = computed<string>(() => {
   }
 
   return `${category.charAt(0).toUpperCase()}${category.slice(1)}` // capitalize
+})
+
+const headTitle = computed(() => {
+  const category = cateogryParams.value === 'Tech' ? '技術関連の記事' : `${cateogryParams.value} の記事`
+
+  return `${category} ${page.value}ページ目`
+})
+
+useHead({
+  title: headTitle.value,
+})
+
+useSeoMeta({
+  title: headTitle.value,
+  description: `${headTitle.value}です。`,
 })
 
 const query = computed<QueryBuilderParams>(() => {
