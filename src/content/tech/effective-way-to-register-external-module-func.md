@@ -1,7 +1,7 @@
 ---
 title: '[Nuxt.js] 外部モジュールで定義した関数をtemplateで効率よく使えるようにする'
 description: '外部モジュールで定義した関数を直接templateで使用することはできないので、computedに登録することで使えるようにできる。'
-categories: ['Tech', 'Vue.js', 'JavaScript']
+categories: ['Tech', 'Vue.js', 'Nuxt.js', 'JavaScript']
 publishedAt: "2020-01-06"
 updatedAt: "2020-01-06"
 ---
