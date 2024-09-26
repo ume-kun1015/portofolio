@@ -244,8 +244,7 @@ class User < ApplicationRecord
 end
 ```
 
-  - Golang では、レシーバーの名前は、構造体の最初の文字にするというルールがあるので、それに従いましょう。
-    - <https://github.com/golang/go/wiki/CodeReviewComments#receiver-names>
+  - Golang では、レシーバーの名前は、[構造体の最初の文字にする](https://github.com/golang/go/wiki/CodeReviewComments#receiver-names)というルールがあるので、それに従いましょう。
 
 ```go [user.go]
 package model
@@ -308,9 +307,8 @@ func main(){
 ### 5. Map初期化
 
   - ここでいう Map は、Ruby でいうハッシュです。
-  - 注意してほしいのは、Map は宣言に加えて、一度初期化を行わないといけないことです。
+  - 注意してほしいのは、Map は[宣言に加えて、一度初期化を行わない](http://otiai10.hatenablog.com/entry/2014/08/09/154256)といけないことです。
   - Ruby だと初期化する必要は全くない & Map 型だけ初期化が必要になってくるので、ここでまとめておきました。
-  - 参考: <http://otiai10.hatenablog.com/entry/2014/08/09/154256>
 
 > panic: runtime error: assignment to entry in nil map
 
