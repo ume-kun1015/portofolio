@@ -1,6 +1,6 @@
 ---
-title: '[Nuxt.js] 外部モジュールで定義した関数を template で効率よく使えるようにする'
-description: '外部モジュールで定義した関数を直接 template で使用することはできないので、computed に登録することで使えるようにできる。'
+title: '[Nuxt.js] 別ファイルで定義した関数を template で効率よく使えるようにする'
+description: '別ファイルで定義した関数を直接 template で使用することはできないので、computed に登録することで使えるようにできる。'
 categories: ['Tech', 'Vue.js', 'Nuxt.js', 'JavaScript']
 publishedAt: "2020-01-06"
 updatedAt: "2020-01-06"
