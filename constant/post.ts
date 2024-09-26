@@ -1,4 +1,4 @@
-export const per = 5
+export const per = 12
 
 export const categoryUrlParamsMap: Record<string, string> = {
   'GitHub Actions': 'githubactions',
