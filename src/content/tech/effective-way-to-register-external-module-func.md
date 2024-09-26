@@ -1,5 +1,5 @@
 ---
-title: '[Vuejs] 外部モジュールで定義した関数をtemplateで効率よく使えるようにする'
+title: '[Nuxt.js] 外部モジュールで定義した関数をtemplateで効率よく使えるようにする'
 description: '外部モジュールで定義した関数を直接templateで使用することはできないので、computedに登録することで使えるようにできる。'
 categories: ['Tech', 'Vue.js', 'JavaScript']
 publishedAt: "2020-01-06"
@@ -12,7 +12,7 @@ updatedAt: "2020-01-06"
 
 ## WHY
 
-vuejs(nuxtjs)でメディアコンテンツ入稿ツール(以下: ダッシュボードツール)を開発しています。
+Nuxt.js でメディアコンテンツ入稿ツール(以下: ダッシュボードツール)を開発しています。
 ページやコンポーネントの JavaScript のコードが肥大化しないように、使用する関数を外部モジュールに定義しました。それをインポートしようとし、直接 template 内で使用したところ、下のエラーが発生し困っていました。
 
 ```text
@@ -24,7 +24,7 @@ Make sure to declare reactive data properties in the data option.
 
 ## 技術スタック
 
-  - Nuxtjs(vuejs) 2.x
+  - Nuxt.js 2.x
   - Vuetify 2.x
 
 ## 具体的なケース
