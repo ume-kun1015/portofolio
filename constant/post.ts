@@ -5,6 +5,7 @@ export const categoryUrlParamsMap: Record<string, string> = {
   JavaScript: 'javascript',
   'Ruby on Rails': 'rubyonrails',
   VeeValidate: 'veevalidate',
+  'Google App Scripts': 'googleappscripts',
 }
 
 export const urlParamsCategoryMap: Record<string, string> = Object.keys(categoryUrlParamsMap)
