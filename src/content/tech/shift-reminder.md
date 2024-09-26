@@ -1,6 +1,6 @@
 ---
 title: '【Google Calendar/Slack/Ruby】Ruby でシフトリマインドスクリプトを書いてみた。'
-description: 'リマインドのために、Google Calendarで管理されているシフトをスラックで連絡するスクリプトを書いてみました。'
+description: 'リマインドのために、Google Calendarで管理されているシフトを Slack で連絡するスクリプトを書いてみました。'
 categories: ['Tech', 'Ruby']
 publishedAt: "2017-11-06"
 updatedAt: "2017-11-06"
@@ -8,9 +8,9 @@ updatedAt: "2017-11-06"
 
 ## 前書き
 
-  - ある日、シフトを忘れていた人がいたため、リマインドのために、Google Calendar で管理されているシフトをスラックで連絡するスクリプトを書いてみました。
-  - 好きな言語が Ruby なので、Ruby で Google Calendar の API と Slack の API を叩いてやってみました。
-  - 結構学べることがあったので、思い切ってメモに残す。
+イベントのシフトを忘れていた人がいたため、リマインドのために、Google Calendar で管理されているシフトを Slack で連絡するスクリプトを書いてみました。
+
+好きな言語が Ruby なので、Ruby で Google Calendar の API と Slack の API を叩いてやってみました。学べることがあったので、思い切ってメモに残す。
 
 ## 1. 必要なgemのインストール
 
@@ -95,7 +95,7 @@ end
 
 ![リリースノート作成workflow](/content/shift-reminder/list_calendar_lists.png)
 
-ここで、結構引っかかりました。上の google のサンプルコードは、アカウントがデフォルトで持っているカレンダーのイベント(青色のイベント)しか引っ張ってこないです。「え、アカウント上で作ったカレンダーの情報って、どうやって引っ張ってくるんだ」と思い、ソースコード(`Google::Apis::CalendarV3::Service` クラス) を実際に読んでみると、
+ここで、結構引っかかりました。上の google のサンプルコードは、アカウントがデフォルトで持っているカレンダーのイベント(青色のイベント)しか引っ張ってこないです。どうやって引っ張ってくるのかをソースコード(`Google::Apis::CalendarV3::Service` クラス) を実際に読んで、調べてみました。
 
 ```ruby [service.rb]
  def list_calendar_lists(max_results: nil, min_access_role: nil, page_token: nil, show_deleted: nil, show_hidden: nil, sync_token: nil, fields: nil, quota_user: nil, user_ip: nil, options: nil, &block)
@@ -104,7 +104,7 @@ end
  end
 ```
 
-むむっ！　`get`と`me`って書いてあって、`calendarList` ってある！
+`get` や `me` などの言葉があり、`calendarList` とも記述されています。
 試しにやってみたら、思った通り、複数のカレンダーのシフト（イベント）が取得されました。
 gem 内のコードを読むのは、大事だな〜と新卒の始めの時期に改めて思いました。
 ログインしているアカウントのデフォルトのカレンダーには、シフトがないので、 `reject` で、デフォルトのカレンダーの id を省きます。
@@ -152,6 +152,7 @@ class Calendar
     end
 
     private
+
     def ids
       @@calendar.list_calendar_lists.items.reject{ |calendar| calendar.id == ENV['GMAIL_ACCOUNT'] }.map(&:id)
     end
@@ -383,6 +384,6 @@ CRON_TZ=Asia/Tokyo
 
 ## まとめ
 
-  - 上にも書きましたが、gem 内のコードを読むことで、得られることがものすごく多いなと気づきました。
-  - これで、シフトを忘れる人が出てきませんように！
-  - 最後まで読んでいただき、ありがとうございました！
+上にも書きましたが、gem 内のコードを読むことで、得られることがものすごく多いなと気づきました。
+これで、シフトを忘れる人が出てきませんように願うばかりです。
+最後まで読んでいただき、ありがとうございました。
