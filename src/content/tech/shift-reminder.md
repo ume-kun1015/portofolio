@@ -43,7 +43,7 @@ gem 'ruby-enum'
 $ bundle install
 ```
 
-## 2 Google Cloud Platformでの設定
+## 2. Google Cloud Platformでの設定
 
 1. Google Calendar API を有効し、無効になると表示されれば、OK
 
@@ -106,7 +106,7 @@ end
 
 `get` や `me` などの言葉があり、`calendarList` とも記述されています。
 試しにやってみたら、思った通り、複数のカレンダーのシフト（イベント）が取得されました。
-gem 内のコードを読むのは、大事だな〜と新卒の始めの時期に改めて思いました。
+gem 内のコードを読むのは、大事だな〜と新卒の始めの時期に改めて感じました。
 ログインしているアカウントのデフォルトのカレンダーには、シフトがないので、 `reject` で、デフォルトのカレンダーの id を省きます。
 
 ```ruby [calendar.rb]
@@ -334,6 +334,8 @@ end
 ```
 
 ## 8. crontab で、毎日通知がくるように
+
+AWS EC2 インスタンスの crontab にスクリプトを登録しましょう。
 
 ```ruby [main_script.rb]
 require 'rubygems'
