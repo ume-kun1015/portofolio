@@ -1,35 +1,35 @@
 ---
-title: '[Vuejs] 外部モジュールで定義した関数をtemplateで効率よく使えるようにする'
-description: '外部モジュールで定義した関数を直接templateで使用することはできないので、computedに登録することで使えるようにできる。'
-categories: ['Tech', 'Vue.js', 'JavaScript']
+title: '[Nuxt.js] 別ファイルで定義した関数を template で効率よく使えるようにする'
+description: '別ファイルで定義した関数を直接 template で使用することはできないので、computed に登録することで使えるようにできる。'
+categories: ['Tech', 'Vue.js', 'Nuxt.js', 'JavaScript']
 publishedAt: "2020-01-06"
 updatedAt: "2020-01-06"
 ---
 
-## TL; DR
+## TL;DR
 
-  - 外部モジュールで定義した関数を直接 template で使用することはできないので、computed に登録することで使えるようにできる。
+外部モジュールで定義した関数を直接 template で使用できないため、computed に登録することで使えるようにできる。
 
 ## WHY
 
-  - vuejs(nuxtjs)でメディアコンテンツ入稿ツール(以下: ダッシュボードツール)を開発しています。
-  - ページやコンポーネントの js のコードが肥大化しないように、使用する関数を外部モジュールに定義しました。それをインポートしようとし、直接 template 内で使用したところ、下のエラーが発生し困っていました。
+Nuxt.js でメディアコンテンツ入稿ツール(以下: ダッシュボードツール)を開発しています。
+ページやコンポーネントの JavaScript のコードが肥大化しないように、使用する関数を外部モジュールに定義しました。それをインポートしようとし、直接 template 内で使用したところ、下のエラーが発生し困っていました。
 
 ```text
 Property or method "helperFunc" is not defined on the instance but referenced during render.
 Make sure to declare reactive data properties in the data option.
 ```
 
-  - 解決したのですが、ググったところ簡単に解決策が出てこなったので、せっかくなら記事にまとめようと思いました。
+解決したのですが、ググったところ簡単に解決策が出てこなったので、せっかくなら記事にまとめようと思いました。
 
 ## 技術スタック
 
-  - Nuxtjs(vuejs) 2.x
+  - Nuxt.js 2.x
   - Vuetify 2.x
 
 ## 具体的なケース
 
-上の WHY に書いた、実際にエラーが出るコードがこちらです。
+上の WHY に書いた、エラーコードがこちらです。
 あるモデルの属性をラジオボタンで決めてもらおうと思い、下のようにファイルを用意しました。
 
 ```js [~/helpers/index.js]
@@ -69,7 +69,7 @@ export default {
 </script>
 ```
 
-おそらく`template` で使う関数自体を script タグの中に登録していないからだと思うのですが、下のように登録するのも冗長だし、mixins に定義するほどのものではないしと思い、色々と調べたみたら..。
+おそらく template で使う関数自体を script タグの中に登録していないからであるが、下のように SCF に登録するのも冗長です。しかし、mixins に定義するほどのものではないしと思い、色々と調べてみました。
 
 ```vue [pages/index.vue]
 <template>
@@ -109,7 +109,7 @@ export default {
 
 ## After
 
-解決策としては、computed に登録するだけでした。ポイントは export するときは関数で返すことです。
+解決策としては、computed に登録するだけでした。ポイントは export するときに関数で返すことです。
 
 ```js [~/helpers/index.js]
 const contentTypeRadios = () => {
@@ -210,4 +210,4 @@ export default {
 
 ## まとめ
 
-  - いかかだったでしょうか？　これで無理やり computed に登録しなくてもよくなり、記述量が減りました。これからも積極的に使っていこうと思います。最後までお読みくださりありがとうございました。
+いかかだったでしょうか。これで無理やり computed に登録しなくてもよくなり、記述量が減りました。これからも積極的に使っていきます。最後までお読みくださりありがとうございました。
