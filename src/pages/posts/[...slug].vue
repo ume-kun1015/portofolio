@@ -58,12 +58,13 @@ const toPathString = (category: string): string => {
 
     <div class="mb-3">
       <ul
-        class="list-none flex not-prose"
+        class="list-none flex not-prose flex-wrap"
         :class="hasDatetime ? 'mb-2 pc:mb-1' : 'mb-0'"
       >
         <li
           v-for="category in page.categories"
           :key="category"
+          class="mb-1 pc:mb-0"
         >
           <ULink
             :to="`/posts/categories/${toPathString(category)}/1`"

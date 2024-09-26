@@ -323,15 +323,7 @@ $ rtmbot
 
 上のコードにある`本日の画像/映像をダウンロードしています！少しお待ち下さい！` と写真がスラックに流れれば、写真 bot の完了です!!
 
-### 全コード
-
-いろいろと機能(ダウンロードした写真を溜めないように、写真を削除するなど)を加えたものを GitHub にあげたので、興味がある方はみていただけれると幸いです。
-<https://github.com/romukey/PythonAlgorithm/blob/master/google_gallery/plugins/google_photo_to_slack.py>
-
 ## 参考にしたもの
 
-Picasa Web API の Documentation
-<https://developers.google.com/picasa-web/docs/1.0/developers_guide_python>
-
-Google OAuth の Login のやり方
-<https://stackoverflow.com/questions/30474269/using-google-picasa-api-with-python>
+  - [Picasa Web API の Documentation](https://developers.google.com/picasa-web/docs/1.0/developers_guide_python)
+  - [Google OAuth の Login のやり方](https://stackoverflow.com/questions/30474269/using-google-picasa-api-with-python)

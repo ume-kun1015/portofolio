@@ -1,10 +1,11 @@
-export const per = 5
+export const per = 12
 
 export const categoryUrlParamsMap: Record<string, string> = {
   'GitHub Actions': 'githubactions',
   JavaScript: 'javascript',
   'Ruby on Rails': 'rubyonrails',
   VeeValidate: 'veevalidate',
+  'Google App Scripts': 'googleappscripts',
 }
 
 export const urlParamsCategoryMap: Record<string, string> = Object.keys(categoryUrlParamsMap)

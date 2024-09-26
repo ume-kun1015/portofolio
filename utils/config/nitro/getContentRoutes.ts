@@ -8,7 +8,7 @@ import { per, categoryUrlParamsMap } from '../../../constant/post'
 const getFrontMatter = (markdownPath: string): { categories: string[], draft: boolean } => {
   const { data: frontmatter } = parseFrontMatter(readFileSync(markdownPath, 'utf8'))
   const { categories, draft } = frontmatter
-  return { categories, draft }
+  return { categories: categories || [], draft }
 }
 
 export const getContentRoutes = (): string[] => {
