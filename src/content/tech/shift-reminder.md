@@ -93,8 +93,7 @@ end
 
 ## 4. アカウントに紐づいている全てのカレンダーを取得する
 
-<!-- markdownlint-disable MD033 -->
-<img width="1440" alt="スクリーンショット 2017-11-06 22.18.42.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/fc1c44ee-8df2-32a7-9499-607488e7f77b.png">
+![リリースノート作成workflow](/content/shift-reminder/list_calendar_lists.png)
 
 ここで、結構引っかかりました。上の google のサンプルコードは、アカウントがデフォルトで持っているカレンダーのイベント(青色のイベント)しか引っ張ってこないです。「え、アカウント上で作ったカレンダーの情報って、どうやって引っ張ってくるんだ」と思い、ソースコード(`Google::Apis::CalendarV3::Service` クラス) を実際に読んでみると、
 
@@ -380,7 +379,7 @@ CRON_TZ=Asia/Tokyo
 
 ## 10. こうなりました
 
-<img width="398" alt="スクリーンショット 2017-11-06 22.33.39.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/902aaa92-c6ac-b9c7-dc89-acfa69219dd5.png">
+![リリースノート作成workflow](/content/shift-reminder/result.png)
 
 ## まとめ
 
