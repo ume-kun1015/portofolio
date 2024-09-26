@@ -84,7 +84,7 @@ const allPagesNum = computed(() => {
 </script>
 
 <template>
-  <div class="p-2 max-w-6xl mx-auto h-screen">
+  <div class="p-2 max-w-6xl mx-auto min-h-screen">
     <div class="py-2">
       <PostList :query="query" />
     </div>
