@@ -333,7 +333,7 @@ class SlackNotifier
 end
 ```
 
-## 8. crontab で、毎日通知がくるように
+## 10. crontab で、毎日通知がくるように
 
 AWS EC2 インスタンスの crontab にスクリプトを登録しましょう。
 
@@ -380,7 +380,7 @@ CRON_TZ=Asia/Tokyo
 30 22 * * * cd /home/user_name/RubyAlgorithm/notification_on_slack && sh ./cron_script.sh >> /home/user_name/RubyAlgorithm/notification_on_slack/text.txt  2>&1
 ```
 
-## 10. こうなりました
+## 11. こうなりました
 
 ![リリースノート作成workflow](/content/shift-reminder/result.png)
 
