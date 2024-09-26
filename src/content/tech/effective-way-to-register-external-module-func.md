@@ -69,7 +69,7 @@ export default {
 </script>
 ```
 
-おそらく`template` で使う関数自体を script タグの中に登録していないからですが、下のように登録するのも冗長だし、mixins に定義するほどのものではないしと思い、色々と調べてみました。
+おそらく template で使う関数自体を script タグの中に登録していないからであるが、下のように SCF に登録するのも冗長です。しかし、mixins に定義するほどのものではないしと思い、色々と調べてみました。
 
 ```vue [pages/index.vue]
 <template>
