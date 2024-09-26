@@ -386,6 +386,4 @@ CRON_TZ=Asia/Tokyo
 
   - 上にも書きましたが、gem 内のコードを読むことで、得られることがものすごく多いなと気づきました。
   - これで、シフトを忘れる人が出てきませんように！
-  - 全てのコードは下にあります！
-    - <https://github.com/r-ume/RubyAlgorithm/tree/master/notification_on_slack>
   - 最後まで読んでいただき、ありがとうございました！
