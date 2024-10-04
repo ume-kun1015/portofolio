@@ -1,6 +1,6 @@
 ---
-title: '[Vuejs(Nuxtjs)]  vee-validateでカスタムルールを作ってみた'
-description: 'vee-validate のカスタムルールの作り方'
+title: '[Vue.js (Nuxt.js) ] VeeValidateでカスタムルールを作ってみた'
+description: 'VeeValidate のカスタムルールの作り方'
 categories: ['Tech', 'Vue.js', 'Nuxt.js', 'VeeValidate', 'JavaScript']
 publishedAt: '2020-01-02'
 updatedAt: '2020-01-02'
@@ -8,28 +8,29 @@ updatedAt: '2020-01-02'
 
 ## TL;DR
 
-  - 自分が業務で使用している[vee-validate 3.x](https://logaretm.github.io/vee-validate)のカスタムルールをまとめました。
+自分が業務で使用している [VeeValidate 3.x](https://vee-validate.logaretm.com) のカスタムルールをまとめました。
 
 ## 概要
 
-  - 自分はメディア運営会社のエンジニアとして働いているもので、メディアのコンテンツを入稿するツールを nuxtjs で開発や運用しています。入稿されるデータに不整合が起きないように、データ作成/更新前のバリデーションには気を使っています。バリデーションライブラリでは、vee-validate を使用しています。
-  - 属性が多いモデルに関しては、様々な条件に柔軟に対応しないといけないのですが、**[デフォルトで提供されているvee-validateのルール](https://logaretm.github.io/vee-validate/guide/rules.html#rules)**だけだと対応できないな...と思い、色々と自分でカスタムで実装しました。が、そもそもそんなにカスタムルールの作り方が見つからなかったと思ったので、作り方などまとめました。
+自分はメディア運営会社のエンジニアとして働いているもので、メディアのコンテンツを入稿するツールを Nuxt.js で開発や運用しています。入稿されるデータに不整合が起きないように、データ作成/更新前のバリデーションには気を使っています。バリデーションライブラリでは、VeeValidate を使用しています。
+
+フィールドが多いデータ関しては、[デフォルトで提供されているvee-validateのルール](https://vee-validate.logaretm.com/v3/guide/rules.html)だけだと対応できなく、色々とカスタムで実装しました。カスタムルールの作り方が見つからなかったので、今後の議事録のためにも、作り方などまとめました。
 
 ## 対象者
 
-  - vee-validate は使ったことあり、これからカスタムルールをどう実装していく方。
+VeeValidate は使ったことあり、これからカスタムルールをどう実装していく方。
 
 ## 技術スタック
 
-  - nuxtjs 2.x
-  - vuetify 2.x
-  - vee-validate 3.x
+  - Nuxt.js 2.x
+  - Vuetify 2.x
+  - VeeValidate 3.x
 
 ## カスタムルールの作り方
 
-ここでは、vee-validate3.x をどうやって Nuxt.js で使えるようにすればいいのかは詳細には書きません。
+ここでは、VeeValidate 3.x をどうやって Nuxt.js で使えるようにすればいいのかは割愛します。
 
-まずは、`vee-validate` を `Nuxt.js` で使えるようにするためのプラグインを用意します。
+まずは VeeValidate を Nuxt.js で使えるようにするためのプラグインを用意します。
 
 `nuxt.config.js` の `plugins` プロパティで読み込みます。
 
@@ -52,11 +53,10 @@ for (const rule in CustomRules) {
 }
 ```
 
-そしてカスタムルールを下のように定義します。下のページを参考しました。
-<https://logaretm.github.io/vee-validate/advanced/rules-object-expression.html#cross-field-validation>
+そしてカスタムルールを下のように定義します。[Cross Field Validation](https://vee-validate.logaretm.com/v3/advanced/cross-field-validation.html#cross-field-validation) のページを参考にしました。
 
 ```js [utils/validation-custom-rules.js]
-const custom_rule = {
+const customRule = {
   // ルールを書くときに使う引数。
   params: ['compare'],
 
@@ -71,7 +71,7 @@ const custom_rule = {
   },
 }
 
-export { custom_rule }
+export { customRule }
 ```
 
 プロジェクトで実装したカスタムルールの一部を記載。
@@ -81,7 +81,7 @@ export { custom_rule }
  * 数字が指定した桁数以下か検証する
  * @param max 最大桁数
  */
-const max_digits = {
+const maxDigits = {
   params: ['max'],
 
   validate(value, { max }) {
@@ -97,7 +97,7 @@ const max_digits = {
  * コレクションの要素数が指定していた数以下かを検証する
  * @param maxLength 最大要素数
  */
-const collection_max_length = {
+const collectionMaxLength = {
   params: ['maxLength'],
 
   validate(value, { maxLength }) {
@@ -113,7 +113,7 @@ const collection_max_length = {
   },
 }
 
-export { max_digits, collection_max_length }
+export { maxDigits, collectionMaxLength }
 ```
 
 ## 実際にどう使うか
@@ -159,4 +159,5 @@ export default {
 
 ## まとめ
 
-  - メディアのコンテンツを入稿するツールを作っていく以上、不適切なデータが入稿され、メディアのブランドや信用性が損なわれるのを防ぐ必要があると思っています。こうやって、カスタムでバリデーションルールを実装できるので、コンテンツを作るユーザーが安心して、良いコンテンツを入稿できるように、日々起こりうるデータの不整合をなくしていければと思います。最後まで読んでいただき、ありがとうございました。
+メディアのコンテンツを入稿するツールを作っていく以上、不適切なデータが入稿され、メディアのブランドや信用性が損なわれるのを防ぐ必要があると思っています。
+こうやってカスタムでバリデーションルールを実装できるので、コンテンツを作るユーザーが安心して、良いコンテンツを入稿できるように、日々起こりうるデータの不整合をなくしていきたいです。最後まで読んでいただき、ありがとうございました。
