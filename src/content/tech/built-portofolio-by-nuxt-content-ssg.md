@@ -168,6 +168,27 @@ src/pages/posts/
 
 取得するはどうしたらいいかを考えたところ、 `remark-mdc` というパッケージから `parseFrontMatter` という処理を使えたので、それをそのまま真似ました。後日詳しく書く予定ですが、rdc parser がすごく便利と感じました。`@nuxt/content` が `@nuxt/mdc` と `rdc parser` の順番に依存しています。そこで frontmatter 単体をパースしている処理を見つけ、この方法で frontmatter で定義されているデータを prerender のときに取得できました。prerender するパスを決めるスクリプトにデータを定義する必要がなく、これで二重管理を避けられます。
 
+```ts [getContentRoute.ts]
+import { parseFrontMatter } from 'remark-mdc'
+import { readFileSync } from 'fs'
+
+const getFrontMatter = (markdownPath: string): { categories: string[], draft: boolean } => {
+  const { data: frontmatter } = parseFrontMatter(readFileSync(markdownPath, 'utf8'))
+  const { categories, draft } = frontmatter
+  return { categories: categories || [], draft }
+}
+
+for (const markdownFile of markdownFiles) {
+  const frontmatter = getFrontMatter(`${markdownFile.path}/${markdownFile.name}`)
+
+  if (frontmatter.draft) continue // ドラフト記事なら、 prerender のルートに入れない。
+
+  for (const category of frontmatter.categories) {
+    // ...category
+  }
+}
+```
+
 ### Nuxt UI のカスタマイズ
 
 vuefes で紹介されたので、工数削減のためと OSS のライブラリが改めてどのようにコンポーネントを作成しているのかのインプットのために、使ってみてました。`@nuxt/content` と `@nuxt/ui` の親和性も高く、使用したいコーディングブロックのコンポーネントも作成できたので、採用して良かったかと思いきや、他のカスタマイズが難しかったです。
