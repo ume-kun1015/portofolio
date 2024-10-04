@@ -136,7 +136,7 @@ scoll spy の合成関数を用意しました。
 
 #### Before
 
-```
+```text [before.txt]
 src/pages/posts/
 ├── [...slug].vue
 ├── categories
@@ -146,7 +146,7 @@ src/pages/posts/
 
 #### After
 
-```text [before.txt]
+```text [after.txt]
 src/pages/posts/
 ├── [...slug].vue
 ├── [page].vue // posts/1
@@ -182,20 +182,20 @@ vuefes で紹介されたので、工数削減のためと OSS のライブラ�
 
 [rehype](https://github.com/rehypejs/rehype) についての記事も後日書きますが、HTML に変更を加えるのが容易になります。様々なプラグインがあり、今回 a タグに変更を追加するのは `rehype-external-plugin` というものでした。そのデフォルトの挙動を見ると、`rel: nofollow` をつけることがわかります。幸い `@nuxt/content` が `rehype-external-plugin` へのオプションを渡してくれるので、a タグに付与したい属性を `nuxt.config.ts` に定します。
 
-    ```ts
-    export default defineNuxtConfig({
-      markdown: {
-        rehypePlugins: [
-          [
-            'rehype-external-links', {
-              target: '_blank',
-              rel: 'nofollow noopener noreferrer',
-            },
-          ],
-        ],
-      },
-    })
-    ```
+```ts
+export default defineNuxtConfig({
+  markdown: {
+    rehypePlugins: [
+      [
+        'rehype-external-links', {
+          target: '_blank',
+          rel: 'nofollow noopener noreferrer',
+        },
+      ],
+    ],
+  },
+})
+```
 
 これで外部サイトを別タブで開くことができました。
 
