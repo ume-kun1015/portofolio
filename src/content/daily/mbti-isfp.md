@@ -1,9 +1,10 @@
 ---
+title: 冒険家です
 draft: true
 categories: ['Daily']
 ---
 
-# これ何
+## これ何
 
 最近 mbti 性格診断で自信をパーソナライズやラベリング
 主に
