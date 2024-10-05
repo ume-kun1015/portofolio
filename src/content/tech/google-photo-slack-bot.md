@@ -40,12 +40,11 @@ updatedAt: "2017-10-14"
 まずは、Slack Apps のページで、Bot ユーザーを作成をします。
 赤い長方形で書いたものは、bot のトークンなので、どこか別の場所にコピーしましょう。
 
-<!-- markdownlint-disable MD033 -->
-<img width="1363" alt="スクリーンショット 2019-06-22 12.44.19.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/152032/2b84bef0-94b5-ded8-217e-b65d5957c818.png">
+![bot ユーザー作成](/content/google-photo-slack-bot/bot-user.png)
 
 #### 2. Pythonで実装されたBotライブラリをインストール
 
-  オープンソースの Bot 管理ライブラリを pip 経由で、インストール(<https://github.com/slackapi/python-rtmbot>)
+オープンソースの [Bot 管理ライブラリ](https://github.com/slackapi/python-rtmbot) を pip 経由で、インストールする。
 
 ```bash
 $ pip install rtmbot
@@ -77,8 +76,7 @@ $ pip install gdata
 
 Google Cloud PlatformDashboard->Use Google APIs->Credentials の順番で、OAuth2.0　Client ID を作成します。その secret json ファイルをダウンロードします。タイプは、「その他」を選択してください。
 
-<!-- markdownlint-disable MD033 -->
-<img width="1440" alt="スクリーンショット 2017-08-11 20.19.37.png" src="https://qiita-image-store.s3.amazonaws.com/0/152032/a717d5bc-0774-b674-98d7-3ce6d57c3f11.png">
+![Google Credential 作成](/content/google-photo-slack-bot/google-credential.png)
 
 いろいろと、ファイルが増えてきたなかで、ディレクトリ構造は下のようになります。
 `credentials.dat` の中身は、今のところ何も書かなくて大丈夫です。
