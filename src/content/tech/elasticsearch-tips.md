@@ -1,6 +1,6 @@
 ---
-title: 'Elasticsearchについて知っておくとお得なTips'
-description: '学んだことをまとめると同時に、これからElasticsearchを使うことを検討されている人の何か役に立てればと思い、このような記事を書きました。'
+title: 'ElasticSearch について知っておくとお得な Tips'
+description: '学んだことをまとめると同時に、これから ElasticSearch を使うことを検討されている人の何か役に立てればと思い、このような記事を書きました。'
 categories: ['Tech', 'ElasticSearch']
 publishedAt: "2020-09-29"
 updatedAt: "2020-09-29"
@@ -8,41 +8,42 @@ updatedAt: "2020-09-29"
 
 ## 概要
 
-  - 実務で Elasticsearch を触る機会がありましたが、始めて触ったため使うべきではない言葉なので修正してくださいことが多く Elasticsearch のクエリ発行や現場のシステムで利用する前にこれを知っておきたかった…。と感じることが多々ありました。
-  - 学んだことをまとめると同時に、これから Elasticsearch を使うことを検討されている人の何か役に立てればと思い、このような記事を書きました。
+実務で ElasticSearch を触る機会がありましたが、始めて触ったため、ElasticSearch のクエリ発行や現場のシステムで利用する前にこれを知っておきたかった…。と感じることが多々ありました。
+学んだことをまとめると同時に、これから ElasticSearch を使うことを検討されている人の何か役に立てればと思い、このような記事を書きました。
 
 ## 対象者
 
-  - Elasticsearch の基本的なことはわかっており、これから実務で本格的に使う人
-    - Elasticsearch の概要や導入の仕方、主なユースケースには触れないため、どんな用途に向いているかはこの記事では省略します。あくまで、これから業務で使う人の入門に役立てれば幸いです。わかりやすいように、RDS で使う SQL との比較を入れて、まとめていきます。
+ElasticSearch の基本的なことはわかっており、これから実務で本格的に使う人に向けての記事になります。
+
+ElasticSearch の概要や導入の仕方、主なユースケースには触れないため、どんな用途に向いているかはこの記事では省略します。あくまで、これから業務で使う人の入門に役立てれば幸いです。わかりやすいように、RDS で使う SQL との比較を入れて、まとめていきます。
 
 ## TL; DR
 
-  1. `should`と`must` (`filter`) クエリの組み合わせを紹介
-  2. `_source`は、用途によっては false にしましょう
+  1. `should` と `must` (`filter`) クエリの組み合わせを紹介
+  2. `_source` は、用途によっては false にしましょう
   3. RDS のように、条件(クエリ)に一致したレコードをすべて取得できない
   4. Upsert 機能もあるよ
 
 ## 始める前に
 
-  - 現場での elasticsearch では最新バージョンが使えておらず、そのため elasticsearch から提供されている REST API が最新バージョンのものと違うものを記載しているかもしれません。バージョンによって、REST API のパスパラメーターが違うものがありますので、詳しくはドキュメントを読んでいただけると幸いです。
+現場での ElasticSearch では最新バージョンが使えておらず、提供されている REST API が最新バージョンのものと違うものを記載している場合があります。バージョンによって、REST API のパスパラメーターの違うものがありますので、詳しくはドキュメントを読んでいただけると幸いです。
 
 ## 学んだこと
 
-### 1. `should`と`must` (`filter`) クエリの組み合わせを紹介
+### 1. `should` と `must` (`filter`) クエリの組み合わせを紹介
 
-Elasticsearch で条件に当てはまるドキュメントを絞り込むときに使うのに[BoolQuery](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html#query-dsl-bool-query)というものがあります。それにも種類があり、`should`と`must(filter)` があります。(以下からは `filter` を使います。`must`とほぼ変わらないですが、違いとしては、条件にどれぐらい当てはまっているかを表すスコアの計算をするかしないかになります。)
+ElasticSearch で条件に当てはまるドキュメントを絞り込むときに使うのに [BoolQuery](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html#query-dsl-bool-query) というものがあります。それにも種類があり、`should` と `must(filter)` があります。(以下からは `filter` を使います。`must`とほぼ変わらないですが、違いとしては、条件にどれぐらい当てはまっているかを表すスコアの計算をするかしないかになります。)
 
-RDS の SQL と例えると、`should` は `OR` / `filter` は `AND` となります。
-`should` で指定したフィールドの値の中で 1 つでも当てはまる値を持つドキュメントが Elasticsearch から返却されます。filter で指定したときはフィールドの値の中で全てに当てはまる値を持つドキュメントが Elasticsearch から返却されます。
+RDS の SQL と例えると、`should` が `OR` / `filter` は `AND` となります。
+`should` で指定したフィールドの値の中で 1 つでも当てはまる値を持つドキュメントが ElasticSearch から返却されます。`filter` で指定したときはフィールドの値の中で全てに当てはまる値を持つドキュメントが ElasticSearch から返却されます。
 
-should を使ったときの例として、tag_id に 1 か 2 を持つドキュメントが取得されます。
+`should` を使ったときの例として、tag_id に 1 か 2 を持つドキュメントが取得されます。
 
-```sql
+```sql [select.sql]
 select * from articles where tag_id in (1, 2)
 ```
 
-```json
+```json [query.json]
 {
    "query": {
       "bool": {
@@ -55,13 +56,13 @@ select * from articles where tag_id in (1, 2)
 }
 ```
 
-filter を使ったときの例として、tag_id に 1 と 2 の両方を持つドキュメントが取得されます。
+`filter` を使ったときの例として、tag_id に 1 と 2 の両方を持つドキュメントが取得されます。
 
-```sql
+```sql [select.sql]
 select * from articles where tag_id in (1, 2)
 ```
 
-```json
+```json [query.json]
 {
    "query": {
       "bool": {
@@ -77,11 +78,11 @@ select * from articles where tag_id in (1, 2)
 では、上 2 つを組み合わせの場合はどうなるでしょうか。
 一例で下のような条件でドキュメントを取得したいときには、`in` 句と `=` を組み合わせ、両方にあてはまるという意味なので filter でラップすると条件を満たすことができます。
 
-```sql
+```sql [select.sql]
 select * from articles where tag_id in (1, 2) and user_id = 10
 ```
 
-```json
+```json [query.json]
 {
    "query": {
       "bool": {
@@ -107,9 +108,11 @@ select * from articles where tag_id in (1, 2) and user_id = 10
 }
 ```
 
-### 2. fetchsourceは、用途によってはfalseにしましょう
+### 2. fetchsource は用途によってはfalseにしましょう
 
-elastic search では、ドキュメントで登録されたフィールドとその値が全てレスポンスで返ってきます。自分で取得したいドキュメントににあるフィールドを選択すればいいか思いますが、逆に何も選択したくなく、ドキュメントにある ID だけ必要だったり、レコードが見つかるだけ知りたいというケースもあるかと思います。そのときは、パフォーマンス向上のためにも、`_source: false` とクエリの中に条件を書くことによって、ドキュメントに登録している値全てが Elasticsearch に返却されなくなるため、扱うデータ量を下げることもできます。
+ElasticSearch では、ドキュメントで登録されたフィールドとその値が全てレスポンスで返ってきます。自分で取得したいドキュメントにあるフィールドを選択すればいいですが、逆に何も選択したくなく、ドキュメントにある ID だけ必要だったり、レコードが見つかるだけ知りたいというケースがあります。
+
+そのときは、パフォーマンス向上のためにも、`_source: false` とクエリの中に条件を書けます。ドキュメントに登録している値すべてが ElasticSearch から返却されず、扱うデータ量を下げられます。
 
 #### デフォルト (`_source: true`)
 
@@ -161,7 +164,7 @@ $ curl -s GET 'http://es:6000/main-1/articles/_search' -H 'Content-Type: applica
 
 #### `_source: false` にしたとき
 
-ドキュメントが返却されないことがわかります。
+ドキュメントが返却されていません。
 
 ```shell
 $ curl -s GET 'http://es:6000/main-1/articles/_search' -H 'Content-Type: application/json' -d'
@@ -198,15 +201,15 @@ $ curl -s GET 'http://es:6000/main-1/articles/_search' -H 'Content-Type: applica
 }
 ```
 
-### 3. RDSのように、条件(クエリ)に一致したレコードをすべて取得できない
+### 3. RDS のように、条件(クエリ)に一致したレコードをすべて取得できない
 
-RDS に慣れている人なら、レコード取得で、limit をかけない限りデフォルトでは条件に当てはまるものを全て取得できるようになっていると思います。その感覚で、クエリで条件を書き、欲しいレコードを全て取得できると思いきや、Elasticsearch ではそうならず、デフォルトで 10 件しか取得されることができません。
+RDS に慣れている人なら、レコード取得で、limit をかけない限りデフォルトでは条件に当てはまるものを全て取得できるようになっています。その感覚で、クエリで条件を書き、欲しいレコードを全て取得できると思いきや、ElasticSearch ではデフォルトで 10 件しか取得されることができません。
 
-その上限を外すこともできず、調べたところ、ある程度の数を size で指定しないといけないみたいです。かと言って size に Elasticsearch の index に登録されているであろう全てのドキュメントの数を指定すると、負荷的に高くなってしまい、Elasticsearch が落ちてしまうかもしれません。
+その上限を外すこともできず、調べたところ、ある程度の数を size で指定しないといけないみたいです。かと言って size に ElasticSearch のインデックスに登録されているであろう全てのドキュメントの数を指定すると、負荷的に高くなってしまいます。
 
-実際自分は Elasticsearch に当てはまるレコード数を用いて、ページネーションのため、API のレスポンスヘッダーに`X-Page-Total-Count`や`X-Per-Page`などの情報を付与する実装を行おうとしたところ、全件取得ができないことに気づき、全体のレコード数がわからないため、レスポンスヘッダーに返す値をどうするかと悩んでいました。しかし、実際は下のレスポンスにあるように `.hits.total` で全体の数がわかり、各ページでのレコード数 / 全体数でページ数などが求められたため、無事 API のレスポンスヘッダーにページネーション情報を付与できました。
+実際ページネーションの実装時、全件取得ができないことに気づき、全体のレコード数がわからないため、レスポンスヘッダーに返す値をどうするかと悩んでいました。しかし、実際は下のレスポンスにあるように `.hits.total` で全体の数が求められたため、無事 API のレスポンスヘッダーにページネーション情報を付与できました。
 
-RDS の感覚で条件さえ書けば、当てはまるドキュメントが全て返却されると考えると利用していてつまずくかもしれません。
+RDS の感覚で条件を書けば、当てはまるドキュメントが全て返却されることを考慮すると、どこかで落とし穴になる可能性があります。
 
 ```shell
 $ curl -s GET 'http://es:6000/main-1/articles/_search' -H 'Content-Type: application/json' -d'
@@ -254,13 +257,15 @@ $ curl -s GET 'http://es:6000/main-1/articles/_search' -H 'Content-Type: applica
 }
 ```
 
-### 4. Upsertが便利だった
+### 4. Upsert が便利だった
 
-自分の現場に特定した話かもしれませんが、アプリや Web サービスで表示するコンテンツについて、社内入稿ツールで作成・編集するという運用をしています。入稿ツールからコンテンツ更新 API を叩き、アプリや Web サービスに掲載可能ということがわかったときに、Elasticsearch のインデックスにそのコンテンツのドキュメントがなかったらそれを作成をし、あれば差分だけ更新するという要件がありました。すでにドキュメントがあるかないかを API の処理の中で確かめるのも手間だなと思い、RDS だと `INSERT INTO xxx ON DUPLICATE KEY UPDATE yyy` のようなことを叶えてくれる API が Elasticsearch から提供されていないかと調べてみました。調べたところ、[doc_as_upsert](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html#doc_as_upsert) というものがあり、使ってみたところ要件を満たしてくれたため、便利だと感じました。
+自分はアプリや Web サービスで表示するコンテンツについて、社内入稿ツールで作成・編集するという運用をしています。入稿ツールからアプリや Web サービスに掲載可能ということがわかったときに、ElasticSearch のインデックスにドキュメントがなかったら、作成をし、あれば差分だけ更新する要件がありました。すでにドキュメントがあるかないかを確かめるのも手間だなと思い、RDS だと `INSERT DUPLICATE KEY` API が ElasticSearch から提供されていないかと調べてみました。
+
+調べたところ、[doc_as_upsert](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html#doc_as_upsert) というものがあり、使ってみたところ要件を満たしてくれたため、便利だと感じました。
 
 ちなみに Upsert は複数のドキュメントを更新する BulkRequest にも使うことができます。
 
-#### 作成(insert)
+#### 作成 (insert)
 
 例えば、下のようにドキュメントが存在していなくて、それを新たに作成するとき、
 
@@ -274,7 +279,7 @@ curl -s GET 'http://es:6000/main-1/articles/111' | jq .
 }
 ```
 
-作成すると
+作成すると、
 
 ```bash
 curl -i -X POST \
@@ -305,7 +310,7 @@ curl -s GET 'http://es:6000/main-1/articles/111' | jq .
 
 #### 更新するとき (update)
 
-今度はドキュメントがすでに存在していて、それを更新するとき
+今度はドキュメントがすでに存在していて、それを更新するとき、
 
 ```sh
 $ curl -s GET 'http://es:6000/main-1/articles/112' | jq .
@@ -324,7 +329,7 @@ $ curl -s GET 'http://es:6000/main-1/articles/112' | jq .
 }
 ```
 
-更新すると
+更新すると、
 
 ```sh
 curl -i -X POST \
@@ -357,4 +362,4 @@ $ curl -s GET 'http://es:6000/main-1/articles/112' | jq .
 
 ## まとめ
 
-  - 自分が本格的に ElasticSearch を触って学んだことをまとめてみました。他にも多くのことを学びましたが、まだまだ基本的なことを覚えたぐらいなので、記事にまとめたほうがいいことがあったら更新していこうと考えています。ここまで読んでいただき、ありがとうございました。
+自分が本格的に ElasticSearch を触って学んだことをまとめてみました。他にも多くのことを学びましたが、まだまだ基本的なことを覚えたぐらいなので、記事にまとめることがあったら更新していこうと考えています。ここまで読んでいただき、ありがとうございました。
