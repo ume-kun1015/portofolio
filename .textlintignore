@@ -1,7 +1,1 @@
-src/content/tech/vee-validate-custom-rule.md
-src/content/tech/v-model-in-custom-component.md
-src/content/tech/to-rubyists-learning-golang.md
-src/content/tech/nuxtjs-animation.md
-src/content/tech/google-photo-slack-bot.md
-src/content/tech/golang-interface-tips.md
-src/content/tech/elasticsearch-tips.md
+<!-- ここに textlint を効かないファイルを並べるので、 .textlintignore は残しておく。 -->
