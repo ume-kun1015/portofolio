@@ -7,6 +7,7 @@ export const categoryUrlParamsMap: Record<string, string> = {
   VeeValidate: 'veevalidate',
   'Google App Scripts': 'googleappscripts',
   ElasticSearch: 'elasticsearch',
+  東海オンエア: 'tokaionair',
 }
 
 export const urlParamsCategoryMap: Record<string, string> = Object.keys(categoryUrlParamsMap)
