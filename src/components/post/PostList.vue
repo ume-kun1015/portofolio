@@ -1,14 +1,9 @@
 <script lang="ts" setup>
 import type { QueryBuilderParams } from '@nuxt/content'
 
-import { categoryUrlParamsMap } from '~~/constant/post'
+import { toPathString } from '~/utils/post/category'
 
 defineProps<{ query: QueryBuilderParams }>()
-
-const toPathString = (category: string): string => {
-  const found = categoryUrlParamsMap[category]
-  return found || category.toLowerCase()
-}
 </script>
 
 <template>
