@@ -4,6 +4,7 @@ import { withoutTrailingSlash } from 'ufo'
 
 import PostSurround from '~/components/post/PostSurround.vue'
 import TableOfPost from '~/components/post/TableOfPost.vue'
+import { toPathString } from '~/utils/post/category'
 
 definePageMeta({
   layout: 'post',
@@ -43,10 +44,6 @@ const { data: surround } = await useAsyncData(
 const hasDatetime = computed(() => {
   return page.value?.publishedAt || page.value?.updatedAt
 })
-
-const toPathString = (category: string): string => {
-  return category.replace(/\s/g, '').replace(/\./g, '').toLowerCase()
-}
 </script>
 
 <template>
