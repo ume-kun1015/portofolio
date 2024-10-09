@@ -22,15 +22,19 @@ defineProps<{ query: QueryBuilderParams }>()
             :to="`/posts${content._path}`"
             class="block"
             active-class="text-primary"
-            inactive-class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 inline-block"
+            inactive-class="mb-1 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 inline-block"
           >
-            <p>
+            <p class="text-16">
               {{ content.title }}
             </p>
           </ULink>
 
-          <div class="flex justify-between mb-3 pc:mb-0 mt-2 gap-0 pc:gap-4">
-            <ul class="list-none flex flex-wrap not-prose w-3/4">
+          <p class="text-gray-400 text-12 pc:text-15">
+            {{ content.updatedAt }}
+          </p>
+
+          <div class="mb-3 pc:mb-0 mt-2 gap-0 pc:gap-4">
+            <ul class="list-none flex flex-wrap not-prose">
               <li
                 v-for="category in content.categories"
                 :key="category"
@@ -44,10 +48,6 @@ defineProps<{ query: QueryBuilderParams }>()
                 </ULink>
               </li>
             </ul>
-
-            <p class="w-1/4 text-gray-400 text-right">
-              {{ content.updatedAt }}
-            </p>
           </div>
         </UCard>
       </div>
