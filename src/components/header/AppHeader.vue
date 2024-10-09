@@ -1,16 +1,9 @@
 <script setup lang="ts">
-import { useMatchMediaListener, onMounted, ref } from '#imports'
+import { useDevice } from '#imports'
 
 import ColorModeToggle from '~/components/header/ColorModeToggle.vue'
 
-const isMobile = ref(false)
-onMounted(() => {
-  const toggleIsMobile = (mql: MediaQueryList | MediaQueryListEvent): void => {
-    isMobile.value = !mql.matches
-  }
-  const { setMatchMediaHandler } = useMatchMediaListener()
-  setMatchMediaHandler(toggleIsMobile)
-})
+const device = useDevice()
 </script>
 
 <template>
@@ -35,7 +28,7 @@ onMounted(() => {
           size="2xs"
           :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          {{ isMobile ? '' : 'About' }}
+          {{ device.isMobile ? '' : 'About' }}
         </UButton>
 
         <UButton
@@ -47,7 +40,7 @@ onMounted(() => {
           size="2xs"
           :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          {{ isMobile ? '' : 'Music' }}
+          {{ device.isMobile ? '' : 'Music' }}
         </UButton>
 
         <UButton
@@ -59,7 +52,7 @@ onMounted(() => {
           size="2xs"
           :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          {{ isMobile ? '' : 'Bartender' }}
+          {{ device.isMobile ? '' : 'Bartender' }}
         </UButton>
 
         <UButton
@@ -71,7 +64,7 @@ onMounted(() => {
           size="2xs"
           :ui="{ icon: { size: { '2xs': 'w-3 h-3' } } }"
         >
-          {{ isMobile ? '' : 'Posts' }}
+          {{ device.isMobile ? '' : 'Posts' }}
         </UButton>
 
         <div class="w-6 h-3">
