@@ -7,9 +7,7 @@ updatedAt: '2024-10-07'
 ---
 
 <!-- textlint-disable -->
-::UAlert{variant="soft" color="primary" :ui='{"padding": "px-2 py-0"}'}
-<!-- markdownlint-disable-next-line -->
-#description
+::AlertNote{type='note'}
 この記事はあくまで個人の感想になります。参考程度にとどめてもらえると幸いです。
 ::
 <!-- textlint-enable -->
