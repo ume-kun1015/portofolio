@@ -12,6 +12,9 @@ on:
       - '.github/workflows/code-analysis.yml'
       - '.github/workflows/composite/setup/action.yml'
 
+    branches-ignore:
+      - release
+
 defaults:
   run:
     working-directory: ./
