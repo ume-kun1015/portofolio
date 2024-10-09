@@ -9,6 +9,10 @@ publishedAt: '2024-08-16'
 updatedAt: '2024-08-16'
 ---
 
+マークダウンのパースがどうされるのかを確認するためのページ。
+
+異常がないかを確かめるデバッグ用にも使用します。
+
 ## 見出し
 
 ```text
@@ -50,6 +54,34 @@ updatedAt: '2024-08-16'
 ```
 
 *イタリック* **太字** ~~打ち消し線~~ `code`
+
+## Vue Custom Components
+
+`~/components/content` ディレクトリにあるコンポーネントはマークダウンで使用できるので、サンプルを表示する。
+
+### AlertNote
+
+<!-- textlint-disable -->
+::AlertNote{type='note'}
+type='note'
+::
+
+::AlertNote{type='important'}
+type='important'
+::
+
+::AlertNote{type='tip'}
+type='tip'
+::
+
+::AlertNote{type='warning'}
+type='warning'
+::
+
+::AlertNote{type='caution'}
+type='caution'
+::
+<!-- textlint-enable -->
 
 ## コードブロック
 
