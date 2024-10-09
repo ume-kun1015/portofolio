@@ -23,6 +23,7 @@
     "@nuxt/content": "2.13.2",
     "@nuxt/image": "1.7.0",
     "@nuxt/ui": "2.18.4",
+    "@nuxtjs/device": "3.2.4",
     "nuxt": "3.12.4",
     "sitemap": "8.0.0"
   },
