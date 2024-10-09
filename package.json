@@ -9,6 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare": "nuxt prepare",
+    "module:add": "nuxi module add",
     "lint": "npm run lint:eslint && npm run lint:markdown && npm run lint:text",
     "lint:eslint": "eslint .",
     "lint:markdown": "markdownlint-cli2 src/content/**/*.md",
