@@ -83,7 +83,6 @@ type='caution'
 ::
 <!-- textlint-enable -->
 
-
 ## コードブロック
 
 ### diff
